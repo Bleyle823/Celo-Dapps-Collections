@@ -1,0 +1,378 @@
+{
+  "address": "0x4C3f2c2909C0E677ef0403b6B1dF09348431631d",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "NoDeposit",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NoSavings",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "timeRemaining",
+          "type": "uint256"
+        }
+      ],
+      "name": "StillLocked",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "TransferFailed",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "unlockTime",
+          "type": "uint256"
+        }
+      ],
+      "name": "Deposit",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "PiggyBankSmashed",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "Withdrawal",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "addFunds",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_lockDurationInSeconds",
+          "type": "uint256"
+        }
+      ],
+      "name": "createPiggyBank",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "emergencyWithdraw",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getCurrentTime",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "duration",
+          "type": "string"
+        }
+      ],
+      "name": "getLockDuration",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        }
+      ],
+      "name": "getPiggyBank",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "unlockTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "isUnlocked",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "exists",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        }
+      ],
+      "name": "getTimeLeft",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "timeLeft",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "piggyBanks",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "unlockTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "exists",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "withdraw",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    }
+  ],
+  "transactionHash": "0x1932c9c0f59d4b5b17f5491abff1d7ece329c8fa0b121119ec9b8686b8336327",
+  "receipt": {
+    "to": null,
+    "from": "0x231CdF6d31BF1D106DFA88b702B00E4b900628AD",
+    "contractAddress": "0x4C3f2c2909C0E677ef0403b6B1dF09348431631d",
+    "transactionIndex": 58,
+    "gasUsed": "666940",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0xc28d9fff6cff4be14b377b663515dd69a2bfd119c7c9099a5fb34e4b02c344f2",
+    "transactionHash": "0x1932c9c0f59d4b5b17f5491abff1d7ece329c8fa0b121119ec9b8686b8336327",
+    "logs": [],
+    "blockNumber": 33131137,
+    "cumulativeGasUsed": "9225617",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "9e5cf1afb7eab4a442448b559e6d37b8",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"name\":\"NoDeposit\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NoSavings\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"timeRemaining\",\"type\":\"uint256\"}],\"name\":\"StillLocked\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TransferFailed\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"unlockTime\",\"type\":\"uint256\"}],\"name\":\"Deposit\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"PiggyBankSmashed\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Withdrawal\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"addFunds\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_lockDurationInSeconds\",\"type\":\"uint256\"}],\"name\":\"createPiggyBank\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"emergencyWithdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getCurrentTime\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"duration\",\"type\":\"string\"}],\"name\":\"getLockDuration\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"getPiggyBank\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"unlockTime\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"isUnlocked\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"exists\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"getTimeLeft\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"timeLeft\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"piggyBanks\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"unlockTime\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"exists\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"details\":\"A time-locked savings contract where users can deposit ETH and withdraw only after lock period\",\"kind\":\"dev\",\"methods\":{\"addFunds()\":{\"details\":\"Add more funds to existing piggy bank\"},\"createPiggyBank(uint256)\":{\"details\":\"Create a piggy bank with a lock duration in seconds\",\"params\":{\"_lockDurationInSeconds\":\"Duration to lock the funds (e.g., 86400 for 1 day)\"}},\"emergencyWithdraw()\":{\"details\":\"Emergency withdrawal with penalty (loses 10% of funds) Use this only in real emergencies!\"},\"getCurrentTime()\":{\"details\":\"Get current block timestamp (useful for frontend)\"},\"getLockDuration(string)\":{\"details\":\"Helper function to calculate lock time for common durations\"},\"getPiggyBank(address)\":{\"details\":\"Get piggy bank details for a user\"},\"getTimeLeft(address)\":{\"details\":\"Check how much time is left until withdrawal\",\"returns\":{\"timeLeft\":\"seconds remaining, 0 if unlocked\"}},\"withdraw()\":{\"details\":\"Withdraw funds after lock period expires\"}},\"title\":\"PiggyBank\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/PiggyBank.sol\":\"PiggyBank\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/PiggyBank.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity ^0.8.19;\\r\\n\\r\\n/**\\r\\n * @title PiggyBank\\r\\n * @dev A time-locked savings contract where users can deposit ETH and withdraw only after lock period\\r\\n */\\r\\ncontract PiggyBank {\\r\\n    struct Savings {\\r\\n        uint256 amount;\\r\\n        uint256 unlockTime;\\r\\n        bool exists;\\r\\n    }\\r\\n\\r\\n    mapping(address => Savings) public piggyBanks;\\r\\n    \\r\\n    event Deposit(address indexed user, uint256 amount, uint256 unlockTime);\\r\\n    event Withdrawal(address indexed user, uint256 amount);\\r\\n    event PiggyBankSmashed(address indexed user, uint256 amount);\\r\\n\\r\\n    error NoSavings();\\r\\n    error StillLocked(uint256 timeRemaining);\\r\\n    error NoDeposit();\\r\\n    error TransferFailed();\\r\\n\\r\\n    /**\\r\\n     * @dev Create a piggy bank with a lock duration in seconds\\r\\n     * @param _lockDurationInSeconds Duration to lock the funds (e.g., 86400 for 1 day)\\r\\n     */\\r\\n    function createPiggyBank(uint256 _lockDurationInSeconds) external payable {\\r\\n        require(msg.value > 0, \\\"Must deposit some ETH\\\");\\r\\n        require(_lockDurationInSeconds > 0, \\\"Lock duration must be positive\\\");\\r\\n\\r\\n        uint256 unlockTime = block.timestamp + _lockDurationInSeconds;\\r\\n        \\r\\n        if (piggyBanks[msg.sender].exists) {\\r\\n            // Add to existing piggy bank and extend lock time if new time is longer\\r\\n            piggyBanks[msg.sender].amount += msg.value;\\r\\n            if (unlockTime > piggyBanks[msg.sender].unlockTime) {\\r\\n                piggyBanks[msg.sender].unlockTime = unlockTime;\\r\\n            }\\r\\n        } else {\\r\\n            // Create new piggy bank\\r\\n            piggyBanks[msg.sender] = Savings({\\r\\n                amount: msg.value,\\r\\n                unlockTime: unlockTime,\\r\\n                exists: true\\r\\n            });\\r\\n        }\\r\\n\\r\\n        emit Deposit(msg.sender, msg.value, piggyBanks[msg.sender].unlockTime);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Add more funds to existing piggy bank\\r\\n     */\\r\\n    function addFunds() external payable {\\r\\n        if (!piggyBanks[msg.sender].exists) revert NoSavings();\\r\\n        require(msg.value > 0, \\\"Must deposit some ETH\\\");\\r\\n\\r\\n        piggyBanks[msg.sender].amount += msg.value;\\r\\n        \\r\\n        emit Deposit(msg.sender, msg.value, piggyBanks[msg.sender].unlockTime);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Withdraw funds after lock period expires\\r\\n     */\\r\\n    function withdraw() external {\\r\\n        Savings storage savings = piggyBanks[msg.sender];\\r\\n        \\r\\n        if (!savings.exists) revert NoSavings();\\r\\n        if (block.timestamp < savings.unlockTime) {\\r\\n            revert StillLocked(savings.unlockTime - block.timestamp);\\r\\n        }\\r\\n\\r\\n        uint256 amount = savings.amount;\\r\\n        \\r\\n        // Clear the piggy bank before transfer (CEI pattern)\\r\\n        delete piggyBanks[msg.sender];\\r\\n\\r\\n        // Transfer the funds\\r\\n        (bool success, ) = payable(msg.sender).call{value: amount}(\\\"\\\");\\r\\n        if (!success) revert TransferFailed();\\r\\n\\r\\n        emit Withdrawal(msg.sender, amount);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Emergency withdrawal with penalty (loses 10% of funds)\\r\\n     * Use this only in real emergencies!\\r\\n     */\\r\\n    function emergencyWithdraw() external {\\r\\n        Savings storage savings = piggyBanks[msg.sender];\\r\\n        \\r\\n        if (!savings.exists) revert NoSavings();\\r\\n\\r\\n        uint256 penalty = savings.amount / 10; // 10% penalty\\r\\n        uint256 withdrawAmount = savings.amount - penalty;\\r\\n        uint256 totalAmount = savings.amount;\\r\\n\\r\\n        // Clear the piggy bank before transfer\\r\\n        delete piggyBanks[msg.sender];\\r\\n\\r\\n        // Transfer funds minus penalty\\r\\n        (bool success, ) = payable(msg.sender).call{value: withdrawAmount}(\\\"\\\");\\r\\n        if (!success) revert TransferFailed();\\r\\n\\r\\n        emit PiggyBankSmashed(msg.sender, totalAmount);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Check how much time is left until withdrawal\\r\\n     * @return timeLeft seconds remaining, 0 if unlocked\\r\\n     */\\r\\n    function getTimeLeft(address user) external view returns (uint256 timeLeft) {\\r\\n        if (!piggyBanks[user].exists) return 0;\\r\\n        \\r\\n        uint256 unlockTime = piggyBanks[user].unlockTime;\\r\\n        if (block.timestamp >= unlockTime) {\\r\\n            return 0;\\r\\n        }\\r\\n        return unlockTime - block.timestamp;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get piggy bank details for a user\\r\\n     */\\r\\n    function getPiggyBank(address user) external view returns (\\r\\n        uint256 amount,\\r\\n        uint256 unlockTime,\\r\\n        bool isUnlocked,\\r\\n        bool exists\\r\\n    ) {\\r\\n        Savings memory savings = piggyBanks[user];\\r\\n        return (\\r\\n            savings.amount,\\r\\n            savings.unlockTime,\\r\\n            block.timestamp >= savings.unlockTime,\\r\\n            savings.exists\\r\\n        );\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get current block timestamp (useful for frontend)\\r\\n     */\\r\\n    function getCurrentTime() external view returns (uint256) {\\r\\n        return block.timestamp;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Helper function to calculate lock time for common durations\\r\\n     */\\r\\n    function getLockDuration(string memory duration) external pure returns (uint256) {\\r\\n        bytes32 durationHash = keccak256(abi.encodePacked(duration));\\r\\n        \\r\\n        if (durationHash == keccak256(abi.encodePacked(\\\"1hour\\\"))) return 3600;\\r\\n        if (durationHash == keccak256(abi.encodePacked(\\\"1day\\\"))) return 86400;\\r\\n        if (durationHash == keccak256(abi.encodePacked(\\\"1week\\\"))) return 604800;\\r\\n        if (durationHash == keccak256(abi.encodePacked(\\\"1month\\\"))) return 2592000; // 30 days\\r\\n        if (durationHash == keccak256(abi.encodePacked(\\\"1year\\\"))) return 31536000; // 365 days\\r\\n        \\r\\n        return 0; // Invalid duration\\r\\n    }\\r\\n\\r\\n    // Prevent accidental ETH sends to contract\\r\\n    receive() external payable {\\r\\n        revert(\\\"Use createPiggyBank() function to deposit\\\");\\r\\n    }\\r\\n}\",\"keccak256\":\"0x72f9b0e4ef3646b96a9fea9f1f5a949cdb1fcade9050297f43f121cfed57fa26\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50610b19806100206000396000f3fe60806040526004361061008a5760003560e01c80633ccfd60b116100595780633ccfd60b146101e75780634adc5fa3146101fe57806371b2aa6014610211578063a26759cb1461026d578063db2e21bc1461027557600080fd5b80630239f403146100f3578063111eb8b1146101865780632134b02b146101b457806329cb924d146101d457600080fd5b366100ee5760405162461bcd60e51b815260206004820152602960248201527f55736520637265617465506967677942616e6b28292066756e6374696f6e20746044820152681bc819195c1bdcda5d60ba1b60648201526084015b60405180910390fd5b600080fd5b3480156100ff57600080fd5b5061015961010e366004610947565b6001600160a01b03166000908152602081815260409182902082516060810184528154808252600183015493820184905260029092015460ff16151593018390529290914283111591565b60408051948552602085019390935290151591830191909152151560608201526080015b60405180910390f35b34801561019257600080fd5b506101a66101a1366004610947565b61028a565b60405190815260200161017d565b3480156101c057600080fd5b506101a66101cf366004610986565b6102f2565b3480156101e057600080fd5b50426101a6565b3480156101f357600080fd5b506101fc610455565b005b6101fc61020c366004610a37565b610587565b34801561021d57600080fd5b5061025061022c366004610947565b60006020819052908152604090208054600182015460029092015490919060ff1683565b60408051938452602084019290925215159082015260600161017d565b6101fc61073a565b34801561028157600080fd5b506101fc610824565b6001600160a01b03811660009081526020819052604081206002015460ff166102b557506000919050565b6001600160a01b0382166000908152602081905260409020600101544281116102e15750600092915050565b6102eb4282610a66565b9392505050565b600080826040516020016103069190610a7f565b604051602081830303815290604052805190602001209050604051602001610339906418b437bab960d91b815260050190565b60405160208183030381529060405280519060200120810361035f5750610e1092915050565b604051633164617960e01b602082015260240160405160208183030381529060405280519060200120810361039957506201518092915050565b60405164317765656b60d81b60208201526025016040516020818303038152906040528051906020012081036103d4575062093a8092915050565b60405165062dadedce8d60d31b6020820152602601604051602081830303815290604052805190602001208103610410575062278d0092915050565b6040516418bcb2b0b960d91b602082015260250160405160208183030381529060405280519060200120810361044c57506301e1338092915050565b50600092915050565b336000908152602081905260409020600281015460ff1661048957604051630dc2459760e11b815260040160405180910390fd5b80600101544210156104c1574281600101546104a59190610a66565b604051630b5c15df60e11b81526004016100e591815260200190565b80543360008181526020819052604080822082815560018101839055600201805460ff191690555190919083908381818185875af1925050503d8060008114610526576040519150601f19603f3d011682016040523d82523d6000602084013e61052b565b606091505b505090508061054d576040516312171d8360e31b815260040160405180910390fd5b60405182815233907f7fcf532c15f0a6db0bd6d0e038bea71d30d808c7d98cb3bf7268a95bf5081b659060200160405180910390a2505050565b600034116105cf5760405162461bcd60e51b815260206004820152601560248201527409aeae6e840c8cae0dee6d2e840e6dedaca408aa89605b1b60448201526064016100e5565b6000811161061f5760405162461bcd60e51b815260206004820152601e60248201527f4c6f636b206475726174696f6e206d75737420626520706f736974697665000060448201526064016100e5565b600061062b8242610aae565b3360009081526020819052604090206002015490915060ff16156106a2573360009081526020819052604081208054349290610668908490610aae565b90915550503360009081526020819052604090206001015481111561069d573360009081526020819052604090206001018190555b6106ed565b6040805160608101825234815260208082018481526001838501818152336000908152938490529490922092518355519082015590516002909101805460ff19169115159190911790555b3360008181526020818152604091829020600101548251348152918201527f90890809c654f11d6e72a28fa60149770a0d11ec6c92319d6ceb2bb0a4ea1a15910160405180910390a25050565b3360009081526020819052604090206002015460ff1661076d57604051630dc2459760e11b815260040160405180910390fd5b600034116107b55760405162461bcd60e51b815260206004820152601560248201527409aeae6e840c8cae0dee6d2e840e6dedaca408aa89605b1b60448201526064016100e5565b33600090815260208190526040812080543492906107d4908490610aae565b90915550503360008181526020818152604091829020600101548251348152918201527f90890809c654f11d6e72a28fa60149770a0d11ec6c92319d6ceb2bb0a4ea1a15910160405180910390a2565b336000908152602081905260409020600281015460ff1661085857604051630dc2459760e11b815260040160405180910390fd5b805460009061086990600a90610ac1565b9050600081836000015461087d9190610a66565b83543360008181526020819052604080822082815560018101839055600201805460ff1916905551939450919284908381818185875af1925050503d80600081146108e4576040519150601f19603f3d011682016040523d82523d6000602084013e6108e9565b606091505b505090508061090b576040516312171d8360e31b815260040160405180910390fd5b60405182815233907fe3cd5da0bed46fed268a1756b1ca7407099463d47952346ddeb8da9d25749e869060200160405180910390a25050505050565b60006020828403121561095957600080fd5b81356001600160a01b03811681146102eb57600080fd5b634e487b7160e01b600052604160045260246000fd5b60006020828403121561099857600080fd5b813567ffffffffffffffff808211156109b057600080fd5b818401915084601f8301126109c457600080fd5b8135818111156109d6576109d6610970565b604051601f8201601f19908116603f011681019083821181831017156109fe576109fe610970565b81604052828152876020848701011115610a1757600080fd5b826020860160208301376000928101602001929092525095945050505050565b600060208284031215610a4957600080fd5b5035919050565b634e487b7160e01b600052601160045260246000fd5b81810381811115610a7957610a79610a50565b92915050565b6000825160005b81811015610aa05760208186018101518583015201610a86565b506000920191825250919050565b80820180821115610a7957610a79610a50565b600082610ade57634e487b7160e01b600052601260045260246000fd5b50049056fea264697066735822122017a3c90919b85ce5c3ff6e6446a940550741e18f9dd8dd8260123cc37abba3ce64736f6c63430008140033",
+  "deployedBytecode": "0x60806040526004361061008a5760003560e01c80633ccfd60b116100595780633ccfd60b146101e75780634adc5fa3146101fe57806371b2aa6014610211578063a26759cb1461026d578063db2e21bc1461027557600080fd5b80630239f403146100f3578063111eb8b1146101865780632134b02b146101b457806329cb924d146101d457600080fd5b366100ee5760405162461bcd60e51b815260206004820152602960248201527f55736520637265617465506967677942616e6b28292066756e6374696f6e20746044820152681bc819195c1bdcda5d60ba1b60648201526084015b60405180910390fd5b600080fd5b3480156100ff57600080fd5b5061015961010e366004610947565b6001600160a01b03166000908152602081815260409182902082516060810184528154808252600183015493820184905260029092015460ff16151593018390529290914283111591565b60408051948552602085019390935290151591830191909152151560608201526080015b60405180910390f35b34801561019257600080fd5b506101a66101a1366004610947565b61028a565b60405190815260200161017d565b3480156101c057600080fd5b506101a66101cf366004610986565b6102f2565b3480156101e057600080fd5b50426101a6565b3480156101f357600080fd5b506101fc610455565b005b6101fc61020c366004610a37565b610587565b34801561021d57600080fd5b5061025061022c366004610947565b60006020819052908152604090208054600182015460029092015490919060ff1683565b60408051938452602084019290925215159082015260600161017d565b6101fc61073a565b34801561028157600080fd5b506101fc610824565b6001600160a01b03811660009081526020819052604081206002015460ff166102b557506000919050565b6001600160a01b0382166000908152602081905260409020600101544281116102e15750600092915050565b6102eb4282610a66565b9392505050565b600080826040516020016103069190610a7f565b604051602081830303815290604052805190602001209050604051602001610339906418b437bab960d91b815260050190565b60405160208183030381529060405280519060200120810361035f5750610e1092915050565b604051633164617960e01b602082015260240160405160208183030381529060405280519060200120810361039957506201518092915050565b60405164317765656b60d81b60208201526025016040516020818303038152906040528051906020012081036103d4575062093a8092915050565b60405165062dadedce8d60d31b6020820152602601604051602081830303815290604052805190602001208103610410575062278d0092915050565b6040516418bcb2b0b960d91b602082015260250160405160208183030381529060405280519060200120810361044c57506301e1338092915050565b50600092915050565b336000908152602081905260409020600281015460ff1661048957604051630dc2459760e11b815260040160405180910390fd5b80600101544210156104c1574281600101546104a59190610a66565b604051630b5c15df60e11b81526004016100e591815260200190565b80543360008181526020819052604080822082815560018101839055600201805460ff191690555190919083908381818185875af1925050503d8060008114610526576040519150601f19603f3d011682016040523d82523d6000602084013e61052b565b606091505b505090508061054d576040516312171d8360e31b815260040160405180910390fd5b60405182815233907f7fcf532c15f0a6db0bd6d0e038bea71d30d808c7d98cb3bf7268a95bf5081b659060200160405180910390a2505050565b600034116105cf5760405162461bcd60e51b815260206004820152601560248201527409aeae6e840c8cae0dee6d2e840e6dedaca408aa89605b1b60448201526064016100e5565b6000811161061f5760405162461bcd60e51b815260206004820152601e60248201527f4c6f636b206475726174696f6e206d75737420626520706f736974697665000060448201526064016100e5565b600061062b8242610aae565b3360009081526020819052604090206002015490915060ff16156106a2573360009081526020819052604081208054349290610668908490610aae565b90915550503360009081526020819052604090206001015481111561069d573360009081526020819052604090206001018190555b6106ed565b6040805160608101825234815260208082018481526001838501818152336000908152938490529490922092518355519082015590516002909101805460ff19169115159190911790555b3360008181526020818152604091829020600101548251348152918201527f90890809c654f11d6e72a28fa60149770a0d11ec6c92319d6ceb2bb0a4ea1a15910160405180910390a25050565b3360009081526020819052604090206002015460ff1661076d57604051630dc2459760e11b815260040160405180910390fd5b600034116107b55760405162461bcd60e51b815260206004820152601560248201527409aeae6e840c8cae0dee6d2e840e6dedaca408aa89605b1b60448201526064016100e5565b33600090815260208190526040812080543492906107d4908490610aae565b90915550503360008181526020818152604091829020600101548251348152918201527f90890809c654f11d6e72a28fa60149770a0d11ec6c92319d6ceb2bb0a4ea1a15910160405180910390a2565b336000908152602081905260409020600281015460ff1661085857604051630dc2459760e11b815260040160405180910390fd5b805460009061086990600a90610ac1565b9050600081836000015461087d9190610a66565b83543360008181526020819052604080822082815560018101839055600201805460ff1916905551939450919284908381818185875af1925050503d80600081146108e4576040519150601f19603f3d011682016040523d82523d6000602084013e6108e9565b606091505b505090508061090b576040516312171d8360e31b815260040160405180910390fd5b60405182815233907fe3cd5da0bed46fed268a1756b1ca7407099463d47952346ddeb8da9d25749e869060200160405180910390a25050505050565b60006020828403121561095957600080fd5b81356001600160a01b03811681146102eb57600080fd5b634e487b7160e01b600052604160045260246000fd5b60006020828403121561099857600080fd5b813567ffffffffffffffff808211156109b057600080fd5b818401915084601f8301126109c457600080fd5b8135818111156109d6576109d6610970565b604051601f8201601f19908116603f011681019083821181831017156109fe576109fe610970565b81604052828152876020848701011115610a1757600080fd5b826020860160208301376000928101602001929092525095945050505050565b600060208284031215610a4957600080fd5b5035919050565b634e487b7160e01b600052601160045260246000fd5b81810381811115610a7957610a79610a50565b92915050565b6000825160005b81811015610aa05760208186018101518583015201610a86565b506000920191825250919050565b80820180821115610a7957610a79610a50565b600082610ade57634e487b7160e01b600052601260045260246000fd5b50049056fea264697066735822122017a3c90919b85ce5c3ff6e6446a940550741e18f9dd8dd8260123cc37abba3ce64736f6c63430008140033",
+  "devdoc": {
+    "details": "A time-locked savings contract where users can deposit ETH and withdraw only after lock period",
+    "kind": "dev",
+    "methods": {
+      "addFunds()": {
+        "details": "Add more funds to existing piggy bank"
+      },
+      "createPiggyBank(uint256)": {
+        "details": "Create a piggy bank with a lock duration in seconds",
+        "params": {
+          "_lockDurationInSeconds": "Duration to lock the funds (e.g., 86400 for 1 day)"
+        }
+      },
+      "emergencyWithdraw()": {
+        "details": "Emergency withdrawal with penalty (loses 10% of funds) Use this only in real emergencies!"
+      },
+      "getCurrentTime()": {
+        "details": "Get current block timestamp (useful for frontend)"
+      },
+      "getLockDuration(string)": {
+        "details": "Helper function to calculate lock time for common durations"
+      },
+      "getPiggyBank(address)": {
+        "details": "Get piggy bank details for a user"
+      },
+      "getTimeLeft(address)": {
+        "details": "Check how much time is left until withdrawal",
+        "returns": {
+          "timeLeft": "seconds remaining, 0 if unlocked"
+        }
+      },
+      "withdraw()": {
+        "details": "Withdraw funds after lock period expires"
+      }
+    },
+    "title": "PiggyBank",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 14,
+        "contract": "contracts/PiggyBank.sol:PiggyBank",
+        "label": "piggyBanks",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_address,t_struct(Savings)9_storage)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_mapping(t_address,t_struct(Savings)9_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => struct PiggyBank.Savings)",
+        "numberOfBytes": "32",
+        "value": "t_struct(Savings)9_storage"
+      },
+      "t_struct(Savings)9_storage": {
+        "encoding": "inplace",
+        "label": "struct PiggyBank.Savings",
+        "members": [
+          {
+            "astId": 4,
+            "contract": "contracts/PiggyBank.sol:PiggyBank",
+            "label": "amount",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 6,
+            "contract": "contracts/PiggyBank.sol:PiggyBank",
+            "label": "unlockTime",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 8,
+            "contract": "contracts/PiggyBank.sol:PiggyBank",
+            "label": "exists",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_bool"
+          }
+        ],
+        "numberOfBytes": "96"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}
