@@ -1,7 +1,8 @@
 {
-  "name": "@se-2/nextjs",
+  "name": "@basic-dao/nextjs",
   "private": true,
   "version": "0.1.0",
+  "description": "Basic DAO - A simple and powerful DAO for decentralized governance",
   "scripts": {
     "build": "next build",
     "check-types": "tsc --noEmit --incremental",

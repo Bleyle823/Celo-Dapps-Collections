@@ -1,0 +1,1614 @@
+{
+  "address": "0xB42aF39e206dE9cee21aE0449ceC521ef96306C1",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_governanceToken",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "AlreadyVoted",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ExecutionFailed",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "required",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "actual",
+          "type": "uint256"
+        }
+      ],
+      "name": "InsufficientTokens",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InsufficientTreasuryFunds",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidProposal",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NotAuthorized",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnableInvalidOwner",
+      "type": "error"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "OwnableUnauthorizedAccount",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ProposalAlreadyExecuted",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ProposalNotActive",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ProposalNotSucceeded",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "ReentrancyGuardReentrantCall",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "depositor",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "FundsDeposited",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "FundsWithdrawn",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "member",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "name": "MemberJoined",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        }
+      ],
+      "name": "ProposalCanceled",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "proposer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "startTime",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "endTime",
+          "type": "uint256"
+        }
+      ],
+      "name": "ProposalCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        }
+      ],
+      "name": "ProposalExecuted",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "voter",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "enum SimpleDAO.VoteType",
+          "name": "voteType",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "weight",
+          "type": "uint256"
+        }
+      ],
+      "name": "VoteCast",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        }
+      ],
+      "name": "cancelProposal",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "enum SimpleDAO.VoteType",
+          "name": "voteType",
+          "type": "uint8"
+        }
+      ],
+      "name": "castVote",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "target",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        }
+      ],
+      "name": "createProposal",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "recipient",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        }
+      ],
+      "name": "createTreasuryWithdrawalProposal",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "depositToTreasury",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        }
+      ],
+      "name": "executeProposal",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getDAOSettings",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "_votingDelay",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_votingPeriod",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_proposalThreshold",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_quorumThreshold",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_passingThreshold",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_treasuryBalance",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getProposal",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address",
+              "name": "proposer",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "title",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "internalType": "address",
+              "name": "target",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "value",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bytes",
+              "name": "data",
+              "type": "bytes"
+            },
+            {
+              "internalType": "uint256",
+              "name": "startTime",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "endTime",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "votesFor",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "votesAgainst",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "votesAbstain",
+              "type": "uint256"
+            },
+            {
+              "internalType": "bool",
+              "name": "executed",
+              "type": "bool"
+            },
+            {
+              "internalType": "bool",
+              "name": "canceled",
+              "type": "bool"
+            },
+            {
+              "internalType": "enum SimpleDAO.ProposalState",
+              "name": "state",
+              "type": "uint8"
+            }
+          ],
+          "internalType": "struct SimpleDAO.Proposal",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getProposalState",
+      "outputs": [
+        {
+          "internalType": "enum SimpleDAO.ProposalState",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getTotalProposals",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "voter",
+          "type": "address"
+        }
+      ],
+      "name": "getVote",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "bool",
+              "name": "hasVoted",
+              "type": "bool"
+            },
+            {
+              "internalType": "enum SimpleDAO.VoteType",
+              "name": "voteType",
+              "type": "uint8"
+            },
+            {
+              "internalType": "uint256",
+              "name": "weight",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "timestamp",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct SimpleDAO.Vote",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "getVotingPower",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "proposalId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getVotingResults",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "votesFor",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "votesAgainst",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "votesAbstain",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "totalVotes",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "governanceToken",
+      "outputs": [
+        {
+          "internalType": "contract IERC20",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "isMember",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "joinDAO",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "membershipTimestamp",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "passingThreshold",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "proposalCounter",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "proposalThreshold",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "proposals",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "id",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "proposer",
+          "type": "address"
+        },
+        {
+          "internalType": "string",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "target",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        },
+        {
+          "internalType": "uint256",
+          "name": "startTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "endTime",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "votesFor",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "votesAgainst",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "votesAbstain",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "executed",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "canceled",
+          "type": "bool"
+        },
+        {
+          "internalType": "enum SimpleDAO.ProposalState",
+          "name": "state",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "quorumThreshold",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "newThreshold",
+          "type": "uint256"
+        }
+      ],
+      "name": "setPassingThreshold",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "newThreshold",
+          "type": "uint256"
+        }
+      ],
+      "name": "setProposalThreshold",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "newThreshold",
+          "type": "uint256"
+        }
+      ],
+      "name": "setQuorumThreshold",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "newDelay",
+          "type": "uint256"
+        }
+      ],
+      "name": "setVotingDelay",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "newPeriod",
+          "type": "uint256"
+        }
+      ],
+      "name": "setVotingPeriod",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "treasuryBalance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "votes",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "hasVoted",
+          "type": "bool"
+        },
+        {
+          "internalType": "enum SimpleDAO.VoteType",
+          "name": "voteType",
+          "type": "uint8"
+        },
+        {
+          "internalType": "uint256",
+          "name": "weight",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "votingDelay",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "votingPeriod",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    }
+  ],
+  "transactionHash": "0xdaa74e9236fdda2e893d74a2b931fe1d7b46df04902821fed14de5559e4726ce",
+  "receipt": {
+    "to": null,
+    "from": "0x231CdF6d31BF1D106DFA88b702B00E4b900628AD",
+    "contractAddress": "0xB42aF39e206dE9cee21aE0449ceC521ef96306C1",
+    "transactionIndex": 23,
+    "gasUsed": "2381153",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000800000000000000000000000020000000000000000000800000000000000000000000000000000400000000000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000001000008000000020000000000000000000000000000000000000000100000000000000000000000000",
+    "blockHash": "0xb3aa1ca32b49a116f27a5dff151edd327cdb92e964fb1593f424a134e39730c1",
+    "transactionHash": "0xdaa74e9236fdda2e893d74a2b931fe1d7b46df04902821fed14de5559e4726ce",
+    "logs": [
+      {
+        "transactionIndex": 23,
+        "blockNumber": 42107053,
+        "transactionHash": "0xdaa74e9236fdda2e893d74a2b931fe1d7b46df04902821fed14de5559e4726ce",
+        "address": "0xB42aF39e206dE9cee21aE0449ceC521ef96306C1",
+        "topics": [
+          "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0",
+          "0x0000000000000000000000000000000000000000000000000000000000000000",
+          "0x000000000000000000000000231cdf6d31bf1d106dfa88b702b00e4b900628ad"
+        ],
+        "data": "0x",
+        "logIndex": 116,
+        "blockHash": "0xb3aa1ca32b49a116f27a5dff151edd327cdb92e964fb1593f424a134e39730c1"
+      }
+    ],
+    "blockNumber": 42107053,
+    "cumulativeGasUsed": "6363662",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x4675D74F97Bf20D30311148F23DADacFaD74A620"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "5da6a3da71b865be75677498135de712",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_governanceToken\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"AlreadyVoted\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ExecutionFailed\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"required\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"actual\",\"type\":\"uint256\"}],\"name\":\"InsufficientTokens\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InsufficientTreasuryFunds\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidProposal\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotAuthorized\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"OwnableInvalidOwner\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"OwnableUnauthorizedAccount\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ProposalAlreadyExecuted\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ProposalNotActive\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ProposalNotSucceeded\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ReentrancyGuardReentrantCall\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"depositor\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"FundsDeposited\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"FundsWithdrawn\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"member\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"name\":\"MemberJoined\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"}],\"name\":\"ProposalCanceled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"proposer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"startTime\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"endTime\",\"type\":\"uint256\"}],\"name\":\"ProposalCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"}],\"name\":\"ProposalExecuted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"voter\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"enum SimpleDAO.VoteType\",\"name\":\"voteType\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"weight\",\"type\":\"uint256\"}],\"name\":\"VoteCast\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"}],\"name\":\"cancelProposal\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"},{\"internalType\":\"enum SimpleDAO.VoteType\",\"name\":\"voteType\",\"type\":\"uint8\"}],\"name\":\"castVote\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"target\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"createProposal\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"recipient\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"}],\"name\":\"createTreasuryWithdrawalProposal\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"depositToTreasury\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"}],\"name\":\"executeProposal\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getDAOSettings\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"_votingDelay\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_votingPeriod\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_proposalThreshold\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_quorumThreshold\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_passingThreshold\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_treasuryBalance\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"}],\"name\":\"getProposal\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"proposer\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"target\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"startTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"endTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"votesFor\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"votesAgainst\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"votesAbstain\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"executed\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"canceled\",\"type\":\"bool\"},{\"internalType\":\"enum SimpleDAO.ProposalState\",\"name\":\"state\",\"type\":\"uint8\"}],\"internalType\":\"struct SimpleDAO.Proposal\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"}],\"name\":\"getProposalState\",\"outputs\":[{\"internalType\":\"enum SimpleDAO.ProposalState\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getTotalProposals\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"voter\",\"type\":\"address\"}],\"name\":\"getVote\",\"outputs\":[{\"components\":[{\"internalType\":\"bool\",\"name\":\"hasVoted\",\"type\":\"bool\"},{\"internalType\":\"enum SimpleDAO.VoteType\",\"name\":\"voteType\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"weight\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"internalType\":\"struct SimpleDAO.Vote\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"getVotingPower\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"proposalId\",\"type\":\"uint256\"}],\"name\":\"getVotingResults\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"votesFor\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"votesAgainst\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"votesAbstain\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalVotes\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"governanceToken\",\"outputs\":[{\"internalType\":\"contract IERC20\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isMember\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"joinDAO\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"membershipTimestamp\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"passingThreshold\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"proposalCounter\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"proposalThreshold\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"proposals\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"id\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"proposer\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"target\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"startTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"endTime\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"votesFor\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"votesAgainst\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"votesAbstain\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"executed\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"canceled\",\"type\":\"bool\"},{\"internalType\":\"enum SimpleDAO.ProposalState\",\"name\":\"state\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"quorumThreshold\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"newThreshold\",\"type\":\"uint256\"}],\"name\":\"setPassingThreshold\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"newThreshold\",\"type\":\"uint256\"}],\"name\":\"setProposalThreshold\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"newThreshold\",\"type\":\"uint256\"}],\"name\":\"setQuorumThreshold\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"newDelay\",\"type\":\"uint256\"}],\"name\":\"setVotingDelay\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"newPeriod\",\"type\":\"uint256\"}],\"name\":\"setVotingPeriod\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"treasuryBalance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"votes\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"hasVoted\",\"type\":\"bool\"},{\"internalType\":\"enum SimpleDAO.VoteType\",\"name\":\"voteType\",\"type\":\"uint8\"},{\"internalType\":\"uint256\",\"name\":\"weight\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"votingDelay\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"votingPeriod\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"details\":\"A simple DAO contract with proposal creation, voting, and execution\",\"errors\":{\"OwnableInvalidOwner(address)\":[{\"details\":\"The owner is not a valid owner account. (eg. `address(0)`)\"}],\"OwnableUnauthorizedAccount(address)\":[{\"details\":\"The caller account is not authorized to perform an operation.\"}],\"ReentrancyGuardReentrantCall()\":[{\"details\":\"Unauthorized reentrant call.\"}]},\"kind\":\"dev\",\"methods\":{\"cancelProposal(uint256)\":{\"details\":\"Cancel a proposal (only proposer or owner can cancel)\",\"params\":{\"proposalId\":\"Proposal ID to cancel\"}},\"castVote(uint256,uint8)\":{\"details\":\"Cast a vote on a proposal\",\"params\":{\"proposalId\":\"Proposal ID to vote on\",\"voteType\":\"Vote type (0=Against, 1=For, 2=Abstain)\"}},\"constructor\":{\"details\":\"Constructor\",\"params\":{\"_governanceToken\":\"Address of the governance token\"}},\"createProposal(string,string,address,uint256,bytes)\":{\"details\":\"Create a new proposal\",\"params\":{\"data\":\"Call data\",\"description\":\"Proposal description\",\"target\":\"Target contract address (use address(0) for treasury operations)\",\"title\":\"Proposal title\",\"value\":\"ETH value to send\"}},\"createTreasuryWithdrawalProposal(address,uint256,string,string)\":{\"details\":\"Create a treasury withdrawal proposal\",\"params\":{\"amount\":\"Amount to withdraw\",\"description\":\"Proposal description\",\"recipient\":\"Address to send funds to\",\"title\":\"Proposal title\"}},\"depositToTreasury()\":{\"details\":\"Deposit funds to treasury\"},\"executeProposal(uint256)\":{\"details\":\"Execute a successful proposal\",\"params\":{\"proposalId\":\"Proposal ID to execute\"}},\"getDAOSettings()\":{\"details\":\"Get DAO settings\",\"returns\":{\"_passingThreshold\":\"Passing threshold percentage\",\"_proposalThreshold\":\"Minimum tokens required to create a proposal\",\"_quorumThreshold\":\"Quorum threshold percentage\",\"_treasuryBalance\":\"Current treasury balance\",\"_votingDelay\":\"Voting delay in seconds\",\"_votingPeriod\":\"Voting period in seconds\"}},\"getProposal(uint256)\":{\"details\":\"Get proposal details\",\"params\":{\"proposalId\":\"Proposal ID\"},\"returns\":{\"_0\":\"Proposal struct\"}},\"getProposalState(uint256)\":{\"details\":\"Get current proposal state\",\"params\":{\"proposalId\":\"Proposal ID\"},\"returns\":{\"_0\":\"ProposalState Current state\"}},\"getTotalProposals()\":{\"details\":\"Get total number of proposals\",\"returns\":{\"_0\":\"uint256 Total proposal count\"}},\"getVote(uint256,address)\":{\"details\":\"Get vote details for a user on a proposal\",\"params\":{\"proposalId\":\"Proposal ID\",\"voter\":\"Voter address\"},\"returns\":{\"_0\":\"Vote struct\"}},\"getVotingPower(address)\":{\"details\":\"Get voting power of an address\",\"params\":{\"account\":\"Address to check\"},\"returns\":{\"_0\":\"uint256 Voting power (token balance)\"}},\"getVotingResults(uint256)\":{\"details\":\"Get proposal voting results\",\"params\":{\"proposalId\":\"Proposal ID\"},\"returns\":{\"totalVotes\":\"Total votes cast\",\"votesAbstain\":\"Abstain votes\",\"votesAgainst\":\"Votes against\",\"votesFor\":\"Votes in favor\"}},\"isMember(address)\":{\"details\":\"Check if address is a DAO member\",\"params\":{\"account\":\"Address to check\"},\"returns\":{\"_0\":\"bool True if member\"}},\"joinDAO()\":{\"details\":\"Join the DAO as a member\"},\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner.\"},\"setPassingThreshold(uint256)\":{\"details\":\"Update passing threshold\",\"params\":{\"newThreshold\":\"New passing threshold percentage (1-100)\"}},\"setProposalThreshold(uint256)\":{\"details\":\"Update proposal threshold\",\"params\":{\"newThreshold\":\"New proposal threshold in tokens\"}},\"setQuorumThreshold(uint256)\":{\"details\":\"Update quorum threshold\",\"params\":{\"newThreshold\":\"New quorum threshold percentage (1-100)\"}},\"setVotingDelay(uint256)\":{\"details\":\"Update voting delay\",\"params\":{\"newDelay\":\"New voting delay in seconds\"}},\"setVotingPeriod(uint256)\":{\"details\":\"Update voting period\",\"params\":{\"newPeriod\":\"New voting period in seconds\"}},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"}},\"title\":\"SimpleDAO\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/SimpleDAO.sol\":\"SimpleDAO\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[],\"viaIR\":true},\"sources\":{\"@openzeppelin/contracts/access/Ownable.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (access/Ownable.sol)\\n\\npragma solidity ^0.8.20;\\n\\nimport {Context} from \\\"../utils/Context.sol\\\";\\n\\n/**\\n * @dev Contract module which provides a basic access control mechanism, where\\n * there is an account (an owner) that can be granted exclusive access to\\n * specific functions.\\n *\\n * The initial owner is set to the address provided by the deployer. This can\\n * later be changed with {transferOwnership}.\\n *\\n * This module is used through inheritance. It will make available the modifier\\n * `onlyOwner`, which can be applied to your functions to restrict their use to\\n * the owner.\\n */\\nabstract contract Ownable is Context {\\n    address private _owner;\\n\\n    /**\\n     * @dev The caller account is not authorized to perform an operation.\\n     */\\n    error OwnableUnauthorizedAccount(address account);\\n\\n    /**\\n     * @dev The owner is not a valid owner account. (eg. `address(0)`)\\n     */\\n    error OwnableInvalidOwner(address owner);\\n\\n    event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);\\n\\n    /**\\n     * @dev Initializes the contract setting the address provided by the deployer as the initial owner.\\n     */\\n    constructor(address initialOwner) {\\n        if (initialOwner == address(0)) {\\n            revert OwnableInvalidOwner(address(0));\\n        }\\n        _transferOwnership(initialOwner);\\n    }\\n\\n    /**\\n     * @dev Throws if called by any account other than the owner.\\n     */\\n    modifier onlyOwner() {\\n        _checkOwner();\\n        _;\\n    }\\n\\n    /**\\n     * @dev Returns the address of the current owner.\\n     */\\n    function owner() public view virtual returns (address) {\\n        return _owner;\\n    }\\n\\n    /**\\n     * @dev Throws if the sender is not the owner.\\n     */\\n    function _checkOwner() internal view virtual {\\n        if (owner() != _msgSender()) {\\n            revert OwnableUnauthorizedAccount(_msgSender());\\n        }\\n    }\\n\\n    /**\\n     * @dev Leaves the contract without owner. It will not be possible to call\\n     * `onlyOwner` functions. Can only be called by the current owner.\\n     *\\n     * NOTE: Renouncing ownership will leave the contract without an owner,\\n     * thereby disabling any functionality that is only available to the owner.\\n     */\\n    function renounceOwnership() public virtual onlyOwner {\\n        _transferOwnership(address(0));\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Can only be called by the current owner.\\n     */\\n    function transferOwnership(address newOwner) public virtual onlyOwner {\\n        if (newOwner == address(0)) {\\n            revert OwnableInvalidOwner(address(0));\\n        }\\n        _transferOwnership(newOwner);\\n    }\\n\\n    /**\\n     * @dev Transfers ownership of the contract to a new account (`newOwner`).\\n     * Internal function without access restriction.\\n     */\\n    function _transferOwnership(address newOwner) internal virtual {\\n        address oldOwner = _owner;\\n        _owner = newOwner;\\n        emit OwnershipTransferred(oldOwner, newOwner);\\n    }\\n}\\n\",\"keccak256\":\"0xff6d0bb2e285473e5311d9d3caacb525ae3538a80758c10649a4d61029b017bb\",\"license\":\"MIT\"},\"@openzeppelin/contracts/token/ERC20/IERC20.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (token/ERC20/IERC20.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Interface of the ERC20 standard as defined in the EIP.\\n */\\ninterface IERC20 {\\n    /**\\n     * @dev Emitted when `value` tokens are moved from one account (`from`) to\\n     * another (`to`).\\n     *\\n     * Note that `value` may be zero.\\n     */\\n    event Transfer(address indexed from, address indexed to, uint256 value);\\n\\n    /**\\n     * @dev Emitted when the allowance of a `spender` for an `owner` is set by\\n     * a call to {approve}. `value` is the new allowance.\\n     */\\n    event Approval(address indexed owner, address indexed spender, uint256 value);\\n\\n    /**\\n     * @dev Returns the value of tokens in existence.\\n     */\\n    function totalSupply() external view returns (uint256);\\n\\n    /**\\n     * @dev Returns the value of tokens owned by `account`.\\n     */\\n    function balanceOf(address account) external view returns (uint256);\\n\\n    /**\\n     * @dev Moves a `value` amount of tokens from the caller's account to `to`.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function transfer(address to, uint256 value) external returns (bool);\\n\\n    /**\\n     * @dev Returns the remaining number of tokens that `spender` will be\\n     * allowed to spend on behalf of `owner` through {transferFrom}. This is\\n     * zero by default.\\n     *\\n     * This value changes when {approve} or {transferFrom} are called.\\n     */\\n    function allowance(address owner, address spender) external view returns (uint256);\\n\\n    /**\\n     * @dev Sets a `value` amount of tokens as the allowance of `spender` over the\\n     * caller's tokens.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * IMPORTANT: Beware that changing an allowance with this method brings the risk\\n     * that someone may use both the old and the new allowance by unfortunate\\n     * transaction ordering. One possible solution to mitigate this race\\n     * condition is to first reduce the spender's allowance to 0 and set the\\n     * desired value afterwards:\\n     * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729\\n     *\\n     * Emits an {Approval} event.\\n     */\\n    function approve(address spender, uint256 value) external returns (bool);\\n\\n    /**\\n     * @dev Moves a `value` amount of tokens from `from` to `to` using the\\n     * allowance mechanism. `value` is then deducted from the caller's\\n     * allowance.\\n     *\\n     * Returns a boolean value indicating whether the operation succeeded.\\n     *\\n     * Emits a {Transfer} event.\\n     */\\n    function transferFrom(address from, address to, uint256 value) external returns (bool);\\n}\\n\",\"keccak256\":\"0xc6a8ff0ea489379b61faa647490411b80102578440ab9d84e9a957cc12164e70\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/Context.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.1) (utils/Context.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Provides information about the current execution context, including the\\n * sender of the transaction and its data. While these are generally available\\n * via msg.sender and msg.data, they should not be accessed in such a direct\\n * manner, since when dealing with meta-transactions the account sending and\\n * paying for execution may not be the actual sender (as far as an application\\n * is concerned).\\n *\\n * This contract is only required for intermediate, library-like contracts.\\n */\\nabstract contract Context {\\n    function _msgSender() internal view virtual returns (address) {\\n        return msg.sender;\\n    }\\n\\n    function _msgData() internal view virtual returns (bytes calldata) {\\n        return msg.data;\\n    }\\n\\n    function _contextSuffixLength() internal view virtual returns (uint256) {\\n        return 0;\\n    }\\n}\\n\",\"keccak256\":\"0x493033a8d1b176a037b2cc6a04dad01a5c157722049bbecf632ca876224dd4b2\",\"license\":\"MIT\"},\"@openzeppelin/contracts/utils/ReentrancyGuard.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n// OpenZeppelin Contracts (last updated v5.0.0) (utils/ReentrancyGuard.sol)\\n\\npragma solidity ^0.8.20;\\n\\n/**\\n * @dev Contract module that helps prevent reentrant calls to a function.\\n *\\n * Inheriting from `ReentrancyGuard` will make the {nonReentrant} modifier\\n * available, which can be applied to functions to make sure there are no nested\\n * (reentrant) calls to them.\\n *\\n * Note that because there is a single `nonReentrant` guard, functions marked as\\n * `nonReentrant` may not call one another. This can be worked around by making\\n * those functions `private`, and then adding `external` `nonReentrant` entry\\n * points to them.\\n *\\n * TIP: If you would like to learn more about reentrancy and alternative ways\\n * to protect against it, check out our blog post\\n * https://blog.openzeppelin.com/reentrancy-after-istanbul/[Reentrancy After Istanbul].\\n */\\nabstract contract ReentrancyGuard {\\n    // Booleans are more expensive than uint256 or any type that takes up a full\\n    // word because each write operation emits an extra SLOAD to first read the\\n    // slot's contents, replace the bits taken up by the boolean, and then write\\n    // back. This is the compiler's defense against contract upgrades and\\n    // pointer aliasing, and it cannot be disabled.\\n\\n    // The values being non-zero value makes deployment a bit more expensive,\\n    // but in exchange the refund on every call to nonReentrant will be lower in\\n    // amount. Since refunds are capped to a percentage of the total\\n    // transaction's gas, it is best to keep them low in cases like this one, to\\n    // increase the likelihood of the full refund coming into effect.\\n    uint256 private constant NOT_ENTERED = 1;\\n    uint256 private constant ENTERED = 2;\\n\\n    uint256 private _status;\\n\\n    /**\\n     * @dev Unauthorized reentrant call.\\n     */\\n    error ReentrancyGuardReentrantCall();\\n\\n    constructor() {\\n        _status = NOT_ENTERED;\\n    }\\n\\n    /**\\n     * @dev Prevents a contract from calling itself, directly or indirectly.\\n     * Calling a `nonReentrant` function from another `nonReentrant`\\n     * function is not supported. It is possible to prevent this from happening\\n     * by making the `nonReentrant` function external, and making it call a\\n     * `private` function that does the actual work.\\n     */\\n    modifier nonReentrant() {\\n        _nonReentrantBefore();\\n        _;\\n        _nonReentrantAfter();\\n    }\\n\\n    function _nonReentrantBefore() private {\\n        // On the first call to nonReentrant, _status will be NOT_ENTERED\\n        if (_status == ENTERED) {\\n            revert ReentrancyGuardReentrantCall();\\n        }\\n\\n        // Any calls to nonReentrant after this point will fail\\n        _status = ENTERED;\\n    }\\n\\n    function _nonReentrantAfter() private {\\n        // By storing the original value once again, a refund is triggered (see\\n        // https://eips.ethereum.org/EIPS/eip-2200)\\n        _status = NOT_ENTERED;\\n    }\\n\\n    /**\\n     * @dev Returns true if the reentrancy guard is currently set to \\\"entered\\\", which indicates there is a\\n     * `nonReentrant` function in the call stack.\\n     */\\n    function _reentrancyGuardEntered() internal view returns (bool) {\\n        return _status == ENTERED;\\n    }\\n}\\n\",\"keccak256\":\"0xf980daa263b661ab8ddee7d4fd833c7da7e7995e2c359ff1f17e67e4112f2236\",\"license\":\"MIT\"},\"contracts/SimpleDAO.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity ^0.8.19;\\r\\n\\r\\nimport \\\"@openzeppelin/contracts/token/ERC20/IERC20.sol\\\";\\r\\nimport \\\"@openzeppelin/contracts/utils/ReentrancyGuard.sol\\\";\\r\\nimport \\\"@openzeppelin/contracts/access/Ownable.sol\\\";\\r\\n\\r\\n/**\\r\\n * @title SimpleDAO\\r\\n * @dev A simple DAO contract with proposal creation, voting, and execution\\r\\n */\\r\\ncontract SimpleDAO is ReentrancyGuard, Ownable {\\r\\n    // Governance token\\r\\n    IERC20 public governanceToken;\\r\\n    \\r\\n    // Proposal structure\\r\\n    struct Proposal {\\r\\n        uint256 id;\\r\\n        address proposer;\\r\\n        string title;\\r\\n        string description;\\r\\n        address target;\\r\\n        uint256 value;\\r\\n        bytes data;\\r\\n        uint256 startTime;\\r\\n        uint256 endTime;\\r\\n        uint256 votesFor;\\r\\n        uint256 votesAgainst;\\r\\n        uint256 votesAbstain;\\r\\n        bool executed;\\r\\n        bool canceled;\\r\\n        ProposalState state;\\r\\n    }\\r\\n    \\r\\n    // Vote structure\\r\\n    struct Vote {\\r\\n        bool hasVoted;\\r\\n        VoteType voteType;\\r\\n        uint256 weight;\\r\\n        uint256 timestamp;\\r\\n    }\\r\\n    \\r\\n    // Enums\\r\\n    enum ProposalState { Pending, Active, Succeeded, Defeated, Executed, Canceled }\\r\\n    enum VoteType { Against, For, Abstain }\\r\\n    \\r\\n    // State variables\\r\\n    mapping(uint256 => Proposal) public proposals;\\r\\n    mapping(uint256 => mapping(address => Vote)) public votes;\\r\\n    mapping(address => uint256) public membershipTimestamp;\\r\\n    \\r\\n    uint256 public proposalCounter;\\r\\n    uint256 public votingDelay = 1 days; // Time before voting starts\\r\\n    uint256 public votingPeriod = 7 days; // Voting duration\\r\\n    uint256 public proposalThreshold = 1000 * 10**18; // Min tokens to propose\\r\\n    uint256 public quorumThreshold = 10; // 10% of total supply\\r\\n    uint256 public passingThreshold = 50; // 50% of votes needed to pass\\r\\n    \\r\\n    // Treasury\\r\\n    uint256 public treasuryBalance;\\r\\n    \\r\\n    // Events\\r\\n    event ProposalCreated(\\r\\n        uint256 indexed proposalId,\\r\\n        address indexed proposer,\\r\\n        string title,\\r\\n        uint256 startTime,\\r\\n        uint256 endTime\\r\\n    );\\r\\n    event VoteCast(\\r\\n        uint256 indexed proposalId,\\r\\n        address indexed voter,\\r\\n        VoteType voteType,\\r\\n        uint256 weight\\r\\n    );\\r\\n    event ProposalExecuted(uint256 indexed proposalId);\\r\\n    event ProposalCanceled(uint256 indexed proposalId);\\r\\n    event MemberJoined(address indexed member, uint256 timestamp);\\r\\n    event FundsDeposited(address indexed depositor, uint256 amount);\\r\\n    event FundsWithdrawn(address indexed recipient, uint256 amount);\\r\\n    \\r\\n    // Custom errors\\r\\n    error InsufficientTokens(uint256 required, uint256 actual);\\r\\n    error ProposalNotActive();\\r\\n    error AlreadyVoted();\\r\\n    error ProposalNotSucceeded();\\r\\n    error ProposalAlreadyExecuted();\\r\\n    error ExecutionFailed();\\r\\n    error NotAuthorized();\\r\\n    error InvalidProposal();\\r\\n    error InsufficientTreasuryFunds();\\r\\n    \\r\\n    /**\\r\\n     * @dev Constructor\\r\\n     * @param _governanceToken Address of the governance token\\r\\n     */\\r\\n    constructor(address _governanceToken) Ownable(msg.sender) {\\r\\n        require(_governanceToken != address(0), \\\"Invalid token address\\\");\\r\\n        governanceToken = IERC20(_governanceToken);\\r\\n        treasuryBalance = 0;\\r\\n    }\\r\\n    \\r\\n    /**\\r\\n     * @dev Join the DAO as a member\\r\\n     */\\r\\n    function joinDAO() external {\\r\\n        require(governanceToken.balanceOf(msg.sender) > 0, \\\"Must hold governance tokens\\\");\\r\\n        \\r\\n        if (membershipTimestamp[msg.sender] == 0) {\\r\\n            membershipTimestamp[msg.sender] = block.timestamp;\\r\\n            emit MemberJoined(msg.sender, block.timestamp);\\r\\n        }\\r\\n    }\\r\\n    \\r\\n    /**\\r\\n     * @dev Create a new proposal\\r\\n     * @param title Proposal title\\r\\n     * @param description Proposal description\\r\\n     * @param target Target contract address (use address(0) for treasury operations)\\r\\n     * @param value ETH value to send\\r\\n     * @param data Call data\\r\\n     */\\r\\n    function createProposal(\\r\\n        string memory title,\\r\\n        string memory description,\\r\\n        address target,\\r\\n        uint256 value,\\r\\n        bytes memory data\\r\\n    ) public returns (uint256) {\\r\\n        uint256 proposerBalance = governanceToken.balanceOf(msg.sender);\\r\\n        if (proposerBalance < proposalThreshold) {\\r\\n            revert InsufficientTokens(proposalThreshold, proposerBalance);\\r\\n        }\\r\\n        \\r\\n        require(membershipTimestamp[msg.sender] != 0, \\\"Must be a DAO member\\\");\\r\\n        require(bytes(title).length > 0, \\\"Title cannot be empty\\\");\\r\\n        \\r\\n        uint256 proposalId = proposalCounter++;\\r\\n        uint256 startTime = block.timestamp + votingDelay;\\r\\n        uint256 endTime = startTime + votingPeriod;\\r\\n        \\r\\n        proposals[proposalId] = Proposal({\\r\\n            id: proposalId,\\r\\n            proposer: msg.sender,\\r\\n            title: title,\\r\\n            description: description,\\r\\n            target: target,\\r\\n            value: value,\\r\\n            data: data,\\r\\n            startTime: startTime,\\r\\n            endTime: endTime,\\r\\n            votesFor: 0,\\r\\n            votesAgainst: 0,\\r\\n            votesAbstain: 0,\\r\\n            executed: false,\\r\\n            canceled: false,\\r\\n            state: ProposalState.Pending\\r\\n        });\\r\\n        \\r\\n        emit ProposalCreated(proposalId, msg.sender, title, startTime, endTime);\\r\\n        return proposalId;\\r\\n    }\\r\\n    \\r\\n    /**\\r\\n     * @dev Cast a vote on a proposal\\r\\n     * @param proposalId Proposal ID to vote on\\r\\n     * @param voteType Vote type (0=Against, 1=For, 2=Abstain)\\r\\n     */\\r\\n    function castVote(uint256 proposalId, VoteType voteType) external {\\r\\n        Proposal storage proposal = proposals[proposalId];\\r\\n        \\r\\n        require(proposal.proposer != address(0), \\\"Proposal does not exist\\\");\\r\\n        require(block.timestamp >= proposal.startTime, \\\"Voting not started\\\");\\r\\n        require(block.timestamp <= proposal.endTime, \\\"Voting ended\\\");\\r\\n        require(membershipTimestamp[msg.sender] != 0, \\\"Must be a DAO member\\\");\\r\\n        \\r\\n        Vote storage vote = votes[proposalId][msg.sender];\\r\\n        if (vote.hasVoted) revert AlreadyVoted();\\r\\n        \\r\\n        uint256 weight = governanceToken.balanceOf(msg.sender);\\r\\n        require(weight > 0, \\\"No voting power\\\");\\r\\n        \\r\\n        vote.hasVoted = true;\\r\\n        vote.voteType = voteType;\\r\\n        vote.weight = weight;\\r\\n        vote.timestamp = block.timestamp;\\r\\n        \\r\\n        if (voteType == VoteType.For) {\\r\\n            proposal.votesFor += weight;\\r\\n        } else if (voteType == VoteType.Against) {\\r\\n            proposal.votesAgainst += weight;\\r\\n        } else {\\r\\n            proposal.votesAbstain += weight;\\r\\n        }\\r\\n        \\r\\n        emit VoteCast(proposalId, msg.sender, voteType, weight);\\r\\n    }\\r\\n    \\r\\n    /**\\r\\n     * @dev Execute a successful proposal\\r\\n     * @param proposalId Proposal ID to execute\\r\\n     */\\r\\n    function executeProposal(uint256 proposalId) external nonReentrant {\\r\\n        Proposal storage proposal = proposals[proposalId];\\r\\n        \\r\\n        require(proposal.proposer != address(0), \\\"Proposal does not exist\\\");\\r\\n        require(!proposal.executed, \\\"Already executed\\\");\\r\\n        require(!proposal.canceled, \\\"Proposal canceled\\\");\\r\\n        require(block.timestamp > proposal.endTime, \\\"Voting still active\\\");\\r\\n        \\r\\n        // Check if proposal succeeded\\r\\n        uint256 totalVotes = proposal.votesFor + proposal.votesAgainst + proposal.votesAbstain;\\r\\n        uint256 totalSupply = governanceToken.totalSupply();\\r\\n        uint256 quorumRequired = (totalSupply * quorumThreshold) / 100;\\r\\n        \\r\\n        require(totalVotes >= quorumRequired, \\\"Quorum not reached\\\");\\r\\n        \\r\\n        uint256 passingVotes = (totalVotes * passingThreshold) / 100;\\r\\n        require(proposal.votesFor > passingVotes, \\\"Proposal defeated\\\");\\r\\n        \\r\\n        proposal.executed = true;\\r\\n        proposal.state = ProposalState.Executed;\\r\\n        \\r\\n        // Execute the proposal\\r\\n        if (proposal.target == address(0)) {\\r\\n            // Treasury operation\\r\\n            if (proposal.value > 0) {\\r\\n                require(treasuryBalance >= proposal.value, \\\"Insufficient treasury funds\\\");\\r\\n                treasuryBalance -= proposal.value;\\r\\n                \\r\\n                // Decode recipient from data\\r\\n                address recipient = abi.decode(proposal.data, (address));\\r\\n                payable(recipient).transfer(proposal.value);\\r\\n                emit FundsWithdrawn(recipient, proposal.value);\\r\\n            }\\r\\n        } else {\\r\\n            // External contract call\\r\\n            (bool success, ) = proposal.target.call{value: proposal.value}(proposal.data);\\r\\n            if (!success) revert ExecutionFailed();\\r\\n        }\\r\\n        \\r\\n        emit ProposalExecuted(proposalId);\\r\\n    }\\r\\n    \\r\\n    /**\\r\\n     * @dev Cancel a proposal (only proposer or owner can cancel)\\r\\n     * @param proposalId Proposal ID to cancel\\r\\n     */\\r\\n    function cancelProposal(uint256 proposalId) external {\\r\\n        Proposal storage proposal = proposals[proposalId];\\r\\n        \\r\\n        require(proposal.proposer != address(0), \\\"Proposal does not exist\\\");\\r\\n        require(!proposal.executed, \\\"Already executed\\\");\\r\\n        require(!proposal.canceled, \\\"Already canceled\\\");\\r\\n        require(\\r\\n            msg.sender == proposal.proposer || msg.sender == owner(),\\r\\n            \\\"Not authorized to cancel\\\"\\r\\n        );\\r\\n        \\r\\n        proposal.canceled = true;\\r\\n        proposal.state = ProposalState.Canceled;\\r\\n        \\r\\n        emit ProposalCanceled(proposalId);\\r\\n    }\\r\\n    \\r\\n    /**\\r\\n     * @dev Create a treasury withdrawal proposal\\r\\n     * @param recipient Address to send funds to\\r\\n     * @param amount Amount to withdraw\\r\\n     * @param title Proposal title\\r\\n     * @param description Proposal description\\r\\n     */\\r\\n    function createTreasuryWithdrawalProposal(\\r\\n        address recipient,\\r\\n        uint256 amount,\\r\\n        string memory title,\\r\\n        string memory description\\r\\n    ) external returns (uint256) {\\r\\n        require(amount <= treasuryBalance, \\\"Amount exceeds treasury balance\\\");\\r\\n        require(recipient != address(0), \\\"Invalid recipient\\\");\\r\\n        \\r\\n        bytes memory data = abi.encode(recipient);\\r\\n        return createProposal(title, description, address(0), amount, data);\\r\\n    }\\r\\n    \\r\\n    /**\\r\\n     * @dev Deposit funds to treasury\\r\\n     */\\r\\n    function depositToTreasury() external payable {\\r\\n        require(msg.value > 0, \\\"Must send ETH\\\");\\r\\n        treasuryBalance += msg.value;\\r\\n        emit FundsDeposited(msg.sender, msg.value);\\r\\n    }\\r\\n    \\r\\n    // View functions\\r\\n    \\r\\n    /**\\r\\n     * @dev Get proposal details\\r\\n     * @param proposalId Proposal ID\\r\\n     * @return Proposal struct\\r\\n     */\\r\\n    function getProposal(uint256 proposalId) external view returns (Proposal memory) {\\r\\n        return proposals[proposalId];\\r\\n    }\\r\\n    \\r\\n    /**\\r\\n     * @dev Get current proposal state\\r\\n     * @param proposalId Proposal ID\\r\\n     * @return ProposalState Current state\\r\\n     */\\r\\n    function getProposalState(uint256 proposalId) external view returns (ProposalState) {\\r\\n        Proposal storage proposal = proposals[proposalId];\\r\\n        \\r\\n        if (proposal.canceled) return ProposalState.Canceled;\\r\\n        if (proposal.executed) return ProposalState.Executed;\\r\\n        if (block.timestamp < proposal.startTime) return ProposalState.Pending;\\r\\n        if (block.timestamp <= proposal.endTime) return ProposalState.Active;\\r\\n        \\r\\n        // Check if succeeded\\r\\n        uint256 totalVotes = proposal.votesFor + proposal.votesAgainst + proposal.votesAbstain;\\r\\n        uint256 totalSupply = governanceToken.totalSupply();\\r\\n        uint256 quorumRequired = (totalSupply * quorumThreshold) / 100;\\r\\n        \\r\\n        if (totalVotes < quorumRequired) return ProposalState.Defeated;\\r\\n        \\r\\n        uint256 passingVotes = (totalVotes * passingThreshold) / 100;\\r\\n        if (proposal.votesFor > passingVotes) return ProposalState.Succeeded;\\r\\n        \\r\\n        return ProposalState.Defeated;\\r\\n    }\\r\\n    \\r\\n    /**\\r\\n     * @dev Get vote details for a user on a proposal\\r\\n     * @param proposalId Proposal ID\\r\\n     * @param voter Voter address\\r\\n     * @return Vote struct\\r\\n     */\\r\\n    function getVote(uint256 proposalId, address voter) external view returns (Vote memory) {\\r\\n        return votes[proposalId][voter];\\r\\n    }\\r\\n    \\r\\n    /**\\r\\n     * @dev Get voting power of an address\\r\\n     * @param account Address to check\\r\\n     * @return uint256 Voting power (token balance)\\r\\n     */\\r\\n    function getVotingPower(address account) external view returns (uint256) {\\r\\n        return governanceToken.balanceOf(account);\\r\\n    }\\r\\n    \\r\\n    /**\\r\\n     * @dev Check if address is a DAO member\\r\\n     * @param account Address to check\\r\\n     * @return bool True if member\\r\\n     */\\r\\n    function isMember(address account) external view returns (bool) {\\r\\n        return membershipTimestamp[account] != 0;\\r\\n    }\\r\\n    \\r\\n    /**\\r\\n     * @dev Get proposal voting results\\r\\n     * @param proposalId Proposal ID\\r\\n     * @return votesFor Votes in favor\\r\\n     * @return votesAgainst Votes against\\r\\n     * @return votesAbstain Abstain votes\\r\\n     * @return totalVotes Total votes cast\\r\\n     */\\r\\n    function getVotingResults(uint256 proposalId) external view returns (\\r\\n        uint256 votesFor,\\r\\n        uint256 votesAgainst,\\r\\n        uint256 votesAbstain,\\r\\n        uint256 totalVotes\\r\\n    ) {\\r\\n        Proposal storage proposal = proposals[proposalId];\\r\\n        votesFor = proposal.votesFor;\\r\\n        votesAgainst = proposal.votesAgainst;\\r\\n        votesAbstain = proposal.votesAbstain;\\r\\n        totalVotes = votesFor + votesAgainst + votesAbstain;\\r\\n    }\\r\\n    \\r\\n    /**\\r\\n     * @dev Get DAO settings\\r\\n     * @return _votingDelay Voting delay in seconds\\r\\n     * @return _votingPeriod Voting period in seconds\\r\\n     * @return _proposalThreshold Minimum tokens required to create a proposal\\r\\n     * @return _quorumThreshold Quorum threshold percentage\\r\\n     * @return _passingThreshold Passing threshold percentage\\r\\n     * @return _treasuryBalance Current treasury balance\\r\\n     */\\r\\n    function getDAOSettings() external view returns (\\r\\n        uint256 _votingDelay,\\r\\n        uint256 _votingPeriod,\\r\\n        uint256 _proposalThreshold,\\r\\n        uint256 _quorumThreshold,\\r\\n        uint256 _passingThreshold,\\r\\n        uint256 _treasuryBalance\\r\\n    ) {\\r\\n        return (\\r\\n            votingDelay,\\r\\n            votingPeriod,\\r\\n            proposalThreshold,\\r\\n            quorumThreshold,\\r\\n            passingThreshold,\\r\\n            treasuryBalance\\r\\n        );\\r\\n    }\\r\\n    \\r\\n    // Owner functions for governance parameter updates\\r\\n    \\r\\n    /**\\r\\n     * @dev Update voting delay\\r\\n     * @param newDelay New voting delay in seconds\\r\\n     */\\r\\n    function setVotingDelay(uint256 newDelay) external onlyOwner {\\r\\n        require(newDelay <= 30 days, \\\"Delay too long\\\");\\r\\n        votingDelay = newDelay;\\r\\n    }\\r\\n    \\r\\n    /**\\r\\n     * @dev Update voting period\\r\\n     * @param newPeriod New voting period in seconds\\r\\n     */\\r\\n    function setVotingPeriod(uint256 newPeriod) external onlyOwner {\\r\\n        require(newPeriod >= 1 days && newPeriod <= 30 days, \\\"Invalid period\\\");\\r\\n        votingPeriod = newPeriod;\\r\\n    }\\r\\n    \\r\\n    /**\\r\\n     * @dev Update proposal threshold\\r\\n     * @param newThreshold New proposal threshold in tokens\\r\\n     */\\r\\n    function setProposalThreshold(uint256 newThreshold) external onlyOwner {\\r\\n        proposalThreshold = newThreshold;\\r\\n    }\\r\\n    \\r\\n    /**\\r\\n     * @dev Update quorum threshold\\r\\n     * @param newThreshold New quorum threshold percentage (1-100)\\r\\n     */\\r\\n    function setQuorumThreshold(uint256 newThreshold) external onlyOwner {\\r\\n        require(newThreshold > 0 && newThreshold <= 100, \\\"Invalid threshold\\\");\\r\\n        quorumThreshold = newThreshold;\\r\\n    }\\r\\n    \\r\\n    /**\\r\\n     * @dev Update passing threshold\\r\\n     * @param newThreshold New passing threshold percentage (1-100)\\r\\n     */\\r\\n    function setPassingThreshold(uint256 newThreshold) external onlyOwner {\\r\\n        require(newThreshold > 0 && newThreshold <= 100, \\\"Invalid threshold\\\");\\r\\n        passingThreshold = newThreshold;\\r\\n    }\\r\\n    \\r\\n    /**\\r\\n     * @dev Get total number of proposals\\r\\n     * @return uint256 Total proposal count\\r\\n     */\\r\\n    function getTotalProposals() external view returns (uint256) {\\r\\n        return proposalCounter;\\r\\n    }\\r\\n    \\r\\n    /**\\r\\n     * @dev Receive function to accept ETH deposits\\r\\n     */\\r\\n    receive() external payable {\\r\\n        treasuryBalance += msg.value;\\r\\n        emit FundsDeposited(msg.sender, msg.value);\\r\\n    }\\r\\n}\",\"keccak256\":\"0xff7a73acac27ba355a5daca70b02d8e9096e20afd5e5ddfe20eea98e890ce20e\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x6080346200014a57601f6200282038819003918201601f19168301916001600160401b038311848410176200014f578084926020946040528339810103126200014a57516001600160a01b03808216918290036200014a5760016000553315620001315760018054336001600160a01b0319808316821790935560405192939091167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0600080a36201518060075562093a80600855683635c9adc5dea00000600955600a80556032600b558215620000ef575060025416176002556000600c556040516126ba9081620001668239f35b62461bcd60e51b815260206004820152601560248201527f496e76616c696420746f6b656e206164647265737300000000000000000000006044820152606490fd5b604051631e4fbdf760e01b815260006004820152602490fd5b600080fd5b634e487b7160e01b600052604160045260246000fdfe6080806040526004361015610058575b50361561001b57600080fd5b61002734600c546123ef565b600c556040513481527f543ba50a5eec5e6178218e364b1d0f396157b3c8fa278522c2cb7fd99407d47460203392a2005b60003560e01c908163013cf08b146120065750806302a251a314611fe85780630c0512e914611ba75780630d61b51914611bc55780631a5007dd14611ba75780632c56943e14611b69578063313dab2014611b4b5780633932abb114611b2d5780634524c7e114611aef5780634c6c878e146115ae578063524152ec146115665780635678138814611313578063620793d9146112f557806370b0f66014611294578063715018a614611237578063718b2058146111e45780637b7a91dd146111c65780638da5cb5b1461119d5780639080936f14611170578063a230c52414611134578063b58131b014611116578063bb18f00b146110dc578063bb4d443614611050578063bc3f931f14610f85578063bfb0424f146108e4578063c7f758a814610643578063cd89b2e3146105e5578063d23254b41461056d578063e0a8f6f51461043f578063ea0217cf146103c9578063ece40cc1146103a8578063f2fde38b1461031f578063f63d13d7146102095763f96dae0a146101db573861000f565b34610204576000366003190112610204576002546040516001600160a01b039091168152602090f35b600080fd5b34610204576000366003190112610204576002546040516370a0823160e01b81523360048201526020918290829060249082906001600160a01b03165afa908115610313576000916102e6575b50156102a2573360005260058152604060002080541561027257005b4290557f7f3b9effe05cfb4f31f854004de03199fd03fe56bf38a48b2aa9a9f4402d6e23604051914283523392a2005b6064906040519062461bcd60e51b82526004820152601b60248201527f4d75737420686f6c6420676f7665726e616e636520746f6b656e7300000000006044820152fd5b90508181813d831161030c575b6102fd8183612269565b81010312610204575182610256565b503d6102f3565b6040513d6000823e3d90fd5b3461020457602036600319011261020457610338612347565b610340612380565b6001600160a01b0390811690811561038f57600154826001600160601b0360a01b821617600155167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0600080a3005b604051631e4fbdf760e01b815260006004820152602490fd5b34610204576020366003190112610204576103c1612380565b600435600955005b34610204576020366003190112610204576004356103e5612380565b6201518081101580610432575b156103fc57600855005b60405162461bcd60e51b815260206004820152600e60248201526d125b9d985b1a59081c195c9a5bd960921b6044820152606490fd5b5062278d008111156103f2565b3461020457602036600319011261020457600435600081815260036020526040902060018101546001600160a01b039190821690600c90610481831515612471565b019182549161049360ff8416156124bd565b60ff8360081c16610535573314908115610527575b50156104e25762ffff001916620501001790557f789cf55be980739dad1d0699b93b58e806b51c9d96619bfa8fe0a28abaa7b30c600080a2005b60405162461bcd60e51b815260206004820152601860248201527f4e6f7420617574686f72697a656420746f2063616e63656c00000000000000006044820152606490fd5b9050600154163314846104a8565b60405162461bcd60e51b815260206004820152601060248201526f105b1c9958591e4818d85b98d95b195960821b6044820152606490fd5b346102045760403660031901126102045761058661235d565b600435600052600460205260406000209060018060a01b03166000526020526080604060002080549060026001820154910154906105d96040519360ff81161515855260ff602086019160081c16612373565b60408301526060820152f35b3461020457602036600319011261020457600435600052600360205260806040600020600981015490600b600a82015491015461062b8161062684866123ef565b6123ef565b91604051938452602084015260408301526060820152f35b346102045760203660031901126102045760006101c06040516106658161224d565b828152826020820152606060408201526060808201528260808201528260a0820152606060c08201528260e08201528261010082015282610120820152826101408201528261016082015282610180820152826101a0820152015260043560005260036020526040600020600c604051916106df8361224d565b8054835260018101546001600160a01b031660208401526040516107118161070a816002860161219c565b0382612269565b604084015260405161072a8161070a816003860161219c565b606084015260048101546001600160a01b03166080840152600581015460a08401526040516107608161070a816006860161219c565b60c0840152600781015460e084015260088101546101008401526009810154610120840152600a810154610140840152600b810154610160840152015460ff8116151561018083015260ff8160081c1615156101a0830152600660ff8260101c1610156108ce5760ff9060101c166101c08201526040518091602082528051602083015260018060a01b0360208201511660408301526108ca6101c061086761081a60408501516101e0606088015261020087019061228a565b610836606086015191601f1992838983030160808a015261228a565b9060018060a01b0360808701511660a088015260a086015160c088015260c0860151908783030160e088015261228a565b9260e081015161010086015261010081015161012086015261012081015161014086015261014081015161016086015261016081015161018086015261018081015115156101a08601526101a081015115158286015201516101e08401906122ca565b0390f35b634e487b7160e01b600052602160045260246000fd5b34610204576080366003190112610204576108fd612347565b60449081356001600160401b0381116102045761091e903690600401612329565b6064356001600160401b0381116102045761093d903690600401612329565b91600c5460243511610f41576001600160a01b0316928315610f095760405193602085015260208452604084018481106001600160401b03821117610d5b5760408190526002546370a0823160e01b82523386840152602090829060249082906001600160a01b03165afa90811561031357600091610ed7575b5060095490818110610ebd5750503360005260056020526109de60406000205415156123ac565b815115610e815750600654916000198314610e6b5760018301600655610a06600754426123ef565b91610a13600854846123ef565b9460405192610a218461224d565b85845233602085015282604085015260608401526000608084015260243560a084015260c08301528260e083015284610100830152600061012083015260006101408301526000610160830152600061018083015260006101a083015260006101c08301528360005260036020526040600020825181556001810160018060a01b036020850151166001600160601b0360a01b82541617905560408301518051906001600160401b038211610d5b578190610aec82610ae36002870154612162565b600287016123fc565b602090601f8311600114610df957600092610dee575b50508160011b916000199060031b1c19161760028201555b60608301518051906001600160401b038211610d5b578190610b4c82610b436003870154612162565b600387016123fc565b602090601f8311600114610d7c57600092610d71575b50508160011b916000199060031b1c19161760038201555b6004810160018060a01b036080850151166001600160601b0360a01b82541617905560a0830151600582015560c083015180516001600160401b038111610d5b576006830191610bd482610bce8554612162565b856123fc565b602090601f8311600114610cec579180600c94926101c09694600092610ce1575b50508160011b916000199060031b1c19161790555b60e0850151600782015561010085015160088201556101208501516009820155610140850151600a820155610160850151600b8201550192610c5f6101808201511515859060ff801983541691151516179055565b6101a0810151845461ff00191690151560081b61ff001617845501519060068210156108ce57602095610cb47f6c98a8c940418b35614f0cd02412d5c9606faff474cbb6cdd6640ba5d1a9f06b938795612450565b610cc96040519260608452606084019061228a565b948783015260408201528033940390a3604051908152f35b015190508b80610bf5565b90601f198316918460005260206000209260005b818110610d4357509260019285926101c09896600c989610610d2a575b505050811b019055610c0a565b015160001960f88460031b161c191690558b8080610d1d565b92936020600181928786015181550195019301610d00565b634e487b7160e01b600052604160045260246000fd5b015190508880610b62565b9250600384016000526020600020906000935b601f1984168510610dd3576001945083601f19811610610dba575b505050811b016003820155610b7a565b015160001960f88460031b161c19169055888080610daa565b81810151835560209485019460019093019290910190610d8f565b015190508880610b02565b9250600284016000526020600020906000935b601f1984168510610e50576001945083601f19811610610e37575b505050811b016002820155610b1a565b015160001960f88460031b161c19169055888080610e27565b81810151835560209485019460019093019290910190610e0c565b634e487b7160e01b600052601160045260246000fd5b606490745469746c652063616e6e6f7420626520656d70747960581b6040519162461bcd60e51b83526020600484015260156024840152820152fd5b6040519163c7bcc1b960e01b835260048301526024820152fd5b90506020853d602011610f01575b81610ef260209385612269565b810103126102045751856109b7565b3d9150610ee5565b60649070125b9d985b1a59081c9958da5c1a595b9d607a1b6040519162461bcd60e51b83526020600484015260116024840152820152fd5b60405162461bcd60e51b815260206004820152601f60248201527f416d6f756e7420657863656564732074726561737572792062616c616e63650081860152606490fd5b3461020457604036600319011261020457610f9e61235d565b60006060604051610fae81612232565b8281528260208201528260408201520152600435600052600460205260406000209060018060a01b03166000526020526040600020604051610fef81612232565b60ff82548181161515835260081c1691602082019060038410156108ce57608093825261104260026001830154926040860193845201549260608501938452604051945115158552516020850190612373565b516040830152516060820152f35b34610204576020806003193601126102045761106a612347565b6002546040516370a0823160e01b81526001600160a01b03928316600482015291839183916024918391165afa908115610313576000916110af575b50604051908152f35b90508181813d83116110d5575b6110c68183612269565b810103126102045751826110a6565b503d6110bc565b34610204576020366003190112610204576001600160a01b036110fd612347565b1660005260056020526020604060002054604051908152f35b34610204576000366003190112610204576020600954604051908152f35b34610204576020366003190112610204576001600160a01b03611155612347565b16600052600560205260206040600020541515604051908152f35b3461020457602036600319011261020457602061118e60043561250f565b61119b60405180926122ca565bf35b34610204576000366003190112610204576001546040516001600160a01b039091168152602090f35b34610204576000366003190112610204576020600a54604051908152f35b60003660031901126102045734156112025761002734600c546123ef565b60405162461bcd60e51b815260206004820152600d60248201526c09aeae6e840e6cadcc8408aa89609b1b6044820152606490fd5b3461020457600036600319011261020457611250612380565b600180546001600160a01b031981169091556000906001600160a01b03167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08280a3005b34610204576020366003190112610204576004356112b0612380565b62278d0081116112bf57600755005b60405162461bcd60e51b815260206004820152600e60248201526d44656c617920746f6f206c6f6e6760901b6044820152606490fd5b34610204576000366003190112610204576020600b54604051908152f35b34610204576040366003190112610204576024356004356003821015610204578060005260206003815260406000209060018060a01b039161135c836001830154161515612471565b6007810154421061152c57600881015442116114f857336000526005825261138a60406000205415156123ac565b836000526004825260406000203360005282526040600020805460ff81166114e6578360249560025416604051968780926370a0823160e01b82523360048301525afa948515610313576000956114b7575b5084156114805760019061ff008860081b169061ffff191617178155836001820155600242910155600185146000146114585760090161141d8382546123ef565b90555b61142d6040518095612373565b8301527fb83d25c6a5d258561330739951487acb4bd09ba5190b5d32c4f261817d90679260403393a3005b8461147257600a0161146b8382546123ef565b9055611420565b600b0161146b8382546123ef565b60405162461bcd60e51b815260048101859052600f60248201526e2737903b37ba34b733903837bbb2b960891b6044820152606490fd5b9094508381813d83116114df575b6114cf8183612269565b81010312610204575193876113dc565b503d6114c5565b604051637c9a1cf960e01b8152600490fd5b60405162461bcd60e51b815260048101839052600c60248201526b159bdd1a5b99c8195b99195960a21b6044820152606490fd5b60405162461bcd60e51b8152600481018390526012602482015271159bdd1a5b99c81b9bdd081cdd185c9d195960721b6044820152606490fd5b346102045760003660031901126102045760c0600754600854600954600a54600b5491600c5493604051958652602086015260408501526060840152608083015260a0820152f35b346102045760a0366003190112610204576004356001600160401b038111610204576115de903690600401612329565b6024356001600160401b038111610204576115fd903690600401612329565b60443591906001600160a01b0383168303610204576084356001600160401b0381116102045736602382011215610204576116429036906024816004013591016122f2565b6002546040516370a0823160e01b815233600482015291929190602090829060249082906001600160a01b03165afa90811561031357600091611abd575b5060095490818110611a9f5750503360005260056020526116a760406000205415156123ac565b825115611a6257600654926000198414610e6b57600184016006556116ce600754426123ef565b926116db600854856123ef565b95604051936116e98561224d565b868552336020860152836040860152606085015260018060a01b0316608084015260643560a084015260c08301528260e083015284610100830152600061012083015260006101408301526000610160830152600061018083015260006101a083015260006101c08301528360005260036020526040600020825181556001810160018060a01b036020850151166001600160601b0360a01b82541617905560408301518051906001600160401b038211610d5b5781906117b182610ae36002870154612162565b602090601f83116001146119f0576000926119e5575b50508160011b916000199060031b1c19161760028201555b60608301518051906001600160401b038211610d5b57819061180882610b436003870154612162565b602090601f831160011461197357600092611968575b50508160011b916000199060031b1c19161760038201555b6004810160018060a01b036080850151166001600160601b0360a01b82541617905560a0830151600582015560c083015180516001600160401b038111610d5b57600683019161188a82610bce8554612162565b602090601f8311600114611913579180600c94926101c09694600092610ce15750508160011b916000199060031b1c191617905560e0850151600782015561010085015160088201556101208501516009820155610140850151600a820155610160850151600b8201550192610c5f6101808201511515859060ff801983541691151516179055565b90601f198316918460005260206000209260005b81811061195057509260019285926101c09896600c989610610d2a57505050811b019055610c0a565b92936020600181928786015181550195019301611927565b01519050888061181e565b9250600384016000526020600020906000935b601f19841685106119ca576001945083601f198116106119b1575b505050811b016003820155611836565b015160001960f88460031b161c191690558880806119a1565b81810151835560209485019460019093019290910190611986565b0151905088806117c7565b9250600284016000526020600020906000935b601f1984168510611a47576001945083601f19811610611a2e575b505050811b0160028201556117df565b015160001960f88460031b161c19169055888080611a1e565b81810151835560209485019460019093019290910190611a03565b60405162461bcd60e51b81526020600482015260156024820152745469746c652063616e6e6f7420626520656d70747960581b6044820152606490fd5b604492506040519163c7bcc1b960e01b835260048301526024820152fd5b90506020813d602011611ae7575b81611ad860209383612269565b81010312610204575185611680565b3d9150611acb565b3461020457602036600319011261020457600435611b0b612380565b80151580611b22575b611b1d90612644565b600a55005b506064811115611b14565b34610204576000366003190112610204576020600754604051908152f35b34610204576000366003190112610204576020600c54604051908152f35b3461020457602036600319011261020457600435611b85612380565b80151580611b9c575b611b9790612644565b600b55005b506064811115611b8e565b34610204576000366003190112610204576020600654604051908152f35b346102045760208060031936011261020457600435600260005414611fd65760026000558060005260038252604060002060018060a01b0390600193611c118386840154161515612471565b600c82018054611c2460ff8216156124bd565b60ff8160081c16611f9d576008840154421115611f62576009840154611c5c611c51600a870154836123ef565b600b870154906123ef565b6004858860025416604051928380926318160ddd60e01b82525afa90811561031357600091611f33575b50611c96606491600a54906124fc565b048110611ef957611cac606491600b54906124fc565b041015611ec05762ff00ff1916620400011790556004820154831680611de957506005820191825480611d0a575b50505050505b7f712ae1383f79ac853f8d882153778e0260ef8f03b504e2866e0593e04d2b291f600080a2600055005b600c5490808210611da4578103908111610e6b57600691611d3891600c5561070a604051809481930161219c565b818180518101031261020457810151928316809303610204576000808080855487828215611d9b575bf115610313577feaff4b37086828766ad3268786972c0cd24259d4c87a80f9d3963a3c3d999b0d9154604051908152a28280808080611cda565b506108fc611d61565b60405162461bcd60e51b815260048101859052601b60248201527f496e73756666696369656e742074726561737572792066756e647300000000006044820152606490fd5b919092506006600582015491019060405191600090805490611e0a82612162565b91898116908115611ea95750600114611e71575b5050916000939181859403925af1903d15611e6b5760003d91611e40836122d7565b92611e4e6040519485612269565b83523d92013e5b611ce057604051632b3f6d1160e21b8152600490fd5b50611e55565b9091506000528460002085886000925b848410611e975750505090830190508183611e1e565b80548488015201910190888791611e81565b60ff19168652505080151502830190508183611e1e565b60405162461bcd60e51b8152600481018490526011602482015270141c9bdc1bdcd85b0819195999585d1959607a1b6044820152606490fd5b60405162461bcd60e51b8152600481018690526012602482015271145d5bdc9d5b481b9bdd081c995858da195960721b6044820152606490fd5b90508581813d8311611f5b575b611f4a8183612269565b810103126102045751611c96611c86565b503d611f40565b60405162461bcd60e51b8152600481018490526013602482015272566f74696e67207374696c6c2061637469766560681b6044820152606490fd5b60405162461bcd60e51b8152600481018490526011602482015270141c9bdc1bdcd85b0818d85b98d95b1959607a1b6044820152606490fd5b604051633ee5aeb560e01b8152600490fd5b34610204576000366003190112610204576020600854604051908152f35b34610204576020366003190112610204576004356000908152600360205260409020805460018201546001600160a01b039081169391929091908161204e816002840161219c565b036120599083612269565b604051928361206b816003850161219c565b036120769085612269565b60048201541692600582015460405194858060068601906120969161219c565b036120a19087612269565b600784015495600885015491600986015493600a87015495600b88015497600c0154986040519c8d9c8d5260208d01528b6101e06040819201528c016120e69161228a565b8b810360608d01526120f79161228a565b9160808b015260a08a015288810360c08a01526121139161228a565b9560e088015261010087015261012086015261014085015261016084015260ff811615156101808401528060081c60ff1615156101a08401526101c083019060101c60ff16906108ca916122ca565b90600182811c92168015612192575b602083101461217c57565b634e487b7160e01b600052602260045260246000fd5b91607f1691612171565b90600092918054916121ad83612162565b91828252600193848116908160001461220f57506001146121cf575b50505050565b90919394506000526020928360002092846000945b8386106121fb5750505050010190388080806121c9565b8054858701830152940193859082016121e4565b9294505050602093945060ff191683830152151560051b010190388080806121c9565b608081019081106001600160401b03821117610d5b57604052565b6101e081019081106001600160401b03821117610d5b57604052565b90601f801991011681019081106001600160401b03821117610d5b57604052565b919082519283825260005b8481106122b6575050826000602080949584010152601f8019910116010190565b602081830181015184830182015201612295565b9060068210156108ce5752565b6001600160401b038111610d5b57601f01601f191660200190565b9291926122fe826122d7565b9161230c6040519384612269565b829481845281830111610204578281602093846000960137010152565b9080601f8301121561020457816020612344933591016122f2565b90565b600435906001600160a01b038216820361020457565b602435906001600160a01b038216820361020457565b9060038210156108ce5752565b6001546001600160a01b0316330361239457565b60405163118cdaa760e01b8152336004820152602490fd5b156123b357565b60405162461bcd60e51b815260206004820152601460248201527326bab9ba1031329030902220a79036b2b6b132b960611b6044820152606490fd5b91908201809211610e6b57565b90601f811161240a57505050565b600091825260208220906020601f850160051c83019410612446575b601f0160051c01915b82811061243b57505050565b81815560010161242f565b9092508290612426565b9060068110156108ce5762ff000082549160101b169062ff00001916179055565b1561247857565b60405162461bcd60e51b815260206004820152601760248201527f50726f706f73616c20646f6573206e6f742065786973740000000000000000006044820152606490fd5b156124c457565b60405162461bcd60e51b815260206004820152601060248201526f105b1c9958591e48195e1958dd5d195960821b6044820152606490fd5b81810292918115918404141715610e6b57565b600090815260036020526040812090600c82015460ff8160081c1661263c5760ff1661263557600782015442106126305760088201544211156126295761256e600983015492600b612565600a830154866123ef565b910154906123ef565b6002546040516318160ddd60e01b815291929190602090829060049082906001600160a01b03165afa91821561261d5780926125e3575b50506125b6606491600a54906124fc565b0481106125dc576125cc606491600b54906124fc565b04106125d757600390565b600290565b5050600390565b9091506020823d8211612615575b816125fe60209383612269565b810103126126125750516125b660646125a5565b80fd5b3d91506125f1565b604051903d90823e3d90fd5b5050600190565b905090565b5050600490565b505050600590565b1561264b57565b60405162461bcd60e51b8152602060048201526011602482015270125b9d985b1a59081d1a1c995cda1bdb19607a1b6044820152606490fdfea26469706673582212201afd5a7f5e2a467edeb52e43c628d42d8f3c39cdf3c2d66d5d04bd6be5ff56c764736f6c63430008140033",
+  "deployedBytecode": "0x6080806040526004361015610058575b50361561001b57600080fd5b61002734600c546123ef565b600c556040513481527f543ba50a5eec5e6178218e364b1d0f396157b3c8fa278522c2cb7fd99407d47460203392a2005b60003560e01c908163013cf08b146120065750806302a251a314611fe85780630c0512e914611ba75780630d61b51914611bc55780631a5007dd14611ba75780632c56943e14611b69578063313dab2014611b4b5780633932abb114611b2d5780634524c7e114611aef5780634c6c878e146115ae578063524152ec146115665780635678138814611313578063620793d9146112f557806370b0f66014611294578063715018a614611237578063718b2058146111e45780637b7a91dd146111c65780638da5cb5b1461119d5780639080936f14611170578063a230c52414611134578063b58131b014611116578063bb18f00b146110dc578063bb4d443614611050578063bc3f931f14610f85578063bfb0424f146108e4578063c7f758a814610643578063cd89b2e3146105e5578063d23254b41461056d578063e0a8f6f51461043f578063ea0217cf146103c9578063ece40cc1146103a8578063f2fde38b1461031f578063f63d13d7146102095763f96dae0a146101db573861000f565b34610204576000366003190112610204576002546040516001600160a01b039091168152602090f35b600080fd5b34610204576000366003190112610204576002546040516370a0823160e01b81523360048201526020918290829060249082906001600160a01b03165afa908115610313576000916102e6575b50156102a2573360005260058152604060002080541561027257005b4290557f7f3b9effe05cfb4f31f854004de03199fd03fe56bf38a48b2aa9a9f4402d6e23604051914283523392a2005b6064906040519062461bcd60e51b82526004820152601b60248201527f4d75737420686f6c6420676f7665726e616e636520746f6b656e7300000000006044820152fd5b90508181813d831161030c575b6102fd8183612269565b81010312610204575182610256565b503d6102f3565b6040513d6000823e3d90fd5b3461020457602036600319011261020457610338612347565b610340612380565b6001600160a01b0390811690811561038f57600154826001600160601b0360a01b821617600155167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0600080a3005b604051631e4fbdf760e01b815260006004820152602490fd5b34610204576020366003190112610204576103c1612380565b600435600955005b34610204576020366003190112610204576004356103e5612380565b6201518081101580610432575b156103fc57600855005b60405162461bcd60e51b815260206004820152600e60248201526d125b9d985b1a59081c195c9a5bd960921b6044820152606490fd5b5062278d008111156103f2565b3461020457602036600319011261020457600435600081815260036020526040902060018101546001600160a01b039190821690600c90610481831515612471565b019182549161049360ff8416156124bd565b60ff8360081c16610535573314908115610527575b50156104e25762ffff001916620501001790557f789cf55be980739dad1d0699b93b58e806b51c9d96619bfa8fe0a28abaa7b30c600080a2005b60405162461bcd60e51b815260206004820152601860248201527f4e6f7420617574686f72697a656420746f2063616e63656c00000000000000006044820152606490fd5b9050600154163314846104a8565b60405162461bcd60e51b815260206004820152601060248201526f105b1c9958591e4818d85b98d95b195960821b6044820152606490fd5b346102045760403660031901126102045761058661235d565b600435600052600460205260406000209060018060a01b03166000526020526080604060002080549060026001820154910154906105d96040519360ff81161515855260ff602086019160081c16612373565b60408301526060820152f35b3461020457602036600319011261020457600435600052600360205260806040600020600981015490600b600a82015491015461062b8161062684866123ef565b6123ef565b91604051938452602084015260408301526060820152f35b346102045760203660031901126102045760006101c06040516106658161224d565b828152826020820152606060408201526060808201528260808201528260a0820152606060c08201528260e08201528261010082015282610120820152826101408201528261016082015282610180820152826101a0820152015260043560005260036020526040600020600c604051916106df8361224d565b8054835260018101546001600160a01b031660208401526040516107118161070a816002860161219c565b0382612269565b604084015260405161072a8161070a816003860161219c565b606084015260048101546001600160a01b03166080840152600581015460a08401526040516107608161070a816006860161219c565b60c0840152600781015460e084015260088101546101008401526009810154610120840152600a810154610140840152600b810154610160840152015460ff8116151561018083015260ff8160081c1615156101a0830152600660ff8260101c1610156108ce5760ff9060101c166101c08201526040518091602082528051602083015260018060a01b0360208201511660408301526108ca6101c061086761081a60408501516101e0606088015261020087019061228a565b610836606086015191601f1992838983030160808a015261228a565b9060018060a01b0360808701511660a088015260a086015160c088015260c0860151908783030160e088015261228a565b9260e081015161010086015261010081015161012086015261012081015161014086015261014081015161016086015261016081015161018086015261018081015115156101a08601526101a081015115158286015201516101e08401906122ca565b0390f35b634e487b7160e01b600052602160045260246000fd5b34610204576080366003190112610204576108fd612347565b60449081356001600160401b0381116102045761091e903690600401612329565b6064356001600160401b0381116102045761093d903690600401612329565b91600c5460243511610f41576001600160a01b0316928315610f095760405193602085015260208452604084018481106001600160401b03821117610d5b5760408190526002546370a0823160e01b82523386840152602090829060249082906001600160a01b03165afa90811561031357600091610ed7575b5060095490818110610ebd5750503360005260056020526109de60406000205415156123ac565b815115610e815750600654916000198314610e6b5760018301600655610a06600754426123ef565b91610a13600854846123ef565b9460405192610a218461224d565b85845233602085015282604085015260608401526000608084015260243560a084015260c08301528260e083015284610100830152600061012083015260006101408301526000610160830152600061018083015260006101a083015260006101c08301528360005260036020526040600020825181556001810160018060a01b036020850151166001600160601b0360a01b82541617905560408301518051906001600160401b038211610d5b578190610aec82610ae36002870154612162565b600287016123fc565b602090601f8311600114610df957600092610dee575b50508160011b916000199060031b1c19161760028201555b60608301518051906001600160401b038211610d5b578190610b4c82610b436003870154612162565b600387016123fc565b602090601f8311600114610d7c57600092610d71575b50508160011b916000199060031b1c19161760038201555b6004810160018060a01b036080850151166001600160601b0360a01b82541617905560a0830151600582015560c083015180516001600160401b038111610d5b576006830191610bd482610bce8554612162565b856123fc565b602090601f8311600114610cec579180600c94926101c09694600092610ce1575b50508160011b916000199060031b1c19161790555b60e0850151600782015561010085015160088201556101208501516009820155610140850151600a820155610160850151600b8201550192610c5f6101808201511515859060ff801983541691151516179055565b6101a0810151845461ff00191690151560081b61ff001617845501519060068210156108ce57602095610cb47f6c98a8c940418b35614f0cd02412d5c9606faff474cbb6cdd6640ba5d1a9f06b938795612450565b610cc96040519260608452606084019061228a565b948783015260408201528033940390a3604051908152f35b015190508b80610bf5565b90601f198316918460005260206000209260005b818110610d4357509260019285926101c09896600c989610610d2a575b505050811b019055610c0a565b015160001960f88460031b161c191690558b8080610d1d565b92936020600181928786015181550195019301610d00565b634e487b7160e01b600052604160045260246000fd5b015190508880610b62565b9250600384016000526020600020906000935b601f1984168510610dd3576001945083601f19811610610dba575b505050811b016003820155610b7a565b015160001960f88460031b161c19169055888080610daa565b81810151835560209485019460019093019290910190610d8f565b015190508880610b02565b9250600284016000526020600020906000935b601f1984168510610e50576001945083601f19811610610e37575b505050811b016002820155610b1a565b015160001960f88460031b161c19169055888080610e27565b81810151835560209485019460019093019290910190610e0c565b634e487b7160e01b600052601160045260246000fd5b606490745469746c652063616e6e6f7420626520656d70747960581b6040519162461bcd60e51b83526020600484015260156024840152820152fd5b6040519163c7bcc1b960e01b835260048301526024820152fd5b90506020853d602011610f01575b81610ef260209385612269565b810103126102045751856109b7565b3d9150610ee5565b60649070125b9d985b1a59081c9958da5c1a595b9d607a1b6040519162461bcd60e51b83526020600484015260116024840152820152fd5b60405162461bcd60e51b815260206004820152601f60248201527f416d6f756e7420657863656564732074726561737572792062616c616e63650081860152606490fd5b3461020457604036600319011261020457610f9e61235d565b60006060604051610fae81612232565b8281528260208201528260408201520152600435600052600460205260406000209060018060a01b03166000526020526040600020604051610fef81612232565b60ff82548181161515835260081c1691602082019060038410156108ce57608093825261104260026001830154926040860193845201549260608501938452604051945115158552516020850190612373565b516040830152516060820152f35b34610204576020806003193601126102045761106a612347565b6002546040516370a0823160e01b81526001600160a01b03928316600482015291839183916024918391165afa908115610313576000916110af575b50604051908152f35b90508181813d83116110d5575b6110c68183612269565b810103126102045751826110a6565b503d6110bc565b34610204576020366003190112610204576001600160a01b036110fd612347565b1660005260056020526020604060002054604051908152f35b34610204576000366003190112610204576020600954604051908152f35b34610204576020366003190112610204576001600160a01b03611155612347565b16600052600560205260206040600020541515604051908152f35b3461020457602036600319011261020457602061118e60043561250f565b61119b60405180926122ca565bf35b34610204576000366003190112610204576001546040516001600160a01b039091168152602090f35b34610204576000366003190112610204576020600a54604051908152f35b60003660031901126102045734156112025761002734600c546123ef565b60405162461bcd60e51b815260206004820152600d60248201526c09aeae6e840e6cadcc8408aa89609b1b6044820152606490fd5b3461020457600036600319011261020457611250612380565b600180546001600160a01b031981169091556000906001600160a01b03167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e08280a3005b34610204576020366003190112610204576004356112b0612380565b62278d0081116112bf57600755005b60405162461bcd60e51b815260206004820152600e60248201526d44656c617920746f6f206c6f6e6760901b6044820152606490fd5b34610204576000366003190112610204576020600b54604051908152f35b34610204576040366003190112610204576024356004356003821015610204578060005260206003815260406000209060018060a01b039161135c836001830154161515612471565b6007810154421061152c57600881015442116114f857336000526005825261138a60406000205415156123ac565b836000526004825260406000203360005282526040600020805460ff81166114e6578360249560025416604051968780926370a0823160e01b82523360048301525afa948515610313576000956114b7575b5084156114805760019061ff008860081b169061ffff191617178155836001820155600242910155600185146000146114585760090161141d8382546123ef565b90555b61142d6040518095612373565b8301527fb83d25c6a5d258561330739951487acb4bd09ba5190b5d32c4f261817d90679260403393a3005b8461147257600a0161146b8382546123ef565b9055611420565b600b0161146b8382546123ef565b60405162461bcd60e51b815260048101859052600f60248201526e2737903b37ba34b733903837bbb2b960891b6044820152606490fd5b9094508381813d83116114df575b6114cf8183612269565b81010312610204575193876113dc565b503d6114c5565b604051637c9a1cf960e01b8152600490fd5b60405162461bcd60e51b815260048101839052600c60248201526b159bdd1a5b99c8195b99195960a21b6044820152606490fd5b60405162461bcd60e51b8152600481018390526012602482015271159bdd1a5b99c81b9bdd081cdd185c9d195960721b6044820152606490fd5b346102045760003660031901126102045760c0600754600854600954600a54600b5491600c5493604051958652602086015260408501526060840152608083015260a0820152f35b346102045760a0366003190112610204576004356001600160401b038111610204576115de903690600401612329565b6024356001600160401b038111610204576115fd903690600401612329565b60443591906001600160a01b0383168303610204576084356001600160401b0381116102045736602382011215610204576116429036906024816004013591016122f2565b6002546040516370a0823160e01b815233600482015291929190602090829060249082906001600160a01b03165afa90811561031357600091611abd575b5060095490818110611a9f5750503360005260056020526116a760406000205415156123ac565b825115611a6257600654926000198414610e6b57600184016006556116ce600754426123ef565b926116db600854856123ef565b95604051936116e98561224d565b868552336020860152836040860152606085015260018060a01b0316608084015260643560a084015260c08301528260e083015284610100830152600061012083015260006101408301526000610160830152600061018083015260006101a083015260006101c08301528360005260036020526040600020825181556001810160018060a01b036020850151166001600160601b0360a01b82541617905560408301518051906001600160401b038211610d5b5781906117b182610ae36002870154612162565b602090601f83116001146119f0576000926119e5575b50508160011b916000199060031b1c19161760028201555b60608301518051906001600160401b038211610d5b57819061180882610b436003870154612162565b602090601f831160011461197357600092611968575b50508160011b916000199060031b1c19161760038201555b6004810160018060a01b036080850151166001600160601b0360a01b82541617905560a0830151600582015560c083015180516001600160401b038111610d5b57600683019161188a82610bce8554612162565b602090601f8311600114611913579180600c94926101c09694600092610ce15750508160011b916000199060031b1c191617905560e0850151600782015561010085015160088201556101208501516009820155610140850151600a820155610160850151600b8201550192610c5f6101808201511515859060ff801983541691151516179055565b90601f198316918460005260206000209260005b81811061195057509260019285926101c09896600c989610610d2a57505050811b019055610c0a565b92936020600181928786015181550195019301611927565b01519050888061181e565b9250600384016000526020600020906000935b601f19841685106119ca576001945083601f198116106119b1575b505050811b016003820155611836565b015160001960f88460031b161c191690558880806119a1565b81810151835560209485019460019093019290910190611986565b0151905088806117c7565b9250600284016000526020600020906000935b601f1984168510611a47576001945083601f19811610611a2e575b505050811b0160028201556117df565b015160001960f88460031b161c19169055888080611a1e565b81810151835560209485019460019093019290910190611a03565b60405162461bcd60e51b81526020600482015260156024820152745469746c652063616e6e6f7420626520656d70747960581b6044820152606490fd5b604492506040519163c7bcc1b960e01b835260048301526024820152fd5b90506020813d602011611ae7575b81611ad860209383612269565b81010312610204575185611680565b3d9150611acb565b3461020457602036600319011261020457600435611b0b612380565b80151580611b22575b611b1d90612644565b600a55005b506064811115611b14565b34610204576000366003190112610204576020600754604051908152f35b34610204576000366003190112610204576020600c54604051908152f35b3461020457602036600319011261020457600435611b85612380565b80151580611b9c575b611b9790612644565b600b55005b506064811115611b8e565b34610204576000366003190112610204576020600654604051908152f35b346102045760208060031936011261020457600435600260005414611fd65760026000558060005260038252604060002060018060a01b0390600193611c118386840154161515612471565b600c82018054611c2460ff8216156124bd565b60ff8160081c16611f9d576008840154421115611f62576009840154611c5c611c51600a870154836123ef565b600b870154906123ef565b6004858860025416604051928380926318160ddd60e01b82525afa90811561031357600091611f33575b50611c96606491600a54906124fc565b048110611ef957611cac606491600b54906124fc565b041015611ec05762ff00ff1916620400011790556004820154831680611de957506005820191825480611d0a575b50505050505b7f712ae1383f79ac853f8d882153778e0260ef8f03b504e2866e0593e04d2b291f600080a2600055005b600c5490808210611da4578103908111610e6b57600691611d3891600c5561070a604051809481930161219c565b818180518101031261020457810151928316809303610204576000808080855487828215611d9b575bf115610313577feaff4b37086828766ad3268786972c0cd24259d4c87a80f9d3963a3c3d999b0d9154604051908152a28280808080611cda565b506108fc611d61565b60405162461bcd60e51b815260048101859052601b60248201527f496e73756666696369656e742074726561737572792066756e647300000000006044820152606490fd5b919092506006600582015491019060405191600090805490611e0a82612162565b91898116908115611ea95750600114611e71575b5050916000939181859403925af1903d15611e6b5760003d91611e40836122d7565b92611e4e6040519485612269565b83523d92013e5b611ce057604051632b3f6d1160e21b8152600490fd5b50611e55565b9091506000528460002085886000925b848410611e975750505090830190508183611e1e565b80548488015201910190888791611e81565b60ff19168652505080151502830190508183611e1e565b60405162461bcd60e51b8152600481018490526011602482015270141c9bdc1bdcd85b0819195999585d1959607a1b6044820152606490fd5b60405162461bcd60e51b8152600481018690526012602482015271145d5bdc9d5b481b9bdd081c995858da195960721b6044820152606490fd5b90508581813d8311611f5b575b611f4a8183612269565b810103126102045751611c96611c86565b503d611f40565b60405162461bcd60e51b8152600481018490526013602482015272566f74696e67207374696c6c2061637469766560681b6044820152606490fd5b60405162461bcd60e51b8152600481018490526011602482015270141c9bdc1bdcd85b0818d85b98d95b1959607a1b6044820152606490fd5b604051633ee5aeb560e01b8152600490fd5b34610204576000366003190112610204576020600854604051908152f35b34610204576020366003190112610204576004356000908152600360205260409020805460018201546001600160a01b039081169391929091908161204e816002840161219c565b036120599083612269565b604051928361206b816003850161219c565b036120769085612269565b60048201541692600582015460405194858060068601906120969161219c565b036120a19087612269565b600784015495600885015491600986015493600a87015495600b88015497600c0154986040519c8d9c8d5260208d01528b6101e06040819201528c016120e69161228a565b8b810360608d01526120f79161228a565b9160808b015260a08a015288810360c08a01526121139161228a565b9560e088015261010087015261012086015261014085015261016084015260ff811615156101808401528060081c60ff1615156101a08401526101c083019060101c60ff16906108ca916122ca565b90600182811c92168015612192575b602083101461217c57565b634e487b7160e01b600052602260045260246000fd5b91607f1691612171565b90600092918054916121ad83612162565b91828252600193848116908160001461220f57506001146121cf575b50505050565b90919394506000526020928360002092846000945b8386106121fb5750505050010190388080806121c9565b8054858701830152940193859082016121e4565b9294505050602093945060ff191683830152151560051b010190388080806121c9565b608081019081106001600160401b03821117610d5b57604052565b6101e081019081106001600160401b03821117610d5b57604052565b90601f801991011681019081106001600160401b03821117610d5b57604052565b919082519283825260005b8481106122b6575050826000602080949584010152601f8019910116010190565b602081830181015184830182015201612295565b9060068210156108ce5752565b6001600160401b038111610d5b57601f01601f191660200190565b9291926122fe826122d7565b9161230c6040519384612269565b829481845281830111610204578281602093846000960137010152565b9080601f8301121561020457816020612344933591016122f2565b90565b600435906001600160a01b038216820361020457565b602435906001600160a01b038216820361020457565b9060038210156108ce5752565b6001546001600160a01b0316330361239457565b60405163118cdaa760e01b8152336004820152602490fd5b156123b357565b60405162461bcd60e51b815260206004820152601460248201527326bab9ba1031329030902220a79036b2b6b132b960611b6044820152606490fd5b91908201809211610e6b57565b90601f811161240a57505050565b600091825260208220906020601f850160051c83019410612446575b601f0160051c01915b82811061243b57505050565b81815560010161242f565b9092508290612426565b9060068110156108ce5762ff000082549160101b169062ff00001916179055565b1561247857565b60405162461bcd60e51b815260206004820152601760248201527f50726f706f73616c20646f6573206e6f742065786973740000000000000000006044820152606490fd5b156124c457565b60405162461bcd60e51b815260206004820152601060248201526f105b1c9958591e48195e1958dd5d195960821b6044820152606490fd5b81810292918115918404141715610e6b57565b600090815260036020526040812090600c82015460ff8160081c1661263c5760ff1661263557600782015442106126305760088201544211156126295761256e600983015492600b612565600a830154866123ef565b910154906123ef565b6002546040516318160ddd60e01b815291929190602090829060049082906001600160a01b03165afa91821561261d5780926125e3575b50506125b6606491600a54906124fc565b0481106125dc576125cc606491600b54906124fc565b04106125d757600390565b600290565b5050600390565b9091506020823d8211612615575b816125fe60209383612269565b810103126126125750516125b660646125a5565b80fd5b3d91506125f1565b604051903d90823e3d90fd5b5050600190565b905090565b5050600490565b505050600590565b1561264b57565b60405162461bcd60e51b8152602060048201526011602482015270125b9d985b1a59081d1a1c995cda1bdb19607a1b6044820152606490fdfea26469706673582212201afd5a7f5e2a467edeb52e43c628d42d8f3c39cdf3c2d66d5d04bd6be5ff56c764736f6c63430008140033",
+  "devdoc": {
+    "details": "A simple DAO contract with proposal creation, voting, and execution",
+    "errors": {
+      "OwnableInvalidOwner(address)": [
+        {
+          "details": "The owner is not a valid owner account. (eg. `address(0)`)"
+        }
+      ],
+      "OwnableUnauthorizedAccount(address)": [
+        {
+          "details": "The caller account is not authorized to perform an operation."
+        }
+      ],
+      "ReentrancyGuardReentrantCall()": [
+        {
+          "details": "Unauthorized reentrant call."
+        }
+      ]
+    },
+    "kind": "dev",
+    "methods": {
+      "cancelProposal(uint256)": {
+        "details": "Cancel a proposal (only proposer or owner can cancel)",
+        "params": {
+          "proposalId": "Proposal ID to cancel"
+        }
+      },
+      "castVote(uint256,uint8)": {
+        "details": "Cast a vote on a proposal",
+        "params": {
+          "proposalId": "Proposal ID to vote on",
+          "voteType": "Vote type (0=Against, 1=For, 2=Abstain)"
+        }
+      },
+      "constructor": {
+        "details": "Constructor",
+        "params": {
+          "_governanceToken": "Address of the governance token"
+        }
+      },
+      "createProposal(string,string,address,uint256,bytes)": {
+        "details": "Create a new proposal",
+        "params": {
+          "data": "Call data",
+          "description": "Proposal description",
+          "target": "Target contract address (use address(0) for treasury operations)",
+          "title": "Proposal title",
+          "value": "ETH value to send"
+        }
+      },
+      "createTreasuryWithdrawalProposal(address,uint256,string,string)": {
+        "details": "Create a treasury withdrawal proposal",
+        "params": {
+          "amount": "Amount to withdraw",
+          "description": "Proposal description",
+          "recipient": "Address to send funds to",
+          "title": "Proposal title"
+        }
+      },
+      "depositToTreasury()": {
+        "details": "Deposit funds to treasury"
+      },
+      "executeProposal(uint256)": {
+        "details": "Execute a successful proposal",
+        "params": {
+          "proposalId": "Proposal ID to execute"
+        }
+      },
+      "getDAOSettings()": {
+        "details": "Get DAO settings",
+        "returns": {
+          "_passingThreshold": "Passing threshold percentage",
+          "_proposalThreshold": "Minimum tokens required to create a proposal",
+          "_quorumThreshold": "Quorum threshold percentage",
+          "_treasuryBalance": "Current treasury balance",
+          "_votingDelay": "Voting delay in seconds",
+          "_votingPeriod": "Voting period in seconds"
+        }
+      },
+      "getProposal(uint256)": {
+        "details": "Get proposal details",
+        "params": {
+          "proposalId": "Proposal ID"
+        },
+        "returns": {
+          "_0": "Proposal struct"
+        }
+      },
+      "getProposalState(uint256)": {
+        "details": "Get current proposal state",
+        "params": {
+          "proposalId": "Proposal ID"
+        },
+        "returns": {
+          "_0": "ProposalState Current state"
+        }
+      },
+      "getTotalProposals()": {
+        "details": "Get total number of proposals",
+        "returns": {
+          "_0": "uint256 Total proposal count"
+        }
+      },
+      "getVote(uint256,address)": {
+        "details": "Get vote details for a user on a proposal",
+        "params": {
+          "proposalId": "Proposal ID",
+          "voter": "Voter address"
+        },
+        "returns": {
+          "_0": "Vote struct"
+        }
+      },
+      "getVotingPower(address)": {
+        "details": "Get voting power of an address",
+        "params": {
+          "account": "Address to check"
+        },
+        "returns": {
+          "_0": "uint256 Voting power (token balance)"
+        }
+      },
+      "getVotingResults(uint256)": {
+        "details": "Get proposal voting results",
+        "params": {
+          "proposalId": "Proposal ID"
+        },
+        "returns": {
+          "totalVotes": "Total votes cast",
+          "votesAbstain": "Abstain votes",
+          "votesAgainst": "Votes against",
+          "votesFor": "Votes in favor"
+        }
+      },
+      "isMember(address)": {
+        "details": "Check if address is a DAO member",
+        "params": {
+          "account": "Address to check"
+        },
+        "returns": {
+          "_0": "bool True if member"
+        }
+      },
+      "joinDAO()": {
+        "details": "Join the DAO as a member"
+      },
+      "owner()": {
+        "details": "Returns the address of the current owner."
+      },
+      "renounceOwnership()": {
+        "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+      },
+      "setPassingThreshold(uint256)": {
+        "details": "Update passing threshold",
+        "params": {
+          "newThreshold": "New passing threshold percentage (1-100)"
+        }
+      },
+      "setProposalThreshold(uint256)": {
+        "details": "Update proposal threshold",
+        "params": {
+          "newThreshold": "New proposal threshold in tokens"
+        }
+      },
+      "setQuorumThreshold(uint256)": {
+        "details": "Update quorum threshold",
+        "params": {
+          "newThreshold": "New quorum threshold percentage (1-100)"
+        }
+      },
+      "setVotingDelay(uint256)": {
+        "details": "Update voting delay",
+        "params": {
+          "newDelay": "New voting delay in seconds"
+        }
+      },
+      "setVotingPeriod(uint256)": {
+        "details": "Update voting period",
+        "params": {
+          "newPeriod": "New voting period in seconds"
+        }
+      },
+      "transferOwnership(address)": {
+        "details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+      }
+    },
+    "title": "SimpleDAO",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 944,
+        "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+        "label": "_status",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 8,
+        "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+        "label": "_owner",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_address"
+      },
+      {
+        "astId": 1015,
+        "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+        "label": "governanceToken",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_contract(IERC20)877"
+      },
+      {
+        "astId": 1073,
+        "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+        "label": "proposals",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_mapping(t_uint256,t_struct(Proposal)1047_storage)"
+      },
+      {
+        "astId": 1080,
+        "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+        "label": "votes",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_mapping(t_uint256,t_mapping(t_address,t_struct(Vote)1057_storage))"
+      },
+      {
+        "astId": 1084,
+        "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+        "label": "membershipTimestamp",
+        "offset": 0,
+        "slot": "5",
+        "type": "t_mapping(t_address,t_uint256)"
+      },
+      {
+        "astId": 1086,
+        "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+        "label": "proposalCounter",
+        "offset": 0,
+        "slot": "6",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 1089,
+        "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+        "label": "votingDelay",
+        "offset": 0,
+        "slot": "7",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 1092,
+        "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+        "label": "votingPeriod",
+        "offset": 0,
+        "slot": "8",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 1099,
+        "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+        "label": "proposalThreshold",
+        "offset": 0,
+        "slot": "9",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 1102,
+        "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+        "label": "quorumThreshold",
+        "offset": 0,
+        "slot": "10",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 1105,
+        "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+        "label": "passingThreshold",
+        "offset": 0,
+        "slot": "11",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 1107,
+        "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+        "label": "treasuryBalance",
+        "offset": 0,
+        "slot": "12",
+        "type": "t_uint256"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_bytes_storage": {
+        "encoding": "bytes",
+        "label": "bytes",
+        "numberOfBytes": "32"
+      },
+      "t_contract(IERC20)877": {
+        "encoding": "inplace",
+        "label": "contract IERC20",
+        "numberOfBytes": "20"
+      },
+      "t_enum(ProposalState)1064": {
+        "encoding": "inplace",
+        "label": "enum SimpleDAO.ProposalState",
+        "numberOfBytes": "1"
+      },
+      "t_enum(VoteType)1068": {
+        "encoding": "inplace",
+        "label": "enum SimpleDAO.VoteType",
+        "numberOfBytes": "1"
+      },
+      "t_mapping(t_address,t_struct(Vote)1057_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => struct SimpleDAO.Vote)",
+        "numberOfBytes": "32",
+        "value": "t_struct(Vote)1057_storage"
+      },
+      "t_mapping(t_address,t_uint256)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => uint256)",
+        "numberOfBytes": "32",
+        "value": "t_uint256"
+      },
+      "t_mapping(t_uint256,t_mapping(t_address,t_struct(Vote)1057_storage))": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => mapping(address => struct SimpleDAO.Vote))",
+        "numberOfBytes": "32",
+        "value": "t_mapping(t_address,t_struct(Vote)1057_storage)"
+      },
+      "t_mapping(t_uint256,t_struct(Proposal)1047_storage)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => struct SimpleDAO.Proposal)",
+        "numberOfBytes": "32",
+        "value": "t_struct(Proposal)1047_storage"
+      },
+      "t_string_storage": {
+        "encoding": "bytes",
+        "label": "string",
+        "numberOfBytes": "32"
+      },
+      "t_struct(Proposal)1047_storage": {
+        "encoding": "inplace",
+        "label": "struct SimpleDAO.Proposal",
+        "members": [
+          {
+            "astId": 1017,
+            "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+            "label": "id",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1019,
+            "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+            "label": "proposer",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_address"
+          },
+          {
+            "astId": 1021,
+            "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+            "label": "title",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 1023,
+            "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+            "label": "description",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 1025,
+            "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+            "label": "target",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_address"
+          },
+          {
+            "astId": 1027,
+            "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+            "label": "value",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1029,
+            "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+            "label": "data",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_bytes_storage"
+          },
+          {
+            "astId": 1031,
+            "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+            "label": "startTime",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1033,
+            "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+            "label": "endTime",
+            "offset": 0,
+            "slot": "8",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1035,
+            "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+            "label": "votesFor",
+            "offset": 0,
+            "slot": "9",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1037,
+            "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+            "label": "votesAgainst",
+            "offset": 0,
+            "slot": "10",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1039,
+            "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+            "label": "votesAbstain",
+            "offset": 0,
+            "slot": "11",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1041,
+            "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+            "label": "executed",
+            "offset": 0,
+            "slot": "12",
+            "type": "t_bool"
+          },
+          {
+            "astId": 1043,
+            "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+            "label": "canceled",
+            "offset": 1,
+            "slot": "12",
+            "type": "t_bool"
+          },
+          {
+            "astId": 1046,
+            "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+            "label": "state",
+            "offset": 2,
+            "slot": "12",
+            "type": "t_enum(ProposalState)1064"
+          }
+        ],
+        "numberOfBytes": "416"
+      },
+      "t_struct(Vote)1057_storage": {
+        "encoding": "inplace",
+        "label": "struct SimpleDAO.Vote",
+        "members": [
+          {
+            "astId": 1049,
+            "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+            "label": "hasVoted",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_bool"
+          },
+          {
+            "astId": 1052,
+            "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+            "label": "voteType",
+            "offset": 1,
+            "slot": "0",
+            "type": "t_enum(VoteType)1068"
+          },
+          {
+            "astId": 1054,
+            "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+            "label": "weight",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 1056,
+            "contract": "contracts/SimpleDAO.sol:SimpleDAO",
+            "label": "timestamp",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_uint256"
+          }
+        ],
+        "numberOfBytes": "96"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

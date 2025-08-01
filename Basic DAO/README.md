@@ -1,88 +1,179 @@
-# 🏗 Scaffold-ETH 2
+# 🏛️ Basic DAO
 
-<h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
-</h4>
+A decentralized autonomous organization (DAO) built with Scaffold-ETH 2, featuring proposal creation, voting mechanisms, and treasury management.
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+## 📋 Overview
 
-⚙️ Built using NextJS, RainbowKit, Foundry/Hardhat, Wagmi, Viem, and Typescript.
+Basic DAO is a complete governance system that allows token holders to:
+- Create and vote on proposals
+- Execute successful proposals
+- Manage a treasury with ETH deposits and withdrawals
+- Participate in decentralized decision-making
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+## 🚀 Features
 
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
+- **Proposal Management**: Create, vote, and execute proposals
+- **Voting System**: Support for For, Against, and Abstain votes with weighted voting power
+- **Treasury Management**: Deposit and withdraw ETH through proposals
+- **Governance Parameters**: Configurable voting delays, periods, and thresholds
+- **Member Management**: Token-based membership system
+- **Security**: Reentrancy protection and access controls
 
-## Requirements
+## 🏗️ Architecture
 
-Before you begin, you need to install the following tools:
+### Smart Contracts
 
-- [Node (>= v20.18.3)](https://nodejs.org/en/download/)
-- Yarn ([v1](https://classic.yarnpkg.com/en/docs/install/) or [v2+](https://yarnpkg.com/getting-started/install))
-- [Git](https://git-scm.com/downloads)
+1. **SimpleDAO** (`0xB42aF39e206dE9cee21aE0449ceC521ef96306C1`)
+   - Main governance contract
+   - Handles proposal creation, voting, and execution
+   - Manages treasury and member access
 
-## Quickstart
+2. **GovernanceToken** (`0x4675D74F97Bf20D30311148F23DADacFaD74A620`)
+   - ERC-20 token for voting power
+   - Determines membership and proposal creation rights
 
-To get started with Scaffold-ETH 2, follow the steps below:
+## 🔗 Deployed Contracts
 
-1. Install the latest version of Scaffold-ETH 2
+### Local Network (Hardhat)
+- **SimpleDAO**: `0xB42aF39e206dE9cee21aE0449ceC521ef96306C1`
+- **GovernanceToken**: `0x4675D74F97Bf20D30311148F23DADacFaD74A620`
+
+### Block Explorer Links
+- **Local Network**: [http://localhost:8545](http://localhost:8545)
+
+## ⚙️ Initial Configuration
+
+- **Voting Delay**: 1 day (86400 seconds)
+- **Voting Period**: 7 days (604800 seconds)
+- **Proposal Threshold**: 1000 tokens
+- **Quorum Threshold**: 10% of total token supply
+- **Passing Threshold**: 50% of votes cast
+- **Treasury Balance**: 0 ETH
+
+## 🛠️ Development
+
+### Prerequisites
+- Node.js (>= v20.18.3)
+- Yarn
+- Git
+
+### Setup
+
+1. **Install dependencies**:
+   ```bash
+   yarn install
+   ```
+
+2. **Start local blockchain**:
+   ```bash
+   yarn chain
+   ```
+
+3. **Deploy contracts**:
+   ```bash
+   yarn deploy
+   ```
+
+4. **Start frontend**:
+   ```bash
+   yarn start
+   ```
+
+5. **Visit the app**: [http://localhost:3000](http://localhost:3000)
+
+### Key Commands
+
+- `yarn chain` - Start local blockchain
+- `yarn deploy` - Deploy contracts
+- `yarn start` - Start frontend
+- `yarn test` - Run tests
+- `yarn compile` - Compile contracts
+
+## 📖 Usage
+
+### Joining the DAO
+1. Obtain governance tokens
+2. Call `joinDAO()` function
+3. You're now a member with voting rights
+
+### Creating Proposals
+1. Ensure you have enough tokens (≥ 1000)
+2. Call `createProposal()` with:
+   - Title and description
+   - Target contract (or address(0) for treasury operations)
+   - ETH value to send
+   - Call data
+
+### Voting
+1. Wait for voting period to start
+2. Call `castVote()` with proposal ID and vote type:
+   - 0 = Against
+   - 1 = For
+   - 2 = Abstain
+
+### Executing Proposals
+1. Wait for voting to end
+2. Ensure quorum is met and proposal passed
+3. Call `executeProposal()` to execute the action
+
+### Treasury Operations
+- **Deposit**: Send ETH directly to contract or call `depositToTreasury()`
+- **Withdraw**: Create a treasury withdrawal proposal
+
+## 🔧 Governance Parameters
+
+The DAO owner can update these parameters:
+- `setVotingDelay()` - Time before voting starts
+- `setVotingPeriod()` - Duration of voting
+- `setProposalThreshold()` - Minimum tokens to create proposals
+- `setQuorumThreshold()` - Minimum participation percentage
+- `setPassingThreshold()` - Minimum votes needed to pass
+
+## 🧪 Testing
+
+Run the test suite:
+```bash
+yarn test
+```
+
+## 📁 Project Structure
 
 ```
-npx create-eth@latest
+Basic DAO/
+├── packages/
+│   ├── hardhat/          # Smart contracts and deployment
+│   │   ├── contracts/    # Solidity contracts
+│   │   ├── deploy/       # Deployment scripts
+│   │   └── test/         # Contract tests
+│   └── nextjs/           # Frontend application
+│       ├── app/          # Next.js app router
+│       ├── components/   # React components
+│       └── hooks/        # Custom hooks
 ```
 
-This command will install all the necessary packages and dependencies, so it might take a while.
+## 🔒 Security Features
 
-> [!NOTE]
-> You can also initialize your project with one of our extensions to add specific features or starter-kits. Learn more in our [extensions documentation](https://docs.scaffoldeth.io/extensions/).
+- **Reentrancy Protection**: Uses OpenZeppelin's ReentrancyGuard
+- **Access Control**: Owner-only functions for parameter updates
+- **Input Validation**: Comprehensive checks for all inputs
+- **State Management**: Proper state transitions for proposals
 
-2. Run a local network in the first terminal:
+## 🤝 Contributing
 
-```
-yarn chain
-```
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
 
-This command starts a local Ethereum network that runs on your local machine and can be used for testing and development. Learn how to [customize your network configuration](https://docs.scaffoldeth.io/quick-start/environment#1-initialize-a-local-blockchain).
+## 📄 License
 
-3. On a second terminal, deploy the test contract:
+This project is licensed under the MIT License.
 
-```
-yarn deploy
-```
+## 🙏 Acknowledgments
 
-This command deploys a test smart contract to the local network. You can find more information about how to customize your contract and deployment script in our [documentation](https://docs.scaffoldeth.io/quick-start/environment#2-deploy-your-smart-contract).
+Built with [Scaffold-ETH 2](https://github.com/scaffold-eth/scaffold-eth-2) - An open-source toolkit for building decentralized applications on Ethereum.
 
-4. On a third terminal, start your NextJS app:
+---
 
-```
-yarn start
-```
-
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
-
-**What's next**:
-
-Visit the [What's next section of our docs](https://docs.scaffoldeth.io/quick-start/environment#whats-next) to learn how to:
-
-- Edit your smart contracts
-- Edit your deployment scripts
-- Customize your frontend
-- Edit the app config
-- Writing and running tests
-- [Setting up external services and API keys](https://docs.scaffoldeth.io/deploying/deploy-smart-contracts#configuration-of-third-party-services-for-production-grade-apps)
-
-## Documentation
-
-Visit our [docs](https://docs.scaffoldeth.io) to learn all the technical details and guides of Scaffold-ETH 2.
-
-To know more about its features, check out our [website](https://scaffoldeth.io).
-
-## Contributing to Scaffold-ETH 2
-
-We welcome contributions to Scaffold-ETH 2!
-
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+**Note**: This is a basic implementation for educational purposes. For production use, consider additional security audits and testing.

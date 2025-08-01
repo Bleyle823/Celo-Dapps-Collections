@@ -1,7 +1,8 @@
+// SPDX-License-Identifier: MIT
 pragma solidity ^0.8.19;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
+import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 /**
@@ -93,7 +94,7 @@ contract SimpleDAO is ReentrancyGuard, Ownable {
      * @dev Constructor
      * @param _governanceToken Address of the governance token
      */
-    constructor(address _governanceToken) {
+    constructor(address _governanceToken) Ownable(msg.sender) {
         require(_governanceToken != address(0), "Invalid token address");
         governanceToken = IERC20(_governanceToken);
         treasuryBalance = 0;
@@ -125,7 +126,7 @@ contract SimpleDAO is ReentrancyGuard, Ownable {
         address target,
         uint256 value,
         bytes memory data
-    ) external returns (uint256) {
+    ) public returns (uint256) {
         uint256 proposerBalance = governanceToken.balanceOf(msg.sender);
         if (proposerBalance < proposalThreshold) {
             revert InsufficientTokens(proposalThreshold, proposerBalance);
@@ -263,15 +264,6 @@ contract SimpleDAO is ReentrancyGuard, Ownable {
     }
     
     /**
-     * @dev Deposit funds to treasury
-     */
-    function depositToTreasury() external payable {
-        require(msg.value > 0, "Must send ETH");
-        treasuryBalance += msg.value;
-        emit FundsDeposited(msg.sender, msg.value);
-    }
-    
-    /**
      * @dev Create a treasury withdrawal proposal
      * @param recipient Address to send funds to
      * @param amount Amount to withdraw
@@ -289,6 +281,15 @@ contract SimpleDAO is ReentrancyGuard, Ownable {
         
         bytes memory data = abi.encode(recipient);
         return createProposal(title, description, address(0), amount, data);
+    }
+    
+    /**
+     * @dev Deposit funds to treasury
+     */
+    function depositToTreasury() external payable {
+        require(msg.value > 0, "Must send ETH");
+        treasuryBalance += msg.value;
+        emit FundsDeposited(msg.sender, msg.value);
     }
     
     // View functions
@@ -379,7 +380,12 @@ contract SimpleDAO is ReentrancyGuard, Ownable {
     
     /**
      * @dev Get DAO settings
-     * @return All governance parameters
+     * @return _votingDelay Voting delay in seconds
+     * @return _votingPeriod Voting period in seconds
+     * @return _proposalThreshold Minimum tokens required to create a proposal
+     * @return _quorumThreshold Quorum threshold percentage
+     * @return _passingThreshold Passing threshold percentage
+     * @return _treasuryBalance Current treasury balance
      */
     function getDAOSettings() external view returns (
         uint256 _votingDelay,

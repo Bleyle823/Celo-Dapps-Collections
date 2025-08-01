@@ -3,12 +3,11 @@ import { DeployFunction } from "hardhat-deploy/types";
 import { Contract } from "ethers";
 
 /**
- * Deploys a contract named "YourContract" using the deployer account and
- * constructor arguments set to the deployer address
+ * Deploys a SimpleDAO contract with a governance token
  *
  * @param hre HardhatRuntimeEnvironment object.
  */
-const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
+const deploySimpleDAO: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   /*
     On localhost, the deployer account is the one that comes with Hardhat, which is already funded.
 
@@ -22,23 +21,45 @@ const deployYourContract: DeployFunction = async function (hre: HardhatRuntimeEn
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
 
-  await deploy("YourContract", {
+  // First, deploy a simple ERC20 governance token for testing
+  const governanceTokenDeployment = await deploy("GovernanceToken", {
+    contract: "contracts/mocks/MockERC20.sol:MockERC20", // We'll need to create this mock contract
     from: deployer,
-    // Contract constructor arguments
-    args: [deployer],
+    args: ["DAO Governance Token", "DGOV", hre.ethers.parseEther("1000000")], // 1M tokens
+    log: true,
+    autoMine: true,
+  });
+
+  // Deploy the SimpleDAO contract
+  await deploy("SimpleDAO", {
+    from: deployer,
+    // Contract constructor arguments - governance token address
+    args: [governanceTokenDeployment.address],
     log: true,
     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
     // automatically mining the contract deployment transaction. There is no effect on live networks.
     autoMine: true,
   });
 
-  // Get the deployed contract to interact with it after deploying.
-  const yourContract = await hre.ethers.getContract<Contract>("YourContract", deployer);
-  console.log("👋 Initial greeting:", await yourContract.greeting());
+  // Get the deployed contracts to interact with them after deploying
+  const simpleDAO = await hre.ethers.getContract<Contract>("SimpleDAO", deployer);
+  const governanceToken = await hre.ethers.getContract<Contract>("GovernanceToken", deployer);
+  
+  console.log("🏛️  SimpleDAO deployed at:", await simpleDAO.getAddress());
+  console.log("🪙  Governance Token deployed at:", await governanceToken.getAddress());
+  console.log("📊 Initial DAO settings:");
+  
+  const settings = await simpleDAO.getDAOSettings();
+  console.log("   - Voting Delay:", settings[0].toString(), "seconds");
+  console.log("   - Voting Period:", settings[1].toString(), "seconds");
+  console.log("   - Proposal Threshold:", hre.ethers.formatEther(settings[2]), "tokens");
+  console.log("   - Quorum Threshold:", settings[3].toString(), "%");
+  console.log("   - Passing Threshold:", settings[4].toString(), "%");
+  console.log("   - Treasury Balance:", hre.ethers.formatEther(settings[5]), "ETH");
 };
 
-export default deployYourContract;
+export default deploySimpleDAO;
 
 // Tags are useful if you have multiple deploy files and only want to run one of them.
-// e.g. yarn deploy --tags YourContract
-deployYourContract.tags = ["YourContract"];
+// e.g. yarn deploy --tags SimpleDAO
+deploySimpleDAO.tags = ["SimpleDAO"];
