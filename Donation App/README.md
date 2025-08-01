@@ -84,6 +84,13 @@ The Donation App is a comprehensive smart contract-based platform that allows us
 
 ## 🚀 Getting Started
 
+### Contract Deployment
+- **Contract Address**: `0x8562dfbFD1e9bbEa1B0AF1bCf6D924708fdd024a`
+- **Deployment Transaction**: `0x3430c2fe50c88e402390e1508b76a463ca73009dad9477774afa62ab087a14a6`
+- **Gas Used**: 2,037,402 gas
+- **Network**: Celo Mainnet
+- **Block Explorer**: [View on CeloScan](https://celoscan.io/address/0x8562dfbFD1e9bbEa1B0AF1bCf6D924708fdd024a)
+
 ### Prerequisites
 - Node.js 18+ 
 - Yarn package manager
