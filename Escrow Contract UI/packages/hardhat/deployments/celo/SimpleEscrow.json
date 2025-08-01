@@ -1,0 +1,393 @@
+{
+  "address": "0xf76C38A96b4Cf140099BF810556B235E10D62585",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_seller",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_arbiter",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [],
+      "name": "DisputeRaised",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "winner",
+          "type": "address"
+        }
+      ],
+      "name": "DisputeResolved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "FundsDeposited",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "FundsReleased",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "amount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "arbiter",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "buyer",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "confirmDelivery",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "currentState",
+      "outputs": [
+        {
+          "internalType": "enum SimpleEscrow.State",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "depositFunds",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "disputed",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "fundsDeposited",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "fundsReleased",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getBalance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getContractDetails",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "_buyer",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_seller",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_arbiter",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "enum SimpleEscrow.State",
+          "name": "_state",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bool",
+          "name": "_disputed",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "raiseDispute",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "requestRelease",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "winner",
+          "type": "address"
+        }
+      ],
+      "name": "resolveDispute",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "seller",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x16762e2c006c7e74b57ec5d7ef7d7c6d1a1c0208bad58e189f33b92737f5a4da",
+  "receipt": {
+    "to": null,
+    "from": "0x231CdF6d31BF1D106DFA88b702B00E4b900628AD",
+    "contractAddress": "0xf76C38A96b4Cf140099BF810556B235E10D62585",
+    "transactionIndex": 1,
+    "gasUsed": "671480",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0xb91b43ec537301197020851da2afd440c04fbd2a41854e85cc4b07f611371b77",
+    "transactionHash": "0x16762e2c006c7e74b57ec5d7ef7d7c6d1a1c0208bad58e189f33b92737f5a4da",
+    "logs": [],
+    "blockNumber": 42113797,
+    "cumulativeGasUsed": "717564",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x231CdF6d31BF1D106DFA88b702B00E4b900628AD",
+    "0x231CdF6d31BF1D106DFA88b702B00E4b900628AD"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "fbe8213aa3d20671d087e3a6af8c7b61",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_seller\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_arbiter\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"DisputeRaised\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"winner\",\"type\":\"address\"}],\"name\":\"DisputeResolved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"FundsDeposited\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"FundsReleased\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"amount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"arbiter\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"buyer\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"confirmDelivery\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"currentState\",\"outputs\":[{\"internalType\":\"enum SimpleEscrow.State\",\"name\":\"\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"depositFunds\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"disputed\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"fundsDeposited\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"fundsReleased\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getBalance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getContractDetails\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"_buyer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_seller\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_arbiter\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_amount\",\"type\":\"uint256\"},{\"internalType\":\"enum SimpleEscrow.State\",\"name\":\"_state\",\"type\":\"uint8\"},{\"internalType\":\"bool\",\"name\":\"_disputed\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"raiseDispute\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"requestRelease\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"winner\",\"type\":\"address\"}],\"name\":\"resolveDispute\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"seller\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/SimpleEscrow.sol\":\"SimpleEscrow\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/SimpleEscrow.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity ^0.8.19;\\r\\n\\r\\ncontract SimpleEscrow {\\r\\n    address public buyer;\\r\\n    address public seller;\\r\\n    address public arbiter;\\r\\n    uint256 public amount;\\r\\n    bool public fundsDeposited;\\r\\n    bool public fundsReleased;\\r\\n    bool public disputed;\\r\\n    \\r\\n    enum State { AWAITING_PAYMENT, AWAITING_DELIVERY, COMPLETE, DISPUTED }\\r\\n    State public currentState;\\r\\n    \\r\\n    event FundsDeposited(uint256 amount);\\r\\n    event FundsReleased(address to, uint256 amount);\\r\\n    event DisputeRaised();\\r\\n    event DisputeResolved(address winner);\\r\\n    \\r\\n    modifier onlyBuyer() {\\r\\n        require(msg.sender == buyer, \\\"Only buyer can call this\\\");\\r\\n        _;\\r\\n    }\\r\\n    \\r\\n    modifier onlySeller() {\\r\\n        require(msg.sender == seller, \\\"Only seller can call this\\\");\\r\\n        _;\\r\\n    }\\r\\n    \\r\\n    modifier onlyArbiter() {\\r\\n        require(msg.sender == arbiter, \\\"Only arbiter can call this\\\");\\r\\n        _;\\r\\n    }\\r\\n    \\r\\n    modifier inState(State _state) {\\r\\n        require(currentState == _state, \\\"Invalid state for this action\\\");\\r\\n        _;\\r\\n    }\\r\\n    \\r\\n    constructor(address _seller, address _arbiter) {\\r\\n        buyer = msg.sender;\\r\\n        seller = _seller;\\r\\n        arbiter = _arbiter;\\r\\n        currentState = State.AWAITING_PAYMENT;\\r\\n    }\\r\\n    \\r\\n    // Buyer deposits funds into escrow\\r\\n    function depositFunds() external payable onlyBuyer inState(State.AWAITING_PAYMENT) {\\r\\n        require(msg.value > 0, \\\"Must deposit some funds\\\");\\r\\n        amount = msg.value;\\r\\n        fundsDeposited = true;\\r\\n        currentState = State.AWAITING_DELIVERY;\\r\\n        emit FundsDeposited(msg.value);\\r\\n    }\\r\\n    \\r\\n    // Buyer confirms delivery and releases funds to seller\\r\\n    function confirmDelivery() external onlyBuyer inState(State.AWAITING_DELIVERY) {\\r\\n        _releaseFunds(seller);\\r\\n    }\\r\\n    \\r\\n    // Seller can request release (buyer still needs to confirm)\\r\\n    function requestRelease() external onlySeller inState(State.AWAITING_DELIVERY) {\\r\\n        // This could trigger a notification to buyer\\r\\n        // For now, it's just a placeholder for future functionality\\r\\n    }\\r\\n    \\r\\n    // Either party can raise a dispute\\r\\n    function raiseDispute() external inState(State.AWAITING_DELIVERY) {\\r\\n        require(msg.sender == buyer || msg.sender == seller, \\\"Only buyer or seller can raise dispute\\\");\\r\\n        disputed = true;\\r\\n        currentState = State.DISPUTED;\\r\\n        emit DisputeRaised();\\r\\n    }\\r\\n    \\r\\n    // Arbiter resolves dispute by awarding funds to either buyer or seller\\r\\n    function resolveDispute(address winner) external onlyArbiter inState(State.DISPUTED) {\\r\\n        require(winner == buyer || winner == seller, \\\"Winner must be buyer or seller\\\");\\r\\n        _releaseFunds(winner);\\r\\n        emit DisputeResolved(winner);\\r\\n    }\\r\\n    \\r\\n    // Internal function to release funds\\r\\n    function _releaseFunds(address recipient) internal {\\r\\n        require(fundsDeposited && !fundsReleased, \\\"Funds not available for release\\\");\\r\\n        fundsReleased = true;\\r\\n        currentState = State.COMPLETE;\\r\\n        \\r\\n        uint256 payout = amount;\\r\\n        amount = 0;\\r\\n        \\r\\n        payable(recipient).transfer(payout);\\r\\n        emit FundsReleased(recipient, payout);\\r\\n    }\\r\\n    \\r\\n    // Get contract balance\\r\\n    function getBalance() external view returns (uint256) {\\r\\n        return address(this).balance;\\r\\n    }\\r\\n    \\r\\n    // Get contract details\\r\\n    function getContractDetails() external view returns (\\r\\n        address _buyer,\\r\\n        address _seller, \\r\\n        address _arbiter,\\r\\n        uint256 _amount,\\r\\n        State _state,\\r\\n        bool _disputed\\r\\n    ) {\\r\\n        return (buyer, seller, arbiter, amount, currentState, disputed);\\r\\n    }\\r\\n}\",\"keccak256\":\"0xdfaa73a5abca6aad6db836bae0a189aac966d1a26802173e42406faceedcf5cd\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b50604051610ab7380380610ab783398101604081905261002f91610094565b600080546001600160a01b03199081163317909155600180546001600160a01b03948516908316179055600280549290931691161790556004805463ff000000191690556100c7565b80516001600160a01b038116811461008f57600080fd5b919050565b600080604083850312156100a757600080fd5b6100b083610078565b91506100be60208401610078565b90509250929050565b6109e1806100d66000396000f3fe6080604052600436106100e85760003560e01c80639dfc91171161008a578063d846118211610059578063d84611821461028f578063e2c41dbc146102af578063fdc5587b146102b7578063fe25e00a146102cc57600080fd5b80639dfc9117146101f1578063aa8c217c14610240578063b564e92614610256578063cacd17151461027557600080fd5b806312065fe0116100c657806312065fe0146101885780635e10177b146101a55780636daa2d44146101bc5780637150d8ae146101d157600080fd5b80630695c46c146100ed57806308551a53146101225780630c3f6acf1461015a575b600080fd5b3480156100f957600080fd5b5060045461010d9062010000900460ff1681565b60405190151581526020015b60405180910390f35b34801561012e57600080fd5b50600154610142906001600160a01b031681565b6040516001600160a01b039091168152602001610119565b34801561016657600080fd5b5060045461017b906301000000900460ff1681565b60405161011991906108e9565b34801561019457600080fd5b50475b604051908152602001610119565b3480156101b157600080fd5b506101ba6102ec565b005b3480156101c857600080fd5b506101ba61039c565b3480156101dd57600080fd5b50600054610142906001600160a01b031681565b3480156101fd57600080fd5b50600054600154600254600354600454604051610119956001600160a01b039081169581169416929160ff630100000082048116926201000090920416906108fd565b34801561024c57600080fd5b5061019760035481565b34801561026257600080fd5b5060045461010d90610100900460ff1681565b34801561028157600080fd5b5060045461010d9060ff1681565b34801561029b57600080fd5b506101ba6102aa366004610944565b610497565b6101ba6105ee565b3480156102c357600080fd5b506101ba61071f565b3480156102d857600080fd5b50600254610142906001600160a01b031681565b6000546001600160a01b031633146103465760405162461bcd60e51b81526020600482015260186024820152774f6e6c792062757965722063616e2063616c6c207468697360401b60448201526064015b60405180910390fd5b6001806004546301000000900460ff166003811115610367576103676108b1565b146103845760405162461bcd60e51b815260040161033d90610974565b600154610399906001600160a01b03166107b7565b50565b6001806004546301000000900460ff1660038111156103bd576103bd6108b1565b146103da5760405162461bcd60e51b815260040161033d90610974565b6000546001600160a01b03163314806103fd57506001546001600160a01b031633145b6104585760405162461bcd60e51b815260206004820152602660248201527f4f6e6c79206275796572206f722073656c6c65722063616e207261697365206460448201526569737075746560d01b606482015260840161033d565b6004805463ffff0000191663030100001790556040517fa9f218df296bdff29869b6b40927376285db89e1726d55dc7a5583eab3f72c4290600090a150565b6002546001600160a01b031633146104f15760405162461bcd60e51b815260206004820152601a60248201527f4f6e6c7920617262697465722063616e2063616c6c2074686973000000000000604482015260640161033d565b6003806004546301000000900460ff166003811115610512576105126108b1565b1461052f5760405162461bcd60e51b815260040161033d90610974565b6000546001600160a01b038381169116148061055857506001546001600160a01b038381169116145b6105a45760405162461bcd60e51b815260206004820152601e60248201527f57696e6e6572206d757374206265206275796572206f722073656c6c65720000604482015260640161033d565b6105ad826107b7565b6040516001600160a01b03831681527f8476b4c4cd5f496cfe2043ed12cd9e3e3540e97649536b9aa3fa67f06a7134db906020015b60405180910390a15050565b6000546001600160a01b031633146106435760405162461bcd60e51b81526020600482015260186024820152774f6e6c792062757965722063616e2063616c6c207468697360401b604482015260640161033d565b6000806004546301000000900460ff166003811115610664576106646108b1565b146106815760405162461bcd60e51b815260040161033d90610974565b600034116106d15760405162461bcd60e51b815260206004820152601760248201527f4d757374206465706f73697420736f6d652066756e6473000000000000000000604482015260640161033d565b3460038190556004805463ff0000ff1916630100000117905560408051918252517f7cb5d45c1071f219bd2da1ea101758715bd52f23f2a707f2d9a0387dea18d9069181900360200190a150565b6001546001600160a01b031633146107795760405162461bcd60e51b815260206004820152601960248201527f4f6e6c792073656c6c65722063616e2063616c6c207468697300000000000000604482015260640161033d565b6001806004546301000000900460ff16600381111561079a5761079a6108b1565b146103995760405162461bcd60e51b815260040161033d90610974565b60045460ff1680156107d15750600454610100900460ff16155b61081d5760405162461bcd60e51b815260206004820152601f60248201527f46756e6473206e6f7420617661696c61626c6520666f722072656c6561736500604482015260640161033d565b6004805463ff00ff00191663020001001790556003805460009182905560405190916001600160a01b0384169183156108fc0291849190818181858888f19350505050158015610871573d6000803e3d6000fd5b50604080516001600160a01b0384168152602081018390527f221c08a06b07a64803b3787861a3f276212fcccb51c2e6234077a9b8cb13047a91016105e2565b634e487b7160e01b600052602160045260246000fd5b600481106108e557634e487b7160e01b600052602160045260246000fd5b9052565b602081016108f782846108c7565b92915050565b6001600160a01b0387811682528681166020830152851660408201526060810184905260c0810161093160808301856108c7565b82151560a0830152979650505050505050565b60006020828403121561095657600080fd5b81356001600160a01b038116811461096d57600080fd5b9392505050565b6020808252601d908201527f496e76616c696420737461746520666f72207468697320616374696f6e00000060408201526060019056fea264697066735822122006f6f94a9c83f20b864d853ba9541842cc0239b36c16c889c0e9b473d9268a0264736f6c63430008140033",
+  "deployedBytecode": "0x6080604052600436106100e85760003560e01c80639dfc91171161008a578063d846118211610059578063d84611821461028f578063e2c41dbc146102af578063fdc5587b146102b7578063fe25e00a146102cc57600080fd5b80639dfc9117146101f1578063aa8c217c14610240578063b564e92614610256578063cacd17151461027557600080fd5b806312065fe0116100c657806312065fe0146101885780635e10177b146101a55780636daa2d44146101bc5780637150d8ae146101d157600080fd5b80630695c46c146100ed57806308551a53146101225780630c3f6acf1461015a575b600080fd5b3480156100f957600080fd5b5060045461010d9062010000900460ff1681565b60405190151581526020015b60405180910390f35b34801561012e57600080fd5b50600154610142906001600160a01b031681565b6040516001600160a01b039091168152602001610119565b34801561016657600080fd5b5060045461017b906301000000900460ff1681565b60405161011991906108e9565b34801561019457600080fd5b50475b604051908152602001610119565b3480156101b157600080fd5b506101ba6102ec565b005b3480156101c857600080fd5b506101ba61039c565b3480156101dd57600080fd5b50600054610142906001600160a01b031681565b3480156101fd57600080fd5b50600054600154600254600354600454604051610119956001600160a01b039081169581169416929160ff630100000082048116926201000090920416906108fd565b34801561024c57600080fd5b5061019760035481565b34801561026257600080fd5b5060045461010d90610100900460ff1681565b34801561028157600080fd5b5060045461010d9060ff1681565b34801561029b57600080fd5b506101ba6102aa366004610944565b610497565b6101ba6105ee565b3480156102c357600080fd5b506101ba61071f565b3480156102d857600080fd5b50600254610142906001600160a01b031681565b6000546001600160a01b031633146103465760405162461bcd60e51b81526020600482015260186024820152774f6e6c792062757965722063616e2063616c6c207468697360401b60448201526064015b60405180910390fd5b6001806004546301000000900460ff166003811115610367576103676108b1565b146103845760405162461bcd60e51b815260040161033d90610974565b600154610399906001600160a01b03166107b7565b50565b6001806004546301000000900460ff1660038111156103bd576103bd6108b1565b146103da5760405162461bcd60e51b815260040161033d90610974565b6000546001600160a01b03163314806103fd57506001546001600160a01b031633145b6104585760405162461bcd60e51b815260206004820152602660248201527f4f6e6c79206275796572206f722073656c6c65722063616e207261697365206460448201526569737075746560d01b606482015260840161033d565b6004805463ffff0000191663030100001790556040517fa9f218df296bdff29869b6b40927376285db89e1726d55dc7a5583eab3f72c4290600090a150565b6002546001600160a01b031633146104f15760405162461bcd60e51b815260206004820152601a60248201527f4f6e6c7920617262697465722063616e2063616c6c2074686973000000000000604482015260640161033d565b6003806004546301000000900460ff166003811115610512576105126108b1565b1461052f5760405162461bcd60e51b815260040161033d90610974565b6000546001600160a01b038381169116148061055857506001546001600160a01b038381169116145b6105a45760405162461bcd60e51b815260206004820152601e60248201527f57696e6e6572206d757374206265206275796572206f722073656c6c65720000604482015260640161033d565b6105ad826107b7565b6040516001600160a01b03831681527f8476b4c4cd5f496cfe2043ed12cd9e3e3540e97649536b9aa3fa67f06a7134db906020015b60405180910390a15050565b6000546001600160a01b031633146106435760405162461bcd60e51b81526020600482015260186024820152774f6e6c792062757965722063616e2063616c6c207468697360401b604482015260640161033d565b6000806004546301000000900460ff166003811115610664576106646108b1565b146106815760405162461bcd60e51b815260040161033d90610974565b600034116106d15760405162461bcd60e51b815260206004820152601760248201527f4d757374206465706f73697420736f6d652066756e6473000000000000000000604482015260640161033d565b3460038190556004805463ff0000ff1916630100000117905560408051918252517f7cb5d45c1071f219bd2da1ea101758715bd52f23f2a707f2d9a0387dea18d9069181900360200190a150565b6001546001600160a01b031633146107795760405162461bcd60e51b815260206004820152601960248201527f4f6e6c792073656c6c65722063616e2063616c6c207468697300000000000000604482015260640161033d565b6001806004546301000000900460ff16600381111561079a5761079a6108b1565b146103995760405162461bcd60e51b815260040161033d90610974565b60045460ff1680156107d15750600454610100900460ff16155b61081d5760405162461bcd60e51b815260206004820152601f60248201527f46756e6473206e6f7420617661696c61626c6520666f722072656c6561736500604482015260640161033d565b6004805463ff00ff00191663020001001790556003805460009182905560405190916001600160a01b0384169183156108fc0291849190818181858888f19350505050158015610871573d6000803e3d6000fd5b50604080516001600160a01b0384168152602081018390527f221c08a06b07a64803b3787861a3f276212fcccb51c2e6234077a9b8cb13047a91016105e2565b634e487b7160e01b600052602160045260246000fd5b600481106108e557634e487b7160e01b600052602160045260246000fd5b9052565b602081016108f782846108c7565b92915050565b6001600160a01b0387811682528681166020830152851660408201526060810184905260c0810161093160808301856108c7565b82151560a0830152979650505050505050565b60006020828403121561095657600080fd5b81356001600160a01b038116811461096d57600080fd5b9392505050565b6020808252601d908201527f496e76616c696420737461746520666f72207468697320616374696f6e00000060408201526060019056fea264697066735822122006f6f94a9c83f20b864d853ba9541842cc0239b36c16c889c0e9b473d9268a0264736f6c63430008140033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 3,
+        "contract": "contracts/SimpleEscrow.sol:SimpleEscrow",
+        "label": "buyer",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_address"
+      },
+      {
+        "astId": 5,
+        "contract": "contracts/SimpleEscrow.sol:SimpleEscrow",
+        "label": "seller",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_address"
+      },
+      {
+        "astId": 7,
+        "contract": "contracts/SimpleEscrow.sol:SimpleEscrow",
+        "label": "arbiter",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_address"
+      },
+      {
+        "astId": 9,
+        "contract": "contracts/SimpleEscrow.sol:SimpleEscrow",
+        "label": "amount",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 11,
+        "contract": "contracts/SimpleEscrow.sol:SimpleEscrow",
+        "label": "fundsDeposited",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_bool"
+      },
+      {
+        "astId": 13,
+        "contract": "contracts/SimpleEscrow.sol:SimpleEscrow",
+        "label": "fundsReleased",
+        "offset": 1,
+        "slot": "4",
+        "type": "t_bool"
+      },
+      {
+        "astId": 15,
+        "contract": "contracts/SimpleEscrow.sol:SimpleEscrow",
+        "label": "disputed",
+        "offset": 2,
+        "slot": "4",
+        "type": "t_bool"
+      },
+      {
+        "astId": 23,
+        "contract": "contracts/SimpleEscrow.sol:SimpleEscrow",
+        "label": "currentState",
+        "offset": 3,
+        "slot": "4",
+        "type": "t_enum(State)20"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_enum(State)20": {
+        "encoding": "inplace",
+        "label": "enum SimpleEscrow.State",
+        "numberOfBytes": "1"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

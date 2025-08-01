@@ -1,0 +1,36 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "contracts/SimpleEscrow.sol": {
+      "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.19;\r\n\r\ncontract SimpleEscrow {\r\n    address public buyer;\r\n    address public seller;\r\n    address public arbiter;\r\n    uint256 public amount;\r\n    bool public fundsDeposited;\r\n    bool public fundsReleased;\r\n    bool public disputed;\r\n    \r\n    enum State { AWAITING_PAYMENT, AWAITING_DELIVERY, COMPLETE, DISPUTED }\r\n    State public currentState;\r\n    \r\n    event FundsDeposited(uint256 amount);\r\n    event FundsReleased(address to, uint256 amount);\r\n    event DisputeRaised();\r\n    event DisputeResolved(address winner);\r\n    \r\n    modifier onlyBuyer() {\r\n        require(msg.sender == buyer, \"Only buyer can call this\");\r\n        _;\r\n    }\r\n    \r\n    modifier onlySeller() {\r\n        require(msg.sender == seller, \"Only seller can call this\");\r\n        _;\r\n    }\r\n    \r\n    modifier onlyArbiter() {\r\n        require(msg.sender == arbiter, \"Only arbiter can call this\");\r\n        _;\r\n    }\r\n    \r\n    modifier inState(State _state) {\r\n        require(currentState == _state, \"Invalid state for this action\");\r\n        _;\r\n    }\r\n    \r\n    constructor(address _seller, address _arbiter) {\r\n        buyer = msg.sender;\r\n        seller = _seller;\r\n        arbiter = _arbiter;\r\n        currentState = State.AWAITING_PAYMENT;\r\n    }\r\n    \r\n    // Buyer deposits funds into escrow\r\n    function depositFunds() external payable onlyBuyer inState(State.AWAITING_PAYMENT) {\r\n        require(msg.value > 0, \"Must deposit some funds\");\r\n        amount = msg.value;\r\n        fundsDeposited = true;\r\n        currentState = State.AWAITING_DELIVERY;\r\n        emit FundsDeposited(msg.value);\r\n    }\r\n    \r\n    // Buyer confirms delivery and releases funds to seller\r\n    function confirmDelivery() external onlyBuyer inState(State.AWAITING_DELIVERY) {\r\n        _releaseFunds(seller);\r\n    }\r\n    \r\n    // Seller can request release (buyer still needs to confirm)\r\n    function requestRelease() external onlySeller inState(State.AWAITING_DELIVERY) {\r\n        // This could trigger a notification to buyer\r\n        // For now, it's just a placeholder for future functionality\r\n    }\r\n    \r\n    // Either party can raise a dispute\r\n    function raiseDispute() external inState(State.AWAITING_DELIVERY) {\r\n        require(msg.sender == buyer || msg.sender == seller, \"Only buyer or seller can raise dispute\");\r\n        disputed = true;\r\n        currentState = State.DISPUTED;\r\n        emit DisputeRaised();\r\n    }\r\n    \r\n    // Arbiter resolves dispute by awarding funds to either buyer or seller\r\n    function resolveDispute(address winner) external onlyArbiter inState(State.DISPUTED) {\r\n        require(winner == buyer || winner == seller, \"Winner must be buyer or seller\");\r\n        _releaseFunds(winner);\r\n        emit DisputeResolved(winner);\r\n    }\r\n    \r\n    // Internal function to release funds\r\n    function _releaseFunds(address recipient) internal {\r\n        require(fundsDeposited && !fundsReleased, \"Funds not available for release\");\r\n        fundsReleased = true;\r\n        currentState = State.COMPLETE;\r\n        \r\n        uint256 payout = amount;\r\n        amount = 0;\r\n        \r\n        payable(recipient).transfer(payout);\r\n        emit FundsReleased(recipient, payout);\r\n    }\r\n    \r\n    // Get contract balance\r\n    function getBalance() external view returns (uint256) {\r\n        return address(this).balance;\r\n    }\r\n    \r\n    // Get contract details\r\n    function getContractDetails() external view returns (\r\n        address _buyer,\r\n        address _seller, \r\n        address _arbiter,\r\n        uint256 _amount,\r\n        State _state,\r\n        bool _disputed\r\n    ) {\r\n        return (buyer, seller, arbiter, amount, currentState, disputed);\r\n    }\r\n}"
+    }
+  },
+  "settings": {
+    "optimizer": {
+      "enabled": true,
+      "runs": 200
+    },
+    "evmVersion": "paris",
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}
