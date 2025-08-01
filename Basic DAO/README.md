@@ -38,8 +38,9 @@ Basic DAO is a complete governance system that allows token holders to:
 - **SimpleDAO**: `0xB42aF39e206dE9cee21aE0449ceC521ef96306C1`
 - **GovernanceToken**: `0x4675D74F97Bf20D30311148F23DADacFaD74A620`
 
-### Block Explorer Links
-- **Local Network**: [http://localhost:8545](http://localhost:8545)
+### Block Explorer Links **Celo Network**
+-  https://celoscan.io/address/0xB42aF39e206dE9cee21aE0449ceC521ef96306C1
+-  https://celoscan.io/address/0x4675D74F97Bf20D30311148F23DADacFaD74A620 
 
 ## ⚙️ Initial Configuration
 
