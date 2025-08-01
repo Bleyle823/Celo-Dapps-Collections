@@ -2,6 +2,13 @@
 
 This is a comprehensive frontend interface for interacting with the Basic DAO smart contracts built with Next.js and Tailwind CSS.
 
+## Deployed Contracts
+
+The Basic DAO contracts are deployed on the Celo network:
+
+- **SimpleDAO Contract**: [0xB42aF39e206dE9cee21aE0449ceC521ef96306C1](https://celoscan.io/address/0xB42aF39e206dE9cee21aE0449ceC521ef96306C1)
+- **GovernanceToken Contract**: [0x4675D74F97Bf20D30311148F23DADacFaD74A620](https://celoscan.io/address/0x4675D74F97Bf20D30311148F23DADacFaD74A620)
+
 ## Features
 
 ### 🏛️ Proposal Management
