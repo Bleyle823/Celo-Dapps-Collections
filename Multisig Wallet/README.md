@@ -1,21 +1,61 @@
-# 🏗 Scaffold-ETH 2
+# 🔐 Celo Multisig Wallet
 
 <h4 align="center">
-  <a href="https://docs.scaffoldeth.io">Documentation</a> |
-  <a href="https://scaffoldeth.io">Website</a>
+  <a href="https://docs.scaffoldeth.io">Scaffold-ETH 2 Documentation</a> |
+  <a href="https://scaffoldeth.io">Scaffold-ETH 2 Website</a>
 </h4>
 
-🧪 An open-source, up-to-date toolkit for building decentralized applications (dapps) on the Ethereum blockchain. It's designed to make it easier for developers to create and deploy smart contracts and build user interfaces that interact with those contracts.
+🧪 A decentralized multisignature wallet built on the **Celo blockchain** using Scaffold-ETH 2. This project enables secure, multi-party control over digital assets and transactions, requiring multiple approvals before execution.
 
-⚙️ Built using NextJS, RainbowKit, Foundry/Hardhat, Wagmi, Viem, and Typescript.
+## 🎯 Project Overview
 
-- ✅ **Contract Hot Reload**: Your frontend auto-adapts to your smart contract as you edit it.
-- 🪝 **[Custom hooks](https://docs.scaffoldeth.io/hooks/)**: Collection of React hooks wrapper around [wagmi](https://wagmi.sh/) to simplify interactions with smart contracts with typescript autocompletion.
-- 🧱 [**Components**](https://docs.scaffoldeth.io/components/): Collection of common web3 components to quickly build your frontend.
-- 🔥 **Burner Wallet & Local Faucet**: Quickly test your application with a burner wallet and local faucet.
-- 🔐 **Integration with Wallet Providers**: Connect to different wallet providers and interact with the Ethereum network.
+This multisig wallet allows multiple owners to:
+- **Submit transactions** for approval
+- **Confirm or revoke** transaction approvals
+- **Execute transactions** once sufficient confirmations are reached
+- **Manage shared funds** securely with multi-party consensus
 
-![Debug Contracts tab](https://github.com/scaffold-eth/scaffold-eth-2/assets/55535804/b237af0c-5027-4849-a5c1-2e31495cccb1)
+## 🚀 Deployed Contract
+
+**Contract Address**: [`0x8e696F31f089892a1c407F398922Ad71888f5f85`](https://explorer.celo.org/mainnet/address/0x8e696F31f089892a1c407F398922Ad71888f5f85)
+
+**Network**: Celo Mainnet
+
+**Deployment Transaction**: [`0x5ac8b25944051425166e17ae67d6028158c601aa819cf7a275abe95f18c82288`](https://explorer.celo.org/mainnet/tx/0x5ac8b25944051425166e17ae67d6028158c601aa819cf7a275abe95f18c82288)
+
+**Initial Configuration**:
+- **Owners**: `0x231CdF6d31BF1D106DFA88b702B00E4b900628AD`
+- **Required Confirmations**: 1
+
+## ⚙️ Built with
+
+- **Smart Contracts**: Solidity, Hardhat
+- **Frontend**: NextJS, RainbowKit, Wagmi, Viem, TypeScript
+- **Blockchain**: Celo Network
+- **Development Framework**: Scaffold-ETH 2
+
+## 🔧 Key Features
+
+- ✅ **Multi-Party Control**: Multiple owners can manage shared funds
+- 🛡️ **Secure Transactions**: Require multiple confirmations before execution
+- 🔄 **Transaction Management**: Submit, confirm, revoke, and execute transactions
+- 💰 **Fund Management**: Accept and manage CELO and other tokens
+- 🪝 **Custom Hooks**: React hooks for seamless contract interaction
+- 🧱 **Web3 Components**: Pre-built components for rapid UI development
+- 🔥 **Burner Wallet & Local Faucet**: Test with burner wallet and local faucet
+- 🔐 **Wallet Integration**: Connect to various wallet providers
+
+## 🏗️ Smart Contract Features
+
+The `SimpleMultisig` contract provides:
+
+- **Owner Management**: Add/remove owners with consensus
+- **Transaction Submission**: Propose transactions for approval
+- **Confirmation System**: Multi-signature approval workflow
+- **Transaction Execution**: Execute approved transactions
+- **Fund Deposits**: Accept CELO and token deposits
+- **Balance Tracking**: Monitor wallet balances
+- **Event Logging**: Comprehensive transaction history
 
 ## Requirements
 
@@ -27,62 +67,62 @@ Before you begin, you need to install the following tools:
 
 ## Quickstart
 
-To get started with Scaffold-ETH 2, follow the steps below:
+To get started with the Celo Multisig Wallet, follow the steps below:
 
-1. Install the latest version of Scaffold-ETH 2
+1. Clone and install dependencies:
 
+```bash
+git clone <repository-url>
+cd Multisig-Wallet
+yarn install
 ```
-npx create-eth@latest
-```
-
-This command will install all the necessary packages and dependencies, so it might take a while.
-
-> [!NOTE]
-> You can also initialize your project with one of our extensions to add specific features or starter-kits. Learn more in our [extensions documentation](https://docs.scaffoldeth.io/extensions/).
 
 2. Run a local network in the first terminal:
 
-```
+```bash
 yarn chain
 ```
 
-This command starts a local Ethereum network that runs on your local machine and can be used for testing and development. Learn how to [customize your network configuration](https://docs.scaffoldeth.io/quick-start/environment#1-initialize-a-local-blockchain).
+This command starts a local Celo network for testing and development.
 
-3. On a second terminal, deploy the test contract:
+3. On a second terminal, deploy the multisig contract:
 
-```
+```bash
 yarn deploy
 ```
 
-This command deploys a test smart contract to the local network. You can find more information about how to customize your contract and deployment script in our [documentation](https://docs.scaffoldeth.io/quick-start/environment#2-deploy-your-smart-contract).
+This command deploys the SimpleMultisig contract to the local network.
 
 4. On a third terminal, start your NextJS app:
 
-```
+```bash
 yarn start
 ```
 
-Visit your app on: `http://localhost:3000`. You can interact with your smart contract using the `Debug Contracts` page. You can tweak the app config in `packages/nextjs/scaffold.config.ts`.
+Visit your app on: `http://localhost:3000`. You can interact with your multisig wallet using the `Debug Contracts` page.
 
-**What's next**:
+## 🌐 Celo Network Integration
 
-Visit the [What's next section of our docs](https://docs.scaffoldeth.io/quick-start/environment#whats-next) to learn how to:
+This project is specifically designed for the Celo blockchain, which offers:
 
-- Edit your smart contracts
-- Edit your deployment scripts
-- Customize your frontend
-- Edit the app config
-- Writing and running tests
-- [Setting up external services and API keys](https://docs.scaffoldeth.io/deploying/deploy-smart-contracts#configuration-of-third-party-services-for-production-grade-apps)
+- **Fast Transactions**: Quick confirmation times
+- **Low Fees**: Cost-effective transaction costs
+- **Mobile-First**: Optimized for mobile DeFi applications
+- **Carbon Negative**: Environmentally conscious blockchain
+- **Stablecoins**: Native support for cUSD and cEUR
 
-## Documentation
+## 📚 Documentation
 
-Visit our [docs](https://docs.scaffoldeth.io) to learn all the technical details and guides of Scaffold-ETH 2.
+- **Scaffold-ETH 2 Docs**: [docs.scaffoldeth.io](https://docs.scaffoldeth.io)
+- **Celo Documentation**: [docs.celo.org](https://docs.celo.org)
+- **Celo Explorer**: [explorer.celo.org](https://explorer.celo.org)
 
-To know more about its features, check out our [website](https://scaffoldeth.io).
+## 🤝 Contributing
 
-## Contributing to Scaffold-ETH 2
+We welcome contributions to the Celo Multisig Wallet!
 
-We welcome contributions to Scaffold-ETH 2!
+Please see [CONTRIBUTING.MD](CONTRIBUTING.md) for more information and guidelines for contributing to this project.
 
-Please see [CONTRIBUTING.MD](https://github.com/scaffold-eth/scaffold-eth-2/blob/main/CONTRIBUTING.md) for more information and guidelines for contributing to Scaffold-ETH 2.
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENCE](LICENCE) file for details.
