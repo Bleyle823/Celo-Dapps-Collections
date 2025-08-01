@@ -1,0 +1,1290 @@
+{
+  "address": "0x8562dfbFD1e9bbEa1B0AF1bCf6D924708fdd024a",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [],
+      "name": "CampaignExpired",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "CampaignNotActive",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidDeadline",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidFee",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "InvalidGoal",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "NoFundsToWithdraw",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "TransferFailed",
+      "type": "error"
+    },
+    {
+      "inputs": [],
+      "name": "UnauthorizedAccess",
+      "type": "error"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "campaignId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "creator",
+          "type": "address"
+        }
+      ],
+      "name": "CampaignCancelled",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "campaignId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "creator",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "beneficiary",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "goal",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        }
+      ],
+      "name": "CampaignCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "campaignId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "totalRaised",
+          "type": "uint256"
+        }
+      ],
+      "name": "CampaignGoalReached",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "campaignId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "beneficiary",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "CampaignWithdrawn",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "campaignId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "donor",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "message",
+          "type": "string"
+        }
+      ],
+      "name": "DonationMade",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newFee",
+          "type": "uint256"
+        }
+      ],
+      "name": "PlatformFeeUpdated",
+      "type": "event"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "fallback"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "campaignDonations",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "donor",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "timestamp",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "campaignId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "message",
+          "type": "string"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "campaigns",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "internalType": "address payable",
+          "name": "beneficiary",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "goal",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "raised",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "active",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "goalReached",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "donorCount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "creator",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "createdAt",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_campaignId",
+          "type": "uint256"
+        }
+      ],
+      "name": "cancelCampaign",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "_title",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "_description",
+          "type": "string"
+        },
+        {
+          "internalType": "address payable",
+          "name": "_beneficiary",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_goal",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_durationInDays",
+          "type": "uint256"
+        }
+      ],
+      "name": "createCampaign",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "campaignId",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_campaignId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "_message",
+          "type": "string"
+        }
+      ],
+      "name": "donate",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "emergencyPause",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_start",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_limit",
+          "type": "uint256"
+        }
+      ],
+      "name": "getActiveCampaigns",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "activeCampaigns",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_campaignId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getCampaign",
+      "outputs": [
+        {
+          "internalType": "string",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "internalType": "address",
+          "name": "beneficiary",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "goal",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "raised",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "deadline",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "active",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "goalReached",
+          "type": "bool"
+        },
+        {
+          "internalType": "uint256",
+          "name": "donorCount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "creator",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "createdAt",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_campaignId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getCampaignDonations",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "address",
+              "name": "donor",
+              "type": "address"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "timestamp",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "campaignId",
+              "type": "uint256"
+            },
+            {
+              "internalType": "string",
+              "name": "message",
+              "type": "string"
+            }
+          ],
+          "internalType": "struct DonationApp.Donation[]",
+          "name": "donations",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_campaignId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getCampaignProgress",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "percentage",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getPlatformStats",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "_totalCampaigns",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_totalDonationsAmount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_totalDonationsCount",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_platformFee",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_platformBalance",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_campaignId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getTimeLeft",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "timeLeft",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        }
+      ],
+      "name": "getUserCampaigns",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "campaignIds",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_user",
+          "type": "address"
+        }
+      ],
+      "name": "getUserDonations",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "campaignIds",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_campaignId",
+          "type": "uint256"
+        }
+      ],
+      "name": "isCampaignExpired",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "nextCampaignId",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "platformBalance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "platformFee",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "platformOwner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalCampaigns",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalDonationsAmount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalDonationsCount",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_newFee",
+          "type": "uint256"
+        }
+      ],
+      "name": "updatePlatformFee",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "userCampaigns",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "userDonations",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "_campaignId",
+          "type": "uint256"
+        }
+      ],
+      "name": "withdrawFunds",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "withdrawPlatformFees",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    }
+  ],
+  "transactionHash": "0x3430c2fe50c88e402390e1508b76a463ca73009dad9477774afa62ab087a14a6",
+  "receipt": {
+    "to": null,
+    "from": "0x231CdF6d31BF1D106DFA88b702B00E4b900628AD",
+    "contractAddress": "0x8562dfbFD1e9bbEa1B0AF1bCf6D924708fdd024a",
+    "transactionIndex": 6,
+    "gasUsed": "2037402",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x7826f21cec0d0c563c4a892e8223f3c8ba7d7b4184fd64c58cc4777578ade70b",
+    "transactionHash": "0x3430c2fe50c88e402390e1508b76a463ca73009dad9477774afa62ab087a14a6",
+    "logs": [],
+    "blockNumber": 42109211,
+    "cumulativeGasUsed": "3214145",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "7906aa35a86b744443c48beb0a3476ae",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.20+commit.a1b79de6\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"CampaignExpired\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"CampaignNotActive\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidDeadline\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidFee\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidGoal\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NoFundsToWithdraw\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TransferFailed\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"UnauthorizedAccess\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"campaignId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"creator\",\"type\":\"address\"}],\"name\":\"CampaignCancelled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"campaignId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"creator\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"goal\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"}],\"name\":\"CampaignCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"campaignId\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"totalRaised\",\"type\":\"uint256\"}],\"name\":\"CampaignGoalReached\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"campaignId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"beneficiary\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"CampaignWithdrawn\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"campaignId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"donor\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"}],\"name\":\"DonationMade\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newFee\",\"type\":\"uint256\"}],\"name\":\"PlatformFeeUpdated\",\"type\":\"event\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"campaignDonations\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"donor\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"campaignId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"campaigns\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"address payable\",\"name\":\"beneficiary\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"goal\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"raised\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"active\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"goalReached\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"donorCount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"creator\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"createdAt\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_campaignId\",\"type\":\"uint256\"}],\"name\":\"cancelCampaign\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"_title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_description\",\"type\":\"string\"},{\"internalType\":\"address payable\",\"name\":\"_beneficiary\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"_goal\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_durationInDays\",\"type\":\"uint256\"}],\"name\":\"createCampaign\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"campaignId\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_campaignId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"_message\",\"type\":\"string\"}],\"name\":\"donate\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"emergencyPause\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_start\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_limit\",\"type\":\"uint256\"}],\"name\":\"getActiveCampaigns\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"activeCampaigns\",\"type\":\"uint256[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_campaignId\",\"type\":\"uint256\"}],\"name\":\"getCampaign\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"title\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"address\",\"name\":\"beneficiary\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"goal\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"raised\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"deadline\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"active\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"goalReached\",\"type\":\"bool\"},{\"internalType\":\"uint256\",\"name\":\"donorCount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"creator\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"createdAt\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_campaignId\",\"type\":\"uint256\"}],\"name\":\"getCampaignDonations\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"donor\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"timestamp\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"campaignId\",\"type\":\"uint256\"},{\"internalType\":\"string\",\"name\":\"message\",\"type\":\"string\"}],\"internalType\":\"struct DonationApp.Donation[]\",\"name\":\"donations\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_campaignId\",\"type\":\"uint256\"}],\"name\":\"getCampaignProgress\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"percentage\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getPlatformStats\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"_totalCampaigns\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_totalDonationsAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_totalDonationsCount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_platformFee\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_platformBalance\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_campaignId\",\"type\":\"uint256\"}],\"name\":\"getTimeLeft\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"timeLeft\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"getUserCampaigns\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"campaignIds\",\"type\":\"uint256[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_user\",\"type\":\"address\"}],\"name\":\"getUserDonations\",\"outputs\":[{\"internalType\":\"uint256[]\",\"name\":\"campaignIds\",\"type\":\"uint256[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_campaignId\",\"type\":\"uint256\"}],\"name\":\"isCampaignExpired\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"nextCampaignId\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"platformBalance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"platformFee\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"platformOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalCampaigns\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalDonationsAmount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"totalDonationsCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_newFee\",\"type\":\"uint256\"}],\"name\":\"updatePlatformFee\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"userCampaigns\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"userDonations\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_campaignId\",\"type\":\"uint256\"}],\"name\":\"withdrawFunds\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"withdrawPlatformFees\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"details\":\"A comprehensive donation platform with campaigns, goals, and transparent tracking\",\"kind\":\"dev\",\"methods\":{\"cancelCampaign(uint256)\":{\"details\":\"Cancel campaign (only creator, only if no donations)\",\"params\":{\"_campaignId\":\"ID of the campaign\"}},\"createCampaign(string,string,address,uint256,uint256)\":{\"details\":\"Create a new donation campaign\",\"params\":{\"_beneficiary\":\"Address that will receive the donations\",\"_description\":\"Campaign description\",\"_durationInDays\":\"Duration of campaign in days\",\"_goal\":\"Funding goal in wei\",\"_title\":\"Campaign title\"}},\"donate(uint256,string)\":{\"details\":\"Donate to a campaign\",\"params\":{\"_campaignId\":\"ID of the campaign to donate to\",\"_message\":\"Optional message from donor\"}},\"emergencyPause()\":{\"details\":\"Emergency pause function (only platform owner)\"},\"getActiveCampaigns(uint256,uint256)\":{\"details\":\"Get active campaigns (view function for frontend)\",\"params\":{\"_limit\":\"Number of campaigns to return\",\"_start\":\"Start index\"}},\"getCampaign(uint256)\":{\"details\":\"Get campaign details\"},\"getCampaignDonations(uint256)\":{\"details\":\"Get donations for a campaign\",\"params\":{\"_campaignId\":\"ID of the campaign\"},\"returns\":{\"donations\":\"Array of donations\"}},\"getCampaignProgress(uint256)\":{\"details\":\"Get campaign progress percentage\",\"params\":{\"_campaignId\":\"ID of the campaign\"},\"returns\":{\"percentage\":\"Progress as percentage (0-100+)\"}},\"getPlatformStats()\":{\"details\":\"Get platform statistics\"},\"getTimeLeft(uint256)\":{\"details\":\"Get time remaining for campaign\",\"params\":{\"_campaignId\":\"ID of the campaign\"},\"returns\":{\"timeLeft\":\"Seconds remaining, 0 if expired\"}},\"getUserCampaigns(address)\":{\"details\":\"Get campaigns created by a user\",\"params\":{\"_user\":\"Address of the user\"},\"returns\":{\"campaignIds\":\"Array of campaign IDs\"}},\"getUserDonations(address)\":{\"details\":\"Get campaigns a user has donated to\",\"params\":{\"_user\":\"Address of the user\"},\"returns\":{\"campaignIds\":\"Array of campaign IDs\"}},\"isCampaignExpired(uint256)\":{\"details\":\"Check if campaign deadline has passed\",\"params\":{\"_campaignId\":\"ID of the campaign\"}},\"transferOwnership(address)\":{\"details\":\"Transfer platform ownership\",\"params\":{\"_newOwner\":\"New platform owner address\"}},\"updatePlatformFee(uint256)\":{\"details\":\"Update platform fee (only platform owner)\",\"params\":{\"_newFee\":\"New fee in basis points (100 = 1%)\"}},\"withdrawFunds(uint256)\":{\"details\":\"Withdraw funds from campaign (only beneficiary)\",\"params\":{\"_campaignId\":\"ID of the campaign\"}},\"withdrawPlatformFees()\":{\"details\":\"Withdraw platform fees (only platform owner)\"}},\"title\":\"DonationApp\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/Donation.sol\":\"DonationApp\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/Donation.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\r\\npragma solidity ^0.8.19;\\r\\n\\r\\n/**\\r\\n * @title DonationApp\\r\\n * @dev A comprehensive donation platform with campaigns, goals, and transparent tracking\\r\\n */\\r\\ncontract DonationApp {\\r\\n    struct Campaign {\\r\\n        string title;\\r\\n        string description;\\r\\n        address payable beneficiary;\\r\\n        uint256 goal;\\r\\n        uint256 raised;\\r\\n        uint256 deadline;\\r\\n        bool active;\\r\\n        bool goalReached;\\r\\n        uint256 donorCount;\\r\\n        address creator;\\r\\n        uint256 createdAt;\\r\\n    }\\r\\n\\r\\n    struct Donation {\\r\\n        address donor;\\r\\n        uint256 amount;\\r\\n        uint256 timestamp;\\r\\n        uint256 campaignId;\\r\\n        string message;\\r\\n    }\\r\\n\\r\\n    // State variables\\r\\n    mapping(uint256 => Campaign) public campaigns;\\r\\n    mapping(uint256 => Donation[]) public campaignDonations;\\r\\n    mapping(address => uint256[]) public userCampaigns;\\r\\n    mapping(address => uint256[]) public userDonations;\\r\\n    \\r\\n    uint256 public nextCampaignId;\\r\\n    uint256 public totalCampaigns;\\r\\n    uint256 public totalDonationsAmount;\\r\\n    uint256 public totalDonationsCount;\\r\\n    \\r\\n    // Platform fee (in basis points, 100 = 1%)\\r\\n    uint256 public platformFee = 250; // 2.5%\\r\\n    address public platformOwner;\\r\\n    uint256 public platformBalance;\\r\\n\\r\\n    // Events\\r\\n    event CampaignCreated(\\r\\n        uint256 indexed campaignId,\\r\\n        address indexed creator,\\r\\n        address indexed beneficiary,\\r\\n        string title,\\r\\n        uint256 goal,\\r\\n        uint256 deadline\\r\\n    );\\r\\n    \\r\\n    event DonationMade(\\r\\n        uint256 indexed campaignId,\\r\\n        address indexed donor,\\r\\n        uint256 amount,\\r\\n        string message\\r\\n    );\\r\\n    \\r\\n    event CampaignGoalReached(uint256 indexed campaignId, uint256 totalRaised);\\r\\n    event CampaignWithdrawn(uint256 indexed campaignId, address indexed beneficiary, uint256 amount);\\r\\n    event CampaignCancelled(uint256 indexed campaignId, address indexed creator);\\r\\n    event PlatformFeeUpdated(uint256 newFee);\\r\\n\\r\\n    // Errors\\r\\n    error InvalidGoal();\\r\\n    error InvalidDeadline();\\r\\n    error CampaignNotActive();\\r\\n    error CampaignExpired();\\r\\n    error NoFundsToWithdraw();\\r\\n    error UnauthorizedAccess();\\r\\n    error TransferFailed();\\r\\n    error InvalidFee();\\r\\n\\r\\n    // Modifiers\\r\\n    modifier onlyPlatformOwner() {\\r\\n        require(msg.sender == platformOwner, \\\"Only platform owner\\\");\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    modifier campaignExists(uint256 _campaignId) {\\r\\n        require(_campaignId < nextCampaignId, \\\"Campaign does not exist\\\");\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    modifier onlyCampaignCreator(uint256 _campaignId) {\\r\\n        require(campaigns[_campaignId].creator == msg.sender, \\\"Only campaign creator\\\");\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    constructor() {\\r\\n        platformOwner = msg.sender;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Create a new donation campaign\\r\\n     * @param _title Campaign title\\r\\n     * @param _description Campaign description\\r\\n     * @param _beneficiary Address that will receive the donations\\r\\n     * @param _goal Funding goal in wei\\r\\n     * @param _durationInDays Duration of campaign in days\\r\\n     */\\r\\n    function createCampaign(\\r\\n        string memory _title,\\r\\n        string memory _description,\\r\\n        address payable _beneficiary,\\r\\n        uint256 _goal,\\r\\n        uint256 _durationInDays\\r\\n    ) external returns (uint256 campaignId) {\\r\\n        if (_goal == 0) revert InvalidGoal();\\r\\n        if (_durationInDays == 0) revert InvalidDeadline();\\r\\n        require(_beneficiary != address(0), \\\"Invalid beneficiary address\\\");\\r\\n        require(bytes(_title).length > 0, \\\"Title cannot be empty\\\");\\r\\n\\r\\n        uint256 deadline = block.timestamp + (_durationInDays * 1 days);\\r\\n        \\r\\n        campaignId = nextCampaignId++;\\r\\n        \\r\\n        campaigns[campaignId] = Campaign({\\r\\n            title: _title,\\r\\n            description: _description,\\r\\n            beneficiary: _beneficiary,\\r\\n            goal: _goal,\\r\\n            raised: 0,\\r\\n            deadline: deadline,\\r\\n            active: true,\\r\\n            goalReached: false,\\r\\n            donorCount: 0,\\r\\n            creator: msg.sender,\\r\\n            createdAt: block.timestamp\\r\\n        });\\r\\n\\r\\n        userCampaigns[msg.sender].push(campaignId);\\r\\n        totalCampaigns++;\\r\\n\\r\\n        emit CampaignCreated(campaignId, msg.sender, _beneficiary, _title, _goal, deadline);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Donate to a campaign\\r\\n     * @param _campaignId ID of the campaign to donate to\\r\\n     * @param _message Optional message from donor\\r\\n     */\\r\\n    function donate(uint256 _campaignId, string memory _message) \\r\\n        external \\r\\n        payable \\r\\n        campaignExists(_campaignId) \\r\\n    {\\r\\n        require(msg.value > 0, \\\"Donation must be greater than 0\\\");\\r\\n        \\r\\n        Campaign storage campaign = campaigns[_campaignId];\\r\\n        \\r\\n        if (!campaign.active) revert CampaignNotActive();\\r\\n        if (block.timestamp > campaign.deadline) revert CampaignExpired();\\r\\n\\r\\n        // Calculate platform fee\\r\\n        uint256 fee = (msg.value * platformFee) / 10000;\\r\\n        uint256 donationAmount = msg.value - fee;\\r\\n\\r\\n        // Update campaign\\r\\n        campaign.raised += donationAmount;\\r\\n        campaign.donorCount++;\\r\\n        \\r\\n        // Check if goal is reached\\r\\n        if (!campaign.goalReached && campaign.raised >= campaign.goal) {\\r\\n            campaign.goalReached = true;\\r\\n            emit CampaignGoalReached(_campaignId, campaign.raised);\\r\\n        }\\r\\n\\r\\n        // Record donation\\r\\n        Donation memory newDonation = Donation({\\r\\n            donor: msg.sender,\\r\\n            amount: donationAmount,\\r\\n            timestamp: block.timestamp,\\r\\n            campaignId: _campaignId,\\r\\n            message: _message\\r\\n        });\\r\\n\\r\\n        campaignDonations[_campaignId].push(newDonation);\\r\\n        userDonations[msg.sender].push(_campaignId);\\r\\n\\r\\n        // Update totals\\r\\n        totalDonationsAmount += donationAmount;\\r\\n        totalDonationsCount++;\\r\\n        platformBalance += fee;\\r\\n\\r\\n        emit DonationMade(_campaignId, msg.sender, donationAmount, _message);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Withdraw funds from campaign (only beneficiary)\\r\\n     * @param _campaignId ID of the campaign\\r\\n     */\\r\\n    function withdrawFunds(uint256 _campaignId) \\r\\n        external \\r\\n        campaignExists(_campaignId) \\r\\n    {\\r\\n        Campaign storage campaign = campaigns[_campaignId];\\r\\n        \\r\\n        require(msg.sender == campaign.beneficiary, \\\"Only beneficiary can withdraw\\\");\\r\\n        if (campaign.raised == 0) revert NoFundsToWithdraw();\\r\\n\\r\\n        uint256 amount = campaign.raised;\\r\\n        campaign.raised = 0;\\r\\n        campaign.active = false;\\r\\n\\r\\n        (bool success, ) = campaign.beneficiary.call{value: amount}(\\\"\\\");\\r\\n        if (!success) revert TransferFailed();\\r\\n\\r\\n        emit CampaignWithdrawn(_campaignId, campaign.beneficiary, amount);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Cancel campaign (only creator, only if no donations)\\r\\n     * @param _campaignId ID of the campaign\\r\\n     */\\r\\n    function cancelCampaign(uint256 _campaignId) \\r\\n        external \\r\\n        campaignExists(_campaignId)\\r\\n        onlyCampaignCreator(_campaignId)\\r\\n    {\\r\\n        Campaign storage campaign = campaigns[_campaignId];\\r\\n        require(campaign.raised == 0, \\\"Cannot cancel campaign with donations\\\");\\r\\n        \\r\\n        campaign.active = false;\\r\\n        \\r\\n        emit CampaignCancelled(_campaignId, msg.sender);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get campaign details\\r\\n     */\\r\\n    function getCampaign(uint256 _campaignId) \\r\\n        external \\r\\n        view \\r\\n        campaignExists(_campaignId)\\r\\n        returns (\\r\\n            string memory title,\\r\\n            string memory description,\\r\\n            address beneficiary,\\r\\n            uint256 goal,\\r\\n            uint256 raised,\\r\\n            uint256 deadline,\\r\\n            bool active,\\r\\n            bool goalReached,\\r\\n            uint256 donorCount,\\r\\n            address creator,\\r\\n            uint256 createdAt\\r\\n        ) \\r\\n    {\\r\\n        Campaign memory campaign = campaigns[_campaignId];\\r\\n        return (\\r\\n            campaign.title,\\r\\n            campaign.description,\\r\\n            campaign.beneficiary,\\r\\n            campaign.goal,\\r\\n            campaign.raised,\\r\\n            campaign.deadline,\\r\\n            campaign.active,\\r\\n            campaign.goalReached,\\r\\n            campaign.donorCount,\\r\\n            campaign.creator,\\r\\n            campaign.createdAt\\r\\n        );\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get campaign progress percentage\\r\\n     * @param _campaignId ID of the campaign\\r\\n     * @return percentage Progress as percentage (0-100+)\\r\\n     */\\r\\n    function getCampaignProgress(uint256 _campaignId) \\r\\n        external \\r\\n        view \\r\\n        campaignExists(_campaignId)\\r\\n        returns (uint256 percentage) \\r\\n    {\\r\\n        Campaign memory campaign = campaigns[_campaignId];\\r\\n        if (campaign.goal == 0) return 0;\\r\\n        return (campaign.raised * 100) / campaign.goal;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get donations for a campaign\\r\\n     * @param _campaignId ID of the campaign\\r\\n     * @return donations Array of donations\\r\\n     */\\r\\n    function getCampaignDonations(uint256 _campaignId) \\r\\n        external \\r\\n        view \\r\\n        campaignExists(_campaignId)\\r\\n        returns (Donation[] memory donations) \\r\\n    {\\r\\n        return campaignDonations[_campaignId];\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get campaigns created by a user\\r\\n     * @param _user Address of the user\\r\\n     * @return campaignIds Array of campaign IDs\\r\\n     */\\r\\n    function getUserCampaigns(address _user) \\r\\n        external \\r\\n        view \\r\\n        returns (uint256[] memory campaignIds) \\r\\n    {\\r\\n        return userCampaigns[_user];\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get campaigns a user has donated to\\r\\n     * @param _user Address of the user\\r\\n     * @return campaignIds Array of campaign IDs\\r\\n     */\\r\\n    function getUserDonations(address _user) \\r\\n        external \\r\\n        view \\r\\n        returns (uint256[] memory campaignIds) \\r\\n    {\\r\\n        return userDonations[_user];\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get active campaigns (view function for frontend)\\r\\n     * @param _start Start index\\r\\n     * @param _limit Number of campaigns to return\\r\\n     */\\r\\n    function getActiveCampaigns(uint256 _start, uint256 _limit) \\r\\n        external \\r\\n        view \\r\\n        returns (uint256[] memory activeCampaigns) \\r\\n    {\\r\\n        uint256[] memory temp = new uint256[](nextCampaignId);\\r\\n        uint256 count = 0;\\r\\n        \\r\\n        for (uint256 i = _start; i < nextCampaignId && count < _limit; i++) {\\r\\n            if (campaigns[i].active && block.timestamp <= campaigns[i].deadline) {\\r\\n                temp[count] = i;\\r\\n                count++;\\r\\n            }\\r\\n        }\\r\\n        \\r\\n        // Resize array\\r\\n        activeCampaigns = new uint256[](count);\\r\\n        for (uint256 i = 0; i < count; i++) {\\r\\n            activeCampaigns[i] = temp[i];\\r\\n        }\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Check if campaign deadline has passed\\r\\n     * @param _campaignId ID of the campaign\\r\\n     */\\r\\n    function isCampaignExpired(uint256 _campaignId) \\r\\n        external \\r\\n        view \\r\\n        campaignExists(_campaignId)\\r\\n        returns (bool) \\r\\n    {\\r\\n        return block.timestamp > campaigns[_campaignId].deadline;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get time remaining for campaign\\r\\n     * @param _campaignId ID of the campaign\\r\\n     * @return timeLeft Seconds remaining, 0 if expired\\r\\n     */\\r\\n    function getTimeLeft(uint256 _campaignId) \\r\\n        external \\r\\n        view \\r\\n        campaignExists(_campaignId)\\r\\n        returns (uint256 timeLeft) \\r\\n    {\\r\\n        uint256 deadline = campaigns[_campaignId].deadline;\\r\\n        if (block.timestamp >= deadline) {\\r\\n            return 0;\\r\\n        }\\r\\n        return deadline - block.timestamp;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Update platform fee (only platform owner)\\r\\n     * @param _newFee New fee in basis points (100 = 1%)\\r\\n     */\\r\\n    function updatePlatformFee(uint256 _newFee) external onlyPlatformOwner {\\r\\n        if (_newFee > 1000) revert InvalidFee(); // Max 10%\\r\\n        platformFee = _newFee;\\r\\n        emit PlatformFeeUpdated(_newFee);\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Withdraw platform fees (only platform owner)\\r\\n     */\\r\\n    function withdrawPlatformFees() external onlyPlatformOwner {\\r\\n        uint256 amount = platformBalance;\\r\\n        platformBalance = 0;\\r\\n        \\r\\n        (bool success, ) = payable(platformOwner).call{value: amount}(\\\"\\\");\\r\\n        if (!success) revert TransferFailed();\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Transfer platform ownership\\r\\n     * @param _newOwner New platform owner address\\r\\n     */\\r\\n    function transferOwnership(address _newOwner) external onlyPlatformOwner {\\r\\n        require(_newOwner != address(0), \\\"Invalid address\\\");\\r\\n        platformOwner = _newOwner;\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Get platform statistics\\r\\n     */\\r\\n    function getPlatformStats() external view returns (\\r\\n        uint256 _totalCampaigns,\\r\\n        uint256 _totalDonationsAmount,\\r\\n        uint256 _totalDonationsCount,\\r\\n        uint256 _platformFee,\\r\\n        uint256 _platformBalance\\r\\n    ) {\\r\\n        return (\\r\\n            totalCampaigns,\\r\\n            totalDonationsAmount,\\r\\n            totalDonationsCount,\\r\\n            platformFee,\\r\\n            platformBalance\\r\\n        );\\r\\n    }\\r\\n\\r\\n    /**\\r\\n     * @dev Emergency pause function (only platform owner)\\r\\n     */\\r\\n    function emergencyPause() external onlyPlatformOwner {\\r\\n        // In a production contract, you'd implement a proper pause mechanism\\r\\n        // This is a simplified version\\r\\n        selfdestruct(payable(platformOwner));\\r\\n    }\\r\\n\\r\\n    // Prevent accidental ETH sends\\r\\n    receive() external payable {\\r\\n        revert(\\\"Use donate() function to make donations\\\");\\r\\n    }\\r\\n\\r\\n    fallback() external payable {\\r\\n        revert(\\\"Function not found. Use donate() to make donations\\\");\\r\\n    }\\r\\n}\",\"keccak256\":\"0x00004f8a434a0c9107fa0a3b16f769267fc9d902a825ec7375b6df40130cb80c\",\"license\":\"MIT\"}},\"version\":1}",
+  "bytecode": "0x608060405260fa60085534801561001557600080fd5b50600980546001600160a01b03191633179055612313806100376000396000f3fe6080604052600436106101bb5760003560e01c806370879ff7116100ec578063aa0b59881161008a578063d82d5c4811610064578063d82d5c48146105be578063e8c58763146105ee578063f2fde38b1461060e578063f3d3be171461062e5761021d565b8063aa0b598814610569578063b653145814610589578063d0b7830b146105a95761021d565b80638ab9b92a116100c65780638ab9b92a146104f65780638d59d1f1146105165780639304d12414610529578063a1e5084c146105495761021d565b806370879ff714610482578063732435b2146104b35780637903a756146104e05761021d565b806345598b4a116101595780635167642f116101335780635167642f1461040a57806351858e27146104375780635598f8cc1461044c57806362a5dbbc1461046c5761021d565b806345598b4a146103925780634933e631146103b25780634df8ccb1146103d25761021d565b8063141961bc11610195578063141961bc14610303578063155dd5ee1461033a57806319ac74bd1461035c57806326232a2e1461037c5761021d565b806302932f56146102805780630fd63e8e146102a9578063136d8883146102bf5761021d565b3661021d5760405162461bcd60e51b815260206004820152602760248201527f55736520646f6e61746528292066756e6374696f6e20746f206d616b6520646f6044820152666e6174696f6e7360c81b60648201526084015b60405180910390fd5b60405162461bcd60e51b815260206004820152603260248201527f46756e6374696f6e206e6f7420666f756e642e2055736520646f6e617465282960448201527120746f206d616b6520646f6e6174696f6e7360701b6064820152608401610214565b34801561028c57600080fd5b5061029660055481565b6040519081526020015b60405180910390f35b3480156102b557600080fd5b5061029660075481565b3480156102cb57600080fd5b50600554600654600754600854600a54604080519586526020860194909452928401919091526060830152608082015260a0016102a0565b34801561030f57600080fd5b5061032361031e366004611c54565b610644565b6040516102a09b9a99989796959493929190611cb3565b34801561034657600080fd5b5061035a610355366004611c54565b6107bb565b005b34801561036857600080fd5b50610296610377366004611d4a565b610949565b34801561038857600080fd5b5061029660085481565b34801561039e57600080fd5b5061035a6103ad366004611c54565b61097a565b3480156103be57600080fd5b506102966103cd366004611d4a565b610aac565b3480156103de57600080fd5b506009546103f2906001600160a01b031681565b6040516001600160a01b0390911681526020016102a0565b34801561041657600080fd5b5061042a610425366004611c54565b610ac8565b6040516102a09190611d76565b34801561044357600080fd5b5061035a610c1b565b34801561045857600080fd5b50610323610467366004611c54565b610c53565b34801561047857600080fd5b50610296600a5481565b34801561048e57600080fd5b506104a261049d366004611e14565b610eeb565b6040516102a0959493929190611e36565b3480156104bf57600080fd5b506104d36104ce366004611e74565b610fd1565b6040516102a09190611e98565b3480156104ec57600080fd5b5061029660045481565b34801561050257600080fd5b50610296610511366004611c54565b61103d565b61035a610524366004611f7f565b611257565b34801561053557600080fd5b50610296610544366004611fc6565b61153d565b34801561055557600080fd5b506104d3610564366004611e74565b611816565b34801561057557600080fd5b5061035a610584366004611c54565b611880565b34801561059557600080fd5b506104d36105a4366004611e14565b611908565b3480156105b557600080fd5b5061035a611a84565b3480156105ca57600080fd5b506105de6105d9366004611c54565b611b32565b60405190151581526020016102a0565b3480156105fa57600080fd5b50610296610609366004611c54565b611b6f565b34801561061a57600080fd5b5061035a610629366004611e74565b611bc0565b34801561063a57600080fd5b5061029660065481565b60006020819052908152604090208054819061065f9061204e565b80601f016020809104026020016040519081016040528092919081815260200182805461068b9061204e565b80156106d85780601f106106ad576101008083540402835291602001916106d8565b820191906000526020600020905b8154815290600101906020018083116106bb57829003601f168201915b5050505050908060010180546106ed9061204e565b80601f01602080910402602001604051908101604052809291908181526020018280546107199061204e565b80156107665780601f1061073b57610100808354040283529160200191610766565b820191906000526020600020905b81548152906001019060200180831161074957829003601f168201915b50505060028401546003850154600486015460058701546006880154600789015460088a01546009909a015498996001600160a01b0396871699959850939650919460ff80831695610100909304169316908b565b8060045481106107dd5760405162461bcd60e51b815260040161021490612082565b600082815260208190526040902060028101546001600160a01b031633146108475760405162461bcd60e51b815260206004820152601d60248201527f4f6e6c792062656e65666963696172792063616e2077697468647261770000006044820152606401610214565b806004015460000361086c576040516367e3990d60e01b815260040160405180910390fd5b60048101805460009182905560068301805460ff1916905560028301546040519192916001600160a01b039091169083908381818185875af1925050503d80600081146108d5576040519150601f19603f3d011682016040523d82523d6000602084013e6108da565b606091505b50509050806108fc576040516312171d8360e31b815260040160405180910390fd5b60028301546040518381526001600160a01b039091169086907f076f7a439d190ed0f7882eacff83199cda95f20b1cf940a11192a967e6e7cdcf9060200160405180910390a35050505050565b6002602052816000526040600020818154811061096557600080fd5b90600052602060002001600091509150505481565b80600454811061099c5760405162461bcd60e51b815260040161021490612082565b60008281526020819052604090206008015482906001600160a01b031633146109ff5760405162461bcd60e51b815260206004820152601560248201527427b7363c9031b0b6b830b4b3b71031b932b0ba37b960591b6044820152606401610214565b6000838152602081905260409020600481015415610a6d5760405162461bcd60e51b815260206004820152602560248201527f43616e6e6f742063616e63656c2063616d706169676e207769746820646f6e6160448201526474696f6e7360d81b6064820152608401610214565b60068101805460ff19169055604051339085907f844c792f3d122ddfe76f9173cd5b48de3087f78395e0f62b94f9d471c991dcb290600090a350505050565b6003602052816000526040600020818154811061096557600080fd5b6060816004548110610aec5760405162461bcd60e51b815260040161021490612082565b600083815260016020908152604080832080548251818502810185019093528083529193909284015b82821015610c0e5760008481526020908190206040805160a0810182526005860290920180546001600160a01b0316835260018101549383019390935260028301549082015260038201546060820152600482018054919291608084019190610b7d9061204e565b80601f0160208091040260200160405190810160405280929190818152602001828054610ba99061204e565b8015610bf65780601f10610bcb57610100808354040283529160200191610bf6565b820191906000526020600020905b815481529060010190602001808311610bd957829003601f168201915b50505050508152505081526020019060010190610b15565b5050505091505b50919050565b6009546001600160a01b03163314610c455760405162461bcd60e51b8152600401610214906120b9565b6009546001600160a01b0316ff5b60608060008060008060008060008060008b6004548110610c865760405162461bcd60e51b815260040161021490612082565b60008d81526020819052604080822081516101608101909252805482908290610cae9061204e565b80601f0160208091040260200160405190810160405280929190818152602001828054610cda9061204e565b8015610d275780601f10610cfc57610100808354040283529160200191610d27565b820191906000526020600020905b815481529060010190602001808311610d0a57829003601f168201915b50505050508152602001600182018054610d409061204e565b80601f0160208091040260200160405190810160405280929190818152602001828054610d6c9061204e565b8015610db95780601f10610d8e57610100808354040283529160200191610db9565b820191906000526020600020905b815481529060010190602001808311610d9c57829003601f168201915b505050505081526020016002820160009054906101000a90046001600160a01b03166001600160a01b03166001600160a01b031681526020016003820154815260200160048201548152602001600582015481526020016006820160009054906101000a900460ff161515151581526020016006820160019054906101000a900460ff16151515158152602001600782015481526020016008820160009054906101000a90046001600160a01b03166001600160a01b03166001600160a01b031681526020016009820154815250509050806000015181602001518260400151836060015184608001518560a001518660c001518760e001518861010001518961012001518a61014001519c509c509c509c509c509c509c509c509c509c509c50505091939597999b90929496989a50565b60016020528160005260406000208181548110610f0757600080fd5b6000918252602090912060059091020180546001820154600283015460038401546004850180546001600160a01b03909516975092955090939092909190610f4e9061204e565b80601f0160208091040260200160405190810160405280929190818152602001828054610f7a9061204e565b8015610fc75780601f10610f9c57610100808354040283529160200191610fc7565b820191906000526020600020905b815481529060010190602001808311610faa57829003601f168201915b5050505050905085565b6001600160a01b03811660009081526003602090815260409182902080548351818402810184019094528084526060939283018282801561103157602002820191906000526020600020905b81548152602001906001019080831161101d575b50505050509050919050565b60008160045481106110615760405162461bcd60e51b815260040161021490612082565b600083815260208190526040808220815161016081019092528054829082906110899061204e565b80601f01602080910402602001604051908101604052809291908181526020018280546110b59061204e565b80156111025780601f106110d757610100808354040283529160200191611102565b820191906000526020600020905b8154815290600101906020018083116110e557829003601f168201915b5050505050815260200160018201805461111b9061204e565b80601f01602080910402602001604051908101604052809291908181526020018280546111479061204e565b80156111945780601f1061116957610100808354040283529160200191611194565b820191906000526020600020905b81548152906001019060200180831161117757829003601f168201915b505050918352505060028201546001600160a01b03908116602083015260038301546040830152600483015460608084019190915260058401546080840152600684015460ff808216151560a08601526101009182900416151560c0850152600785015460e085015260088501549092169183019190915260099092015461012090910152810151909150600003611230576000925050610c15565b606081015160808201516112459060646120fc565b61124f9190612119565b949350505050565b8160045481106112795760405162461bcd60e51b815260040161021490612082565b600034116112c95760405162461bcd60e51b815260206004820152601f60248201527f446f6e6174696f6e206d7573742062652067726561746572207468616e2030006044820152606401610214565b6000838152602081905260409020600681015460ff166112fc5760405163219a945b60e11b815260040160405180910390fd5b806005015442111561132157604051638320b48360e01b815260040160405180910390fd5b60006127106008543461133491906120fc565b61133e9190612119565b9050600061134c823461213b565b905080836004016000828254611362919061214e565b909155505060078301805490600061137983612161565b90915550506006830154610100900460ff161580156113a057508260030154836004015410155b156113f75760068301805461ff001916610100179055600483015460405187917f17c739238019e8da74aa42e7632b66b6576188f867cdf570727adcd99bd184a7916113ee91815260200190565b60405180910390a25b6040805160a081018252338152602080820184815242838501908152606084018b8152608085018b815260008d815260018087529781208054808a018255908252959020865160059096020180546001600160a01b0319166001600160a01b0390961695909517855592519584019590955551600283015592516003820155915190918291600482019061148b90826121c9565b50503360009081526003602090815260408220805460018101825590835290822001899055600680548593509091906114c590849061214e565b9091555050600780549060006114da83612161565b919050555082600a60008282546114f1919061214e565b9091555050604051339088907fa478a3414d9ea59482d3204a37ab4341100fb4e8c7fed191572cf5b3833ceeb39061152c9086908b90612289565b60405180910390a350505050505050565b60008260000361156057604051639b60eb4d60e01b815260040160405180910390fd5b8160000361158157604051631da7447960e21b815260040160405180910390fd5b6001600160a01b0384166115d75760405162461bcd60e51b815260206004820152601b60248201527f496e76616c69642062656e6566696369617279206164647265737300000000006044820152606401610214565b60008651116116205760405162461bcd60e51b81526020600482015260156024820152745469746c652063616e6e6f7420626520656d70747960581b6044820152606401610214565b600061162f83620151806120fc565b611639904261214e565b60048054919250600061164b83612161565b90915550604080516101608101825289815260208082018a90526001600160a01b038916828401526060820188905260006080830181905260a08301869052600160c084015260e083018190526101008301819052336101208401524261014084015284815290819052919091208151929450909181906116cc90826121c9565b50602082015160018201906116e190826121c9565b50604082810151600283810180546001600160a01b03199081166001600160a01b0394851617909155606086015160038601556080860151600486015560a086015160058087019190915560c087015160068701805460e08a015161ffff1990911692151561ff0019169290921761010092151583021790558701516007870155610120870151600887018054909316941693909317905561014090940151600990930192909255336000908152602093845290812080546001810182559082529281209092018490558054916117b783612161565b9190505550846001600160a01b0316336001600160a01b0316837fab59b1925b9e9f5979fb63f46375f2f218e34df984a2b8725b5539447952b8e08a8886604051611804939291906122a2565b60405180910390a45095945050505050565b6001600160a01b038116600090815260026020908152604091829020805483518184028101840190945280845260609392830182828015611031576020028201919060005260206000209081548152602001906001019080831161101d5750505050509050919050565b6009546001600160a01b031633146118aa5760405162461bcd60e51b8152600401610214906120b9565b6103e88111156118cd576040516358d620b360e01b815260040160405180910390fd5b60088190556040518181527f45610d581145924dd7090a5017e5f2b1d6f42213bb2e95707ff86846bbfcb1ca9060200160405180910390a150565b6060600060045467ffffffffffffffff81111561192757611927611edc565b604051908082528060200260200182016040528015611950578160200160208202803683370190505b5090506000845b6004548110801561196757508482105b156119e15760008181526020819052604090206006015460ff16801561199e57506000818152602081905260409020600501544211155b156119cf57808383815181106119b6576119b66122c7565b6020908102919091010152816119cb81612161565b9250505b806119d981612161565b915050611957565b508067ffffffffffffffff8111156119fb576119fb611edc565b604051908082528060200260200182016040528015611a24578160200160208202803683370190505b50925060005b81811015611a7b57828181518110611a4457611a446122c7565b6020026020010151848281518110611a5e57611a5e6122c7565b602090810291909101015280611a7381612161565b915050611a2a565b50505092915050565b6009546001600160a01b03163314611aae5760405162461bcd60e51b8152600401610214906120b9565b600a80546000918290556009546040519192916001600160a01b039091169083908381818185875af1925050503d8060008114611b07576040519150601f19603f3d011682016040523d82523d6000602084013e611b0c565b606091505b5050905080611b2e576040516312171d8360e31b815260040160405180910390fd5b5050565b6000816004548110611b565760405162461bcd60e51b815260040161021490612082565b5050600090815260208190526040902060050154421190565b6000816004548110611b935760405162461bcd60e51b815260040161021490612082565b600083815260208190526040902060050154428111611bb6576000925050610c15565b61124f428261213b565b6009546001600160a01b03163314611bea5760405162461bcd60e51b8152600401610214906120b9565b6001600160a01b038116611c325760405162461bcd60e51b815260206004820152600f60248201526e496e76616c6964206164647265737360881b6044820152606401610214565b600980546001600160a01b0319166001600160a01b0392909216919091179055565b600060208284031215611c6657600080fd5b5035919050565b6000815180845260005b81811015611c9357602081850181015186830182015201611c77565b506000602082860101526020601f19601f83011685010191505092915050565b6000610160808352611cc78184018f611c6d565b90508281036020840152611cdb818e611c6d565b6001600160a01b039c8d166040850152606084019b909b525050608081019790975260a087019590955292151560c086015290151560e0850152610100840152909316610120820152610140019190915292915050565b6001600160a01b0381168114611d4757600080fd5b50565b60008060408385031215611d5d57600080fd5b8235611d6881611d32565b946020939093013593505050565b60006020808301818452808551808352604092508286019150828160051b87010184880160005b83811015611e0657888303603f19018552815180516001600160a01b03168452878101518885015286810151878501526060808201519085015260809081015160a091850182905290611df281860183611c6d565b968901969450505090860190600101611d9d565b509098975050505050505050565b60008060408385031215611e2757600080fd5b50508035926020909101359150565b60018060a01b038616815284602082015283604082015282606082015260a060808201526000611e6960a0830184611c6d565b979650505050505050565b600060208284031215611e8657600080fd5b8135611e9181611d32565b9392505050565b6020808252825182820181905260009190848201906040850190845b81811015611ed057835183529284019291840191600101611eb4565b50909695505050505050565b634e487b7160e01b600052604160045260246000fd5b600082601f830112611f0357600080fd5b813567ffffffffffffffff80821115611f1e57611f1e611edc565b604051601f8301601f19908116603f01168101908282118183101715611f4657611f46611edc565b81604052838152866020858801011115611f5f57600080fd5b836020870160208301376000602085830101528094505050505092915050565b60008060408385031215611f9257600080fd5b82359150602083013567ffffffffffffffff811115611fb057600080fd5b611fbc85828601611ef2565b9150509250929050565b600080600080600060a08688031215611fde57600080fd5b853567ffffffffffffffff80821115611ff657600080fd5b61200289838a01611ef2565b9650602088013591508082111561201857600080fd5b5061202588828901611ef2565b945050604086013561203681611d32565b94979396509394606081013594506080013592915050565b600181811c9082168061206257607f821691505b602082108103610c1557634e487b7160e01b600052602260045260246000fd5b60208082526017908201527f43616d706169676e20646f6573206e6f74206578697374000000000000000000604082015260600190565b60208082526013908201527227b7363c90383630ba3337b9369037bbb732b960691b604082015260600190565b634e487b7160e01b600052601160045260246000fd5b8082028115828204841417612113576121136120e6565b92915050565b60008261213657634e487b7160e01b600052601260045260246000fd5b500490565b81810381811115612113576121136120e6565b80820180821115612113576121136120e6565b600060018201612173576121736120e6565b5060010190565b601f8211156121c457600081815260208120601f850160051c810160208610156121a15750805b601f850160051c820191505b818110156121c0578281556001016121ad565b5050505b505050565b815167ffffffffffffffff8111156121e3576121e3611edc565b6121f7816121f1845461204e565b8461217a565b602080601f83116001811461222c57600084156122145750858301515b600019600386901b1c1916600185901b1785556121c0565b600085815260208120601f198616915b8281101561225b5788860151825594840194600190910190840161223c565b50858210156122795787850151600019600388901b60f8161c191681555b5050505050600190811b01905550565b82815260406020820152600061124f6040830184611c6d565b6060815260006122b56060830186611c6d565b60208301949094525060400152919050565b634e487b7160e01b600052603260045260246000fdfea264697066735822122044785462c8d12ac4be9efe94f84e3b7fe799776347c1c75c0b501799ff363ca864736f6c63430008140033",
+  "deployedBytecode": "0x6080604052600436106101bb5760003560e01c806370879ff7116100ec578063aa0b59881161008a578063d82d5c4811610064578063d82d5c48146105be578063e8c58763146105ee578063f2fde38b1461060e578063f3d3be171461062e5761021d565b8063aa0b598814610569578063b653145814610589578063d0b7830b146105a95761021d565b80638ab9b92a116100c65780638ab9b92a146104f65780638d59d1f1146105165780639304d12414610529578063a1e5084c146105495761021d565b806370879ff714610482578063732435b2146104b35780637903a756146104e05761021d565b806345598b4a116101595780635167642f116101335780635167642f1461040a57806351858e27146104375780635598f8cc1461044c57806362a5dbbc1461046c5761021d565b806345598b4a146103925780634933e631146103b25780634df8ccb1146103d25761021d565b8063141961bc11610195578063141961bc14610303578063155dd5ee1461033a57806319ac74bd1461035c57806326232a2e1461037c5761021d565b806302932f56146102805780630fd63e8e146102a9578063136d8883146102bf5761021d565b3661021d5760405162461bcd60e51b815260206004820152602760248201527f55736520646f6e61746528292066756e6374696f6e20746f206d616b6520646f6044820152666e6174696f6e7360c81b60648201526084015b60405180910390fd5b60405162461bcd60e51b815260206004820152603260248201527f46756e6374696f6e206e6f7420666f756e642e2055736520646f6e617465282960448201527120746f206d616b6520646f6e6174696f6e7360701b6064820152608401610214565b34801561028c57600080fd5b5061029660055481565b6040519081526020015b60405180910390f35b3480156102b557600080fd5b5061029660075481565b3480156102cb57600080fd5b50600554600654600754600854600a54604080519586526020860194909452928401919091526060830152608082015260a0016102a0565b34801561030f57600080fd5b5061032361031e366004611c54565b610644565b6040516102a09b9a99989796959493929190611cb3565b34801561034657600080fd5b5061035a610355366004611c54565b6107bb565b005b34801561036857600080fd5b50610296610377366004611d4a565b610949565b34801561038857600080fd5b5061029660085481565b34801561039e57600080fd5b5061035a6103ad366004611c54565b61097a565b3480156103be57600080fd5b506102966103cd366004611d4a565b610aac565b3480156103de57600080fd5b506009546103f2906001600160a01b031681565b6040516001600160a01b0390911681526020016102a0565b34801561041657600080fd5b5061042a610425366004611c54565b610ac8565b6040516102a09190611d76565b34801561044357600080fd5b5061035a610c1b565b34801561045857600080fd5b50610323610467366004611c54565b610c53565b34801561047857600080fd5b50610296600a5481565b34801561048e57600080fd5b506104a261049d366004611e14565b610eeb565b6040516102a0959493929190611e36565b3480156104bf57600080fd5b506104d36104ce366004611e74565b610fd1565b6040516102a09190611e98565b3480156104ec57600080fd5b5061029660045481565b34801561050257600080fd5b50610296610511366004611c54565b61103d565b61035a610524366004611f7f565b611257565b34801561053557600080fd5b50610296610544366004611fc6565b61153d565b34801561055557600080fd5b506104d3610564366004611e74565b611816565b34801561057557600080fd5b5061035a610584366004611c54565b611880565b34801561059557600080fd5b506104d36105a4366004611e14565b611908565b3480156105b557600080fd5b5061035a611a84565b3480156105ca57600080fd5b506105de6105d9366004611c54565b611b32565b60405190151581526020016102a0565b3480156105fa57600080fd5b50610296610609366004611c54565b611b6f565b34801561061a57600080fd5b5061035a610629366004611e74565b611bc0565b34801561063a57600080fd5b5061029660065481565b60006020819052908152604090208054819061065f9061204e565b80601f016020809104026020016040519081016040528092919081815260200182805461068b9061204e565b80156106d85780601f106106ad576101008083540402835291602001916106d8565b820191906000526020600020905b8154815290600101906020018083116106bb57829003601f168201915b5050505050908060010180546106ed9061204e565b80601f01602080910402602001604051908101604052809291908181526020018280546107199061204e565b80156107665780601f1061073b57610100808354040283529160200191610766565b820191906000526020600020905b81548152906001019060200180831161074957829003601f168201915b50505060028401546003850154600486015460058701546006880154600789015460088a01546009909a015498996001600160a01b0396871699959850939650919460ff80831695610100909304169316908b565b8060045481106107dd5760405162461bcd60e51b815260040161021490612082565b600082815260208190526040902060028101546001600160a01b031633146108475760405162461bcd60e51b815260206004820152601d60248201527f4f6e6c792062656e65666963696172792063616e2077697468647261770000006044820152606401610214565b806004015460000361086c576040516367e3990d60e01b815260040160405180910390fd5b60048101805460009182905560068301805460ff1916905560028301546040519192916001600160a01b039091169083908381818185875af1925050503d80600081146108d5576040519150601f19603f3d011682016040523d82523d6000602084013e6108da565b606091505b50509050806108fc576040516312171d8360e31b815260040160405180910390fd5b60028301546040518381526001600160a01b039091169086907f076f7a439d190ed0f7882eacff83199cda95f20b1cf940a11192a967e6e7cdcf9060200160405180910390a35050505050565b6002602052816000526040600020818154811061096557600080fd5b90600052602060002001600091509150505481565b80600454811061099c5760405162461bcd60e51b815260040161021490612082565b60008281526020819052604090206008015482906001600160a01b031633146109ff5760405162461bcd60e51b815260206004820152601560248201527427b7363c9031b0b6b830b4b3b71031b932b0ba37b960591b6044820152606401610214565b6000838152602081905260409020600481015415610a6d5760405162461bcd60e51b815260206004820152602560248201527f43616e6e6f742063616e63656c2063616d706169676e207769746820646f6e6160448201526474696f6e7360d81b6064820152608401610214565b60068101805460ff19169055604051339085907f844c792f3d122ddfe76f9173cd5b48de3087f78395e0f62b94f9d471c991dcb290600090a350505050565b6003602052816000526040600020818154811061096557600080fd5b6060816004548110610aec5760405162461bcd60e51b815260040161021490612082565b600083815260016020908152604080832080548251818502810185019093528083529193909284015b82821015610c0e5760008481526020908190206040805160a0810182526005860290920180546001600160a01b0316835260018101549383019390935260028301549082015260038201546060820152600482018054919291608084019190610b7d9061204e565b80601f0160208091040260200160405190810160405280929190818152602001828054610ba99061204e565b8015610bf65780601f10610bcb57610100808354040283529160200191610bf6565b820191906000526020600020905b815481529060010190602001808311610bd957829003601f168201915b50505050508152505081526020019060010190610b15565b5050505091505b50919050565b6009546001600160a01b03163314610c455760405162461bcd60e51b8152600401610214906120b9565b6009546001600160a01b0316ff5b60608060008060008060008060008060008b6004548110610c865760405162461bcd60e51b815260040161021490612082565b60008d81526020819052604080822081516101608101909252805482908290610cae9061204e565b80601f0160208091040260200160405190810160405280929190818152602001828054610cda9061204e565b8015610d275780601f10610cfc57610100808354040283529160200191610d27565b820191906000526020600020905b815481529060010190602001808311610d0a57829003601f168201915b50505050508152602001600182018054610d409061204e565b80601f0160208091040260200160405190810160405280929190818152602001828054610d6c9061204e565b8015610db95780601f10610d8e57610100808354040283529160200191610db9565b820191906000526020600020905b815481529060010190602001808311610d9c57829003601f168201915b505050505081526020016002820160009054906101000a90046001600160a01b03166001600160a01b03166001600160a01b031681526020016003820154815260200160048201548152602001600582015481526020016006820160009054906101000a900460ff161515151581526020016006820160019054906101000a900460ff16151515158152602001600782015481526020016008820160009054906101000a90046001600160a01b03166001600160a01b03166001600160a01b031681526020016009820154815250509050806000015181602001518260400151836060015184608001518560a001518660c001518760e001518861010001518961012001518a61014001519c509c509c509c509c509c509c509c509c509c509c50505091939597999b90929496989a50565b60016020528160005260406000208181548110610f0757600080fd5b6000918252602090912060059091020180546001820154600283015460038401546004850180546001600160a01b03909516975092955090939092909190610f4e9061204e565b80601f0160208091040260200160405190810160405280929190818152602001828054610f7a9061204e565b8015610fc75780601f10610f9c57610100808354040283529160200191610fc7565b820191906000526020600020905b815481529060010190602001808311610faa57829003601f168201915b5050505050905085565b6001600160a01b03811660009081526003602090815260409182902080548351818402810184019094528084526060939283018282801561103157602002820191906000526020600020905b81548152602001906001019080831161101d575b50505050509050919050565b60008160045481106110615760405162461bcd60e51b815260040161021490612082565b600083815260208190526040808220815161016081019092528054829082906110899061204e565b80601f01602080910402602001604051908101604052809291908181526020018280546110b59061204e565b80156111025780601f106110d757610100808354040283529160200191611102565b820191906000526020600020905b8154815290600101906020018083116110e557829003601f168201915b5050505050815260200160018201805461111b9061204e565b80601f01602080910402602001604051908101604052809291908181526020018280546111479061204e565b80156111945780601f1061116957610100808354040283529160200191611194565b820191906000526020600020905b81548152906001019060200180831161117757829003601f168201915b505050918352505060028201546001600160a01b03908116602083015260038301546040830152600483015460608084019190915260058401546080840152600684015460ff808216151560a08601526101009182900416151560c0850152600785015460e085015260088501549092169183019190915260099092015461012090910152810151909150600003611230576000925050610c15565b606081015160808201516112459060646120fc565b61124f9190612119565b949350505050565b8160045481106112795760405162461bcd60e51b815260040161021490612082565b600034116112c95760405162461bcd60e51b815260206004820152601f60248201527f446f6e6174696f6e206d7573742062652067726561746572207468616e2030006044820152606401610214565b6000838152602081905260409020600681015460ff166112fc5760405163219a945b60e11b815260040160405180910390fd5b806005015442111561132157604051638320b48360e01b815260040160405180910390fd5b60006127106008543461133491906120fc565b61133e9190612119565b9050600061134c823461213b565b905080836004016000828254611362919061214e565b909155505060078301805490600061137983612161565b90915550506006830154610100900460ff161580156113a057508260030154836004015410155b156113f75760068301805461ff001916610100179055600483015460405187917f17c739238019e8da74aa42e7632b66b6576188f867cdf570727adcd99bd184a7916113ee91815260200190565b60405180910390a25b6040805160a081018252338152602080820184815242838501908152606084018b8152608085018b815260008d815260018087529781208054808a018255908252959020865160059096020180546001600160a01b0319166001600160a01b0390961695909517855592519584019590955551600283015592516003820155915190918291600482019061148b90826121c9565b50503360009081526003602090815260408220805460018101825590835290822001899055600680548593509091906114c590849061214e565b9091555050600780549060006114da83612161565b919050555082600a60008282546114f1919061214e565b9091555050604051339088907fa478a3414d9ea59482d3204a37ab4341100fb4e8c7fed191572cf5b3833ceeb39061152c9086908b90612289565b60405180910390a350505050505050565b60008260000361156057604051639b60eb4d60e01b815260040160405180910390fd5b8160000361158157604051631da7447960e21b815260040160405180910390fd5b6001600160a01b0384166115d75760405162461bcd60e51b815260206004820152601b60248201527f496e76616c69642062656e6566696369617279206164647265737300000000006044820152606401610214565b60008651116116205760405162461bcd60e51b81526020600482015260156024820152745469746c652063616e6e6f7420626520656d70747960581b6044820152606401610214565b600061162f83620151806120fc565b611639904261214e565b60048054919250600061164b83612161565b90915550604080516101608101825289815260208082018a90526001600160a01b038916828401526060820188905260006080830181905260a08301869052600160c084015260e083018190526101008301819052336101208401524261014084015284815290819052919091208151929450909181906116cc90826121c9565b50602082015160018201906116e190826121c9565b50604082810151600283810180546001600160a01b03199081166001600160a01b0394851617909155606086015160038601556080860151600486015560a086015160058087019190915560c087015160068701805460e08a015161ffff1990911692151561ff0019169290921761010092151583021790558701516007870155610120870151600887018054909316941693909317905561014090940151600990930192909255336000908152602093845290812080546001810182559082529281209092018490558054916117b783612161565b9190505550846001600160a01b0316336001600160a01b0316837fab59b1925b9e9f5979fb63f46375f2f218e34df984a2b8725b5539447952b8e08a8886604051611804939291906122a2565b60405180910390a45095945050505050565b6001600160a01b038116600090815260026020908152604091829020805483518184028101840190945280845260609392830182828015611031576020028201919060005260206000209081548152602001906001019080831161101d5750505050509050919050565b6009546001600160a01b031633146118aa5760405162461bcd60e51b8152600401610214906120b9565b6103e88111156118cd576040516358d620b360e01b815260040160405180910390fd5b60088190556040518181527f45610d581145924dd7090a5017e5f2b1d6f42213bb2e95707ff86846bbfcb1ca9060200160405180910390a150565b6060600060045467ffffffffffffffff81111561192757611927611edc565b604051908082528060200260200182016040528015611950578160200160208202803683370190505b5090506000845b6004548110801561196757508482105b156119e15760008181526020819052604090206006015460ff16801561199e57506000818152602081905260409020600501544211155b156119cf57808383815181106119b6576119b66122c7565b6020908102919091010152816119cb81612161565b9250505b806119d981612161565b915050611957565b508067ffffffffffffffff8111156119fb576119fb611edc565b604051908082528060200260200182016040528015611a24578160200160208202803683370190505b50925060005b81811015611a7b57828181518110611a4457611a446122c7565b6020026020010151848281518110611a5e57611a5e6122c7565b602090810291909101015280611a7381612161565b915050611a2a565b50505092915050565b6009546001600160a01b03163314611aae5760405162461bcd60e51b8152600401610214906120b9565b600a80546000918290556009546040519192916001600160a01b039091169083908381818185875af1925050503d8060008114611b07576040519150601f19603f3d011682016040523d82523d6000602084013e611b0c565b606091505b5050905080611b2e576040516312171d8360e31b815260040160405180910390fd5b5050565b6000816004548110611b565760405162461bcd60e51b815260040161021490612082565b5050600090815260208190526040902060050154421190565b6000816004548110611b935760405162461bcd60e51b815260040161021490612082565b600083815260208190526040902060050154428111611bb6576000925050610c15565b61124f428261213b565b6009546001600160a01b03163314611bea5760405162461bcd60e51b8152600401610214906120b9565b6001600160a01b038116611c325760405162461bcd60e51b815260206004820152600f60248201526e496e76616c6964206164647265737360881b6044820152606401610214565b600980546001600160a01b0319166001600160a01b0392909216919091179055565b600060208284031215611c6657600080fd5b5035919050565b6000815180845260005b81811015611c9357602081850181015186830182015201611c77565b506000602082860101526020601f19601f83011685010191505092915050565b6000610160808352611cc78184018f611c6d565b90508281036020840152611cdb818e611c6d565b6001600160a01b039c8d166040850152606084019b909b525050608081019790975260a087019590955292151560c086015290151560e0850152610100840152909316610120820152610140019190915292915050565b6001600160a01b0381168114611d4757600080fd5b50565b60008060408385031215611d5d57600080fd5b8235611d6881611d32565b946020939093013593505050565b60006020808301818452808551808352604092508286019150828160051b87010184880160005b83811015611e0657888303603f19018552815180516001600160a01b03168452878101518885015286810151878501526060808201519085015260809081015160a091850182905290611df281860183611c6d565b968901969450505090860190600101611d9d565b509098975050505050505050565b60008060408385031215611e2757600080fd5b50508035926020909101359150565b60018060a01b038616815284602082015283604082015282606082015260a060808201526000611e6960a0830184611c6d565b979650505050505050565b600060208284031215611e8657600080fd5b8135611e9181611d32565b9392505050565b6020808252825182820181905260009190848201906040850190845b81811015611ed057835183529284019291840191600101611eb4565b50909695505050505050565b634e487b7160e01b600052604160045260246000fd5b600082601f830112611f0357600080fd5b813567ffffffffffffffff80821115611f1e57611f1e611edc565b604051601f8301601f19908116603f01168101908282118183101715611f4657611f46611edc565b81604052838152866020858801011115611f5f57600080fd5b836020870160208301376000602085830101528094505050505092915050565b60008060408385031215611f9257600080fd5b82359150602083013567ffffffffffffffff811115611fb057600080fd5b611fbc85828601611ef2565b9150509250929050565b600080600080600060a08688031215611fde57600080fd5b853567ffffffffffffffff80821115611ff657600080fd5b61200289838a01611ef2565b9650602088013591508082111561201857600080fd5b5061202588828901611ef2565b945050604086013561203681611d32565b94979396509394606081013594506080013592915050565b600181811c9082168061206257607f821691505b602082108103610c1557634e487b7160e01b600052602260045260246000fd5b60208082526017908201527f43616d706169676e20646f6573206e6f74206578697374000000000000000000604082015260600190565b60208082526013908201527227b7363c90383630ba3337b9369037bbb732b960691b604082015260600190565b634e487b7160e01b600052601160045260246000fd5b8082028115828204841417612113576121136120e6565b92915050565b60008261213657634e487b7160e01b600052601260045260246000fd5b500490565b81810381811115612113576121136120e6565b80820180821115612113576121136120e6565b600060018201612173576121736120e6565b5060010190565b601f8211156121c457600081815260208120601f850160051c810160208610156121a15750805b601f850160051c820191505b818110156121c0578281556001016121ad565b5050505b505050565b815167ffffffffffffffff8111156121e3576121e3611edc565b6121f7816121f1845461204e565b8461217a565b602080601f83116001811461222c57600084156122145750858301515b600019600386901b1c1916600185901b1785556121c0565b600085815260208120601f198616915b8281101561225b5788860151825594840194600190910190840161223c565b50858210156122795787850151600019600388901b60f8161c191681555b5050505050600190811b01905550565b82815260406020820152600061124f6040830184611c6d565b6060815260006122b56060830186611c6d565b60208301949094525060400152919050565b634e487b7160e01b600052603260045260246000fdfea264697066735822122044785462c8d12ac4be9efe94f84e3b7fe799776347c1c75c0b501799ff363ca864736f6c63430008140033",
+  "devdoc": {
+    "details": "A comprehensive donation platform with campaigns, goals, and transparent tracking",
+    "kind": "dev",
+    "methods": {
+      "cancelCampaign(uint256)": {
+        "details": "Cancel campaign (only creator, only if no donations)",
+        "params": {
+          "_campaignId": "ID of the campaign"
+        }
+      },
+      "createCampaign(string,string,address,uint256,uint256)": {
+        "details": "Create a new donation campaign",
+        "params": {
+          "_beneficiary": "Address that will receive the donations",
+          "_description": "Campaign description",
+          "_durationInDays": "Duration of campaign in days",
+          "_goal": "Funding goal in wei",
+          "_title": "Campaign title"
+        }
+      },
+      "donate(uint256,string)": {
+        "details": "Donate to a campaign",
+        "params": {
+          "_campaignId": "ID of the campaign to donate to",
+          "_message": "Optional message from donor"
+        }
+      },
+      "emergencyPause()": {
+        "details": "Emergency pause function (only platform owner)"
+      },
+      "getActiveCampaigns(uint256,uint256)": {
+        "details": "Get active campaigns (view function for frontend)",
+        "params": {
+          "_limit": "Number of campaigns to return",
+          "_start": "Start index"
+        }
+      },
+      "getCampaign(uint256)": {
+        "details": "Get campaign details"
+      },
+      "getCampaignDonations(uint256)": {
+        "details": "Get donations for a campaign",
+        "params": {
+          "_campaignId": "ID of the campaign"
+        },
+        "returns": {
+          "donations": "Array of donations"
+        }
+      },
+      "getCampaignProgress(uint256)": {
+        "details": "Get campaign progress percentage",
+        "params": {
+          "_campaignId": "ID of the campaign"
+        },
+        "returns": {
+          "percentage": "Progress as percentage (0-100+)"
+        }
+      },
+      "getPlatformStats()": {
+        "details": "Get platform statistics"
+      },
+      "getTimeLeft(uint256)": {
+        "details": "Get time remaining for campaign",
+        "params": {
+          "_campaignId": "ID of the campaign"
+        },
+        "returns": {
+          "timeLeft": "Seconds remaining, 0 if expired"
+        }
+      },
+      "getUserCampaigns(address)": {
+        "details": "Get campaigns created by a user",
+        "params": {
+          "_user": "Address of the user"
+        },
+        "returns": {
+          "campaignIds": "Array of campaign IDs"
+        }
+      },
+      "getUserDonations(address)": {
+        "details": "Get campaigns a user has donated to",
+        "params": {
+          "_user": "Address of the user"
+        },
+        "returns": {
+          "campaignIds": "Array of campaign IDs"
+        }
+      },
+      "isCampaignExpired(uint256)": {
+        "details": "Check if campaign deadline has passed",
+        "params": {
+          "_campaignId": "ID of the campaign"
+        }
+      },
+      "transferOwnership(address)": {
+        "details": "Transfer platform ownership",
+        "params": {
+          "_newOwner": "New platform owner address"
+        }
+      },
+      "updatePlatformFee(uint256)": {
+        "details": "Update platform fee (only platform owner)",
+        "params": {
+          "_newFee": "New fee in basis points (100 = 1%)"
+        }
+      },
+      "withdrawFunds(uint256)": {
+        "details": "Withdraw funds from campaign (only beneficiary)",
+        "params": {
+          "_campaignId": "ID of the campaign"
+        }
+      },
+      "withdrawPlatformFees()": {
+        "details": "Withdraw platform fees (only platform owner)"
+      }
+    },
+    "title": "DonationApp",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 41,
+        "contract": "contracts/Donation.sol:DonationApp",
+        "label": "campaigns",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_uint256,t_struct(Campaign)25_storage)"
+      },
+      {
+        "astId": 47,
+        "contract": "contracts/Donation.sol:DonationApp",
+        "label": "campaignDonations",
+        "offset": 0,
+        "slot": "1",
+        "type": "t_mapping(t_uint256,t_array(t_struct(Donation)36_storage)dyn_storage)"
+      },
+      {
+        "astId": 52,
+        "contract": "contracts/Donation.sol:DonationApp",
+        "label": "userCampaigns",
+        "offset": 0,
+        "slot": "2",
+        "type": "t_mapping(t_address,t_array(t_uint256)dyn_storage)"
+      },
+      {
+        "astId": 57,
+        "contract": "contracts/Donation.sol:DonationApp",
+        "label": "userDonations",
+        "offset": 0,
+        "slot": "3",
+        "type": "t_mapping(t_address,t_array(t_uint256)dyn_storage)"
+      },
+      {
+        "astId": 59,
+        "contract": "contracts/Donation.sol:DonationApp",
+        "label": "nextCampaignId",
+        "offset": 0,
+        "slot": "4",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 61,
+        "contract": "contracts/Donation.sol:DonationApp",
+        "label": "totalCampaigns",
+        "offset": 0,
+        "slot": "5",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 63,
+        "contract": "contracts/Donation.sol:DonationApp",
+        "label": "totalDonationsAmount",
+        "offset": 0,
+        "slot": "6",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 65,
+        "contract": "contracts/Donation.sol:DonationApp",
+        "label": "totalDonationsCount",
+        "offset": 0,
+        "slot": "7",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 68,
+        "contract": "contracts/Donation.sol:DonationApp",
+        "label": "platformFee",
+        "offset": 0,
+        "slot": "8",
+        "type": "t_uint256"
+      },
+      {
+        "astId": 70,
+        "contract": "contracts/Donation.sol:DonationApp",
+        "label": "platformOwner",
+        "offset": 0,
+        "slot": "9",
+        "type": "t_address"
+      },
+      {
+        "astId": 72,
+        "contract": "contracts/Donation.sol:DonationApp",
+        "label": "platformBalance",
+        "offset": 0,
+        "slot": "10",
+        "type": "t_uint256"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_address_payable": {
+        "encoding": "inplace",
+        "label": "address payable",
+        "numberOfBytes": "20"
+      },
+      "t_array(t_struct(Donation)36_storage)dyn_storage": {
+        "base": "t_struct(Donation)36_storage",
+        "encoding": "dynamic_array",
+        "label": "struct DonationApp.Donation[]",
+        "numberOfBytes": "32"
+      },
+      "t_array(t_uint256)dyn_storage": {
+        "base": "t_uint256",
+        "encoding": "dynamic_array",
+        "label": "uint256[]",
+        "numberOfBytes": "32"
+      },
+      "t_bool": {
+        "encoding": "inplace",
+        "label": "bool",
+        "numberOfBytes": "1"
+      },
+      "t_mapping(t_address,t_array(t_uint256)dyn_storage)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => uint256[])",
+        "numberOfBytes": "32",
+        "value": "t_array(t_uint256)dyn_storage"
+      },
+      "t_mapping(t_uint256,t_array(t_struct(Donation)36_storage)dyn_storage)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => struct DonationApp.Donation[])",
+        "numberOfBytes": "32",
+        "value": "t_array(t_struct(Donation)36_storage)dyn_storage"
+      },
+      "t_mapping(t_uint256,t_struct(Campaign)25_storage)": {
+        "encoding": "mapping",
+        "key": "t_uint256",
+        "label": "mapping(uint256 => struct DonationApp.Campaign)",
+        "numberOfBytes": "32",
+        "value": "t_struct(Campaign)25_storage"
+      },
+      "t_string_storage": {
+        "encoding": "bytes",
+        "label": "string",
+        "numberOfBytes": "32"
+      },
+      "t_struct(Campaign)25_storage": {
+        "encoding": "inplace",
+        "label": "struct DonationApp.Campaign",
+        "members": [
+          {
+            "astId": 4,
+            "contract": "contracts/Donation.sol:DonationApp",
+            "label": "title",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 6,
+            "contract": "contracts/Donation.sol:DonationApp",
+            "label": "description",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_string_storage"
+          },
+          {
+            "astId": 8,
+            "contract": "contracts/Donation.sol:DonationApp",
+            "label": "beneficiary",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_address_payable"
+          },
+          {
+            "astId": 10,
+            "contract": "contracts/Donation.sol:DonationApp",
+            "label": "goal",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 12,
+            "contract": "contracts/Donation.sol:DonationApp",
+            "label": "raised",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 14,
+            "contract": "contracts/Donation.sol:DonationApp",
+            "label": "deadline",
+            "offset": 0,
+            "slot": "5",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 16,
+            "contract": "contracts/Donation.sol:DonationApp",
+            "label": "active",
+            "offset": 0,
+            "slot": "6",
+            "type": "t_bool"
+          },
+          {
+            "astId": 18,
+            "contract": "contracts/Donation.sol:DonationApp",
+            "label": "goalReached",
+            "offset": 1,
+            "slot": "6",
+            "type": "t_bool"
+          },
+          {
+            "astId": 20,
+            "contract": "contracts/Donation.sol:DonationApp",
+            "label": "donorCount",
+            "offset": 0,
+            "slot": "7",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 22,
+            "contract": "contracts/Donation.sol:DonationApp",
+            "label": "creator",
+            "offset": 0,
+            "slot": "8",
+            "type": "t_address"
+          },
+          {
+            "astId": 24,
+            "contract": "contracts/Donation.sol:DonationApp",
+            "label": "createdAt",
+            "offset": 0,
+            "slot": "9",
+            "type": "t_uint256"
+          }
+        ],
+        "numberOfBytes": "320"
+      },
+      "t_struct(Donation)36_storage": {
+        "encoding": "inplace",
+        "label": "struct DonationApp.Donation",
+        "members": [
+          {
+            "astId": 27,
+            "contract": "contracts/Donation.sol:DonationApp",
+            "label": "donor",
+            "offset": 0,
+            "slot": "0",
+            "type": "t_address"
+          },
+          {
+            "astId": 29,
+            "contract": "contracts/Donation.sol:DonationApp",
+            "label": "amount",
+            "offset": 0,
+            "slot": "1",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 31,
+            "contract": "contracts/Donation.sol:DonationApp",
+            "label": "timestamp",
+            "offset": 0,
+            "slot": "2",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 33,
+            "contract": "contracts/Donation.sol:DonationApp",
+            "label": "campaignId",
+            "offset": 0,
+            "slot": "3",
+            "type": "t_uint256"
+          },
+          {
+            "astId": 35,
+            "contract": "contracts/Donation.sol:DonationApp",
+            "label": "message",
+            "offset": 0,
+            "slot": "4",
+            "type": "t_string_storage"
+          }
+        ],
+        "numberOfBytes": "160"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}
